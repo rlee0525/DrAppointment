@@ -9,7 +9,7 @@ Live Site
 ## Design Docs
 * [View Wireframes][wireframes]
 
-[wireframes]: wireframes
+[wireframes]: docs/wireframes
 
 ## Functionality & MVP
 
