@@ -8,16 +8,8 @@ Live Site
 
 ## Design Docs
 * [View Wireframes][wireframes]
-<!-- * [React Components][components]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
-* [Sample State][sample-state] -->
 
 [wireframes]: wireframes
-<!-- [components]: component-hierarchy.md
-[sample-state]: sample-state.md
-[api-endpoints]: api-endpoints.md
-[schema]: schema.md -->
 
 ## Functionality & MVP
 
