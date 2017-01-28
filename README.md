@@ -1,10 +1,25 @@
-## Dr. Appointment
+# Dr. Appointment
 
-### Background
+Live Site
+
+## Background
 
 ...
 
-### Functionality & MVP
+## Design Docs
+* [View Wireframes][wireframes]
+<!-- * [React Components][components]
+* [API endpoints][api-endpoints]
+* [DB schema][schema]
+* [Sample State][sample-state] -->
+
+[wireframes]: wireframes
+<!-- [components]: component-hierarchy.md
+[sample-state]: sample-state.md
+[api-endpoints]: api-endpoints.md
+[schema]: schema.md -->
+
+## Functionality & MVP
 
 The project implementation should allow the user to:
 
@@ -25,7 +40,7 @@ The project implementation should allow the user to:
 - reminders
   - text message day before appointment (twilio)
 
-### UX Flow
+## UX Flow
 
 1. Invite user to authenticate with phone number -> user enters phone number
 2. Send auth code to user
@@ -35,12 +50,12 @@ The project implementation should allow the user to:
 6. User gets appointment confirmation by text message
 7. User gets reminder for doctor appointment
 
-### Wireframes
+## Wireframes
 
 ...
 
 
-### Architecture and Technologies
+## Architecture and Technologies
 
 This project will be implemented with the following technologies:
 
@@ -48,7 +63,7 @@ This project will be implemented with the following technologies:
 - Rails (Heroku with SSL)
 - Authy / Twillio (text messaging)
 
-### Implementation Timeline
+## Implementation Timeline
 
 **Day 1**
 
@@ -65,7 +80,7 @@ This project will be implemented with the following technologies:
   - Search function
   -
 =======
->>>>>>> 66b677fd9e324756a76e511e0c179bee5ee9c0a6
+>>>>>>>
 
 RJ:
 
@@ -88,6 +103,6 @@ RL:
 
 ...
 
-### Bonus features
+## Bonus features
 
 ...
