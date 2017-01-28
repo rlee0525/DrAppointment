@@ -53,6 +53,7 @@ This project will be implemented with the following technologies:
 **Day 1**
 
 - Setup Rails Backend (Authentication)
+<<<<<<< HEAD
   - Seed data
   - Model
   - Auth with Authy
@@ -63,6 +64,8 @@ This project will be implemented with the following technologies:
   - Get location working (Phone API / IP Location)
   - Search function
   -
+=======
+>>>>>>> 66b677fd9e324756a76e511e0c179bee5ee9c0a6
 
 RJ:
 
