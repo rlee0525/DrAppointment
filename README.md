@@ -106,7 +106,11 @@ Raymond's primary responsibilities will be:
 - Landscape mode
 
 ### Plan for getting users and reviews
-- Survey/gauge interest in app at 5 doctor's practice
-  - Make a questionnaire
+- Make questionnaire for customer
+  - Include section for receptionists
+  - Include section for doctors
+  - Survey/gauge interest in app at 5 doctor's practice
   - Tabulate results and include in production README
-- Both will each share with at least 5 friends and family and ask for good reviews
+- Make user experience survey for user
+  - Get 15 classmates to review
+  - Tabulate results and include in production README
