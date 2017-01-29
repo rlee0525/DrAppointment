@@ -4,12 +4,9 @@ Live Site
 
 ## Background
 
-...
+Making appointments with your primary care physician can be difficult and extremely time-consuming. Instead of making phone calls during work to make an appointment with doctors, this mobile app will allow the users to quickly search for their doctors, view their availabilities, and make an appointment at any time.
 
-## Design Docs
-* [View Wireframes][wireframes]
-
-[wireframes]: docs/wireframes
+To maximize convenience and security, this app will utilize twilio's two-factor authentication to verify the user, automatically save links to doctors with whom appointments were made, and quickly make an appointment for oneself or family members.
 
 ## Functionality & MVP
 
@@ -47,8 +44,9 @@ The project implementation should allow the user to:
 
 ## Wireframes
 
-...
+* [View Wireframes][wireframes]
 
+[wireframes]: docs/wireframes
 
 ## Architecture and Technologies
 
@@ -63,7 +61,6 @@ This project will be implemented with the following technologies:
 **Day 1**
 
 - Setup Rails Backend (Authentication)
-<<<<<<< HEAD
   - Seed data
   - Model
   - Auth with Authy
@@ -73,9 +70,6 @@ This project will be implemented with the following technologies:
   - Authy: Create User (SMS)
   - Get location working (Phone API / IP Location)
   - Search function
-  -
-=======
->>>>>>>
 
 RJ:
 
