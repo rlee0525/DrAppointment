@@ -68,7 +68,13 @@ This project will be implemented with the following technologies:
   - Authy: Create User (SMS)
   - Get location working (Phone API / IP Location)
   - Search function
+  - Reminder message with Authy
 
+Day 1: Setup backend and learn about react native.
+Day 2: Set up two factor authentication using Authy and create mobile home page.
+Day 3: Implement search function with new algorithm that filters and sorts by favorites doctors, radius of users' geolocation using Google API, and doctor's name.
+Day 4: Doctor page, appointment page, reminder text message
+Day 5: Seed data, CSS
 
 ### Group Members & Work Breakdown
 
@@ -92,8 +98,6 @@ Raymond's primary responsibilities will be:
 ### Implementation Timeline
 
 **Day 1**: Get started on the rails backend using postgreSQL and learn about React Native. By the end of the day, we will have:
-
-
 
 Get started on the infrastructure of the extension, following [this guide](https://developer.chrome.com/extensions/getstarted) from Chrome.  By the end of the day, we will have:
 
