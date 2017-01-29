@@ -4,9 +4,7 @@ Live Site
 
 ## Background
 
-Making appointments with your primary care physician can be difficult and extremely time-consuming. Instead of making phone calls during work to make an appointment with doctors, this mobile app will allow the users to quickly search for their doctors, view their availabilities, and make an appointment at any time.
-
-To maximize convenience and security, this app will utilize twilio's two-factor authentication to verify the user, automatically save links to doctors with whom appointments were made, and quickly make an appointment for oneself or family members.
+Making appointments with one's primary care physician can be difficult and extremely time-consuming. Instead of trying to find time during work to place phone calls and make appointments with doctors, this mobile app will allow the users to quickly search for their doctors, view their availabilities, and make an appointment for users and their family members at the time of users' convenience.
 
 ## Functionality & MVP
 
@@ -71,27 +69,63 @@ This project will be implemented with the following technologies:
   - Get location working (Phone API / IP Location)
   - Search function
 
-RJ:
 
-RL:
+### Group Members & Work Breakdown
+
+Our group consists of two members, Randy Jap and Raymond Lee.  
+
+Randy's primary responsibilities will be:
+
+- Researching & implementing the ability to locate and alter DOM elements
+- Creating the functionality to identify all colors based on the CSS file
+- Writing the algorithm to correctly identify high-contrast alternatives
+- Creating the Chrome store page & marketing the app
+
+Raymond's primary responsibilities will be:
+
+- Researching and setting up the Chrome extension infrastructure
+- Producing the new HTML file with new colors
+- Creating the algorithm to correctly identify gray-scale alternatives
+- Creating the Settings page
+- Writing the repo's README, complete with screenshots and code snippets  
+
+### Implementation Timeline
+
+**Day 1**: Get started on the rails backend using postgreSQL and learn about React Native. By the end of the day, we will have:
 
 
-**Day 2**
 
-...
+Get started on the infrastructure of the extension, following [this guide](https://developer.chrome.com/extensions/getstarted) from Chrome.  By the end of the day, we will have:
 
-**Day 3**
+- A completed `package.json` (Ryan)
+- A completed `manifest.json` (Ryan)
+- The ability to locate and alter a DOM element by class (Munyo)
 
-...
+**Day 2**: Work on identifying the colors used in the DOM by class and other attributes, and create and render a new DOM with different colors.  By the end of the day, we will have:
 
-**Day 4**
+- The ability to identify all colors (Munyo)
+- A new HTML file that gets rendered in place of the current DOM, using different colors (Ryan)
 
-...
+**Day 3**: Dedicate this day to correctly replacing colors with their grey scale or high-contrast equivalents.  By the end of the day:
 
-**Day 5**
+- Implement an algorithm for replacing colors with grey scale tones (Ryan)
+- At least understand (and hopefully implement) and algorithm for replacing colors with high-contrast equivalents (Munyo)
+- Render a new DOM that contains each of these color equivalents (Ryan)
 
-...
+**Day 4**: Create the settings page and connect the settings to the color change logic.  If time, create high-contrast grey scale and low-contrast algorithms as well.  By the end of the day:
 
-## Bonus features
+- Fully implemented settings changes that re-render a differently colored DOM (Ryan)
+- A detailed README (Ryan)
+- A polished Chrome store page, sent to our networks to begin marketing/downloads (Munyo)
+- If time, implement the final two features: normal color to low contrast and normal to high-contrast grey scale (Both)
 
-...
+**Day 5**: Create demo page for chrome extension. By the end of the day:
+- Set up github pages (Ryan)
+- Mock up wireframes for how the demo page will look (Both)
+- Grab nice looking screenshots from the chrome extension (Munyo)
+- Make a few gifs that shows off the key features of the chrome extension (Munyo)
+
+### Plan for getting users and reviews
+- Both Munyo and Ryan will each share with at least 20 friends and family and ask for good reviews
+- Munyo will find an appropriate subreddit and make a post there to show off the chrome extension
+- Ryan will reach out to http://www.colourblindawareness.org/ to share the chrome extension
