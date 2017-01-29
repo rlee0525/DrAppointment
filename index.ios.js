@@ -9,22 +9,24 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 
 export default class DrAppointment extends Component {
   render() {
+
     return (
       <View style={styles.container}>
+        <Image source={require('./app/images/logo.png')} style={styles.logo}/>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to Dr. Appointment!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          Please enter your phone number to get started
         </Text>
         <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+          1 (123) 456 - 7890
         </Text>
       </View>
     );
@@ -37,6 +39,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  logo: {
+    bottom: 150,
+    left: 12
   },
   welcome: {
     fontSize: 20,
