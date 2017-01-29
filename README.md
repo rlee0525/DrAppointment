@@ -28,12 +28,12 @@ The project implementation should allow the user to:
   - text message day before appointment (twilio)
 
 ## UX Flow
-# 2-way authentication
+### 2-way authentication
 1. Invite user to authenticate with phone number -> user enters phone number
 2. Backend will send auth code to user
 3. User will enter auth code to authenticate
 
-# When authenticated
+### When authenticated
 1. Let user search doctor by name (location biased) -> user selects doctor from drop down menu
 2. User browses time slots -> user selects time slots
 3. User selects whether the appointment is for him/her or someone else
@@ -52,84 +52,61 @@ This project will be implemented with the following technologies:
 
 - React Native (iOS / Android)
 - Rails (Heroku with SSL)
-- Authy / Twillio (text messaging)
-
-## Implementation Timeline
-
-**Day 1**
-
-- Setup Rails Backend (Authentication)
-  - Seed data
-  - Model
-  - Auth with Authy
-
-- React Native: Initial Setup iOS / Android App
-  - Hello world
-  - Authy: Create User (SMS)
-  - Get location working (Phone API / IP Location)
-  - Search function
-  - Reminder message with Authy
-
-Day 1: Setup backend and learn about react native.
-Day 2: Set up two factor authentication using Authy and create mobile home page.
-Day 3: Implement search function with new algorithm that filters and sorts by favorites doctors, radius of users' geolocation using Google API, and doctor's name.
-Day 4: Doctor page, appointment page, reminder text message
-Day 5: Seed data, CSS
+- API Authy / Twillio (text messaging)
 
 ### Group Members & Work Breakdown
 
-Our group consists of two members, Randy Jap and Raymond Lee.  
+Our group consists of two members: Randy Jap and Raymond Lee.
 
 Randy's primary responsibilities will be:
 
-- Researching & implementing the ability to locate and alter DOM elements
-- Creating the functionality to identify all colors based on the CSS file
-- Writing the algorithm to correctly identify high-contrast alternatives
-- Creating the Chrome store page & marketing the app
+- Research and implement the backend calendar functionality
+- Research and implement web deployment and Apple Store requirements
+- Write the documentation for Apple Store requirements
+- Write the documentation for Play Store requirements
 
 Raymond's primary responsibilities will be:
 
-- Researching and setting up the Chrome extension infrastructure
-- Producing the new HTML file with new colors
-- Creating the algorithm to correctly identify gray-scale alternatives
-- Creating the Settings page
-- Writing the repo's README, complete with screenshots and code snippets  
+- Research and implement Native React to get the mobile app working (iOS & Android)
+- Overall styling of the mobile app
+- Research and implement 2-way auth with authy
+- Research and implement the Google Geocoding API & IP geolocating
 
 ### Implementation Timeline
 
-**Day 1**: Get started on the rails backend using postgreSQL and learn about React Native. By the end of the day, we will have:
 
-Get started on the infrastructure of the extension, following [this guide](https://developer.chrome.com/extensions/getstarted) from Chrome.  By the end of the day, we will have:
+**Day 1**: Backend / Start Native React
 
-- A completed `package.json` (Ryan)
-- A completed `manifest.json` (Ryan)
-- The ability to locate and alter a DOM element by class (Munyo)
+- Setup backend, finish all models (associations), some seed data
+- Learn enough about react native to get hello world.  Mobile (0) auth page.  Get location of user (phone api and/or ip lookup)
 
-**Day 2**: Work on identifying the colors used in the DOM by class and other attributes, and create and render a new DOM with different colors.  By the end of the day, we will have:
+**Day 2**: Authy API / Web Deployment
 
-- The ability to identify all colors (Munyo)
-- A new HTML file that gets rendered in place of the current DOM, using different colors (Ryan)
+- Set up two factor authentication using Authy and reminder text message
+- Setup SSL, domain, ensure deploy on heroku
 
-**Day 3**: Dedicate this day to correctly replacing colors with their grey scale or high-contrast equivalents.  By the end of the day:
+**Day 3**:
 
-- Implement an algorithm for replacing colors with grey scale tones (Ryan)
-- At least understand (and hopefully implement) and algorithm for replacing colors with high-contrast equivalents (Munyo)
-- Render a new DOM that contains each of these color equivalents (Ryan)
+- Implement search function with new algorithm that filters and sorts by favorites doctors, radius of users' geolocation using Google API, and doctor's name
+- Create component (1) home/search page and (2) doctor/show page
 
-**Day 4**: Create the settings page and connect the settings to the color change logic.  If time, create high-contrast grey scale and low-contrast algorithms as well.  By the end of the day:
+**Day 4**:
 
-- Fully implemented settings changes that re-render a differently colored DOM (Ryan)
-- A detailed README (Ryan)
-- A polished Chrome store page, sent to our networks to begin marketing/downloads (Munyo)
-- If time, implement the final two features: normal color to low contrast and normal to high-contrast grey scale (Both)
+- Create component (3) appointment page
+- Send confirmation SMS + Reminder (set to day before)
 
-**Day 5**: Create demo page for chrome extension. By the end of the day:
-- Set up github pages (Ryan)
-- Mock up wireframes for how the demo page will look (Both)
-- Grab nice looking screenshots from the chrome extension (Munyo)
-- Make a few gifs that shows off the key features of the chrome extension (Munyo)
+**Day 5**:
+
+- Finalize styling, retest, (apply to app store)
+- Finalize Production README
+
+**Bonus**:
+- Website admin page for receptionist to manage time slots and appointments.
+- ActionCable for real time refresh
+- Landscape mode
 
 ### Plan for getting users and reviews
-- Both Munyo and Ryan will each share with at least 20 friends and family and ask for good reviews
-- Munyo will find an appropriate subreddit and make a post there to show off the chrome extension
-- Ryan will reach out to http://www.colourblindawareness.org/ to share the chrome extension
+- Survey/gauge interest in app at 5 doctor's practice
+  - Make a questionnaire
+  - Tabulate results and include in production README
+- Both will each share with at least 5 friends and family and ask for good reviews
