@@ -33,14 +33,17 @@ The project implementation should allow the user to:
   - text message day before appointment (twilio)
 
 ## UX Flow
-
+# 2-way authentication
 1. Invite user to authenticate with phone number -> user enters phone number
-2. Send auth code to user
-3. Let user search doctor by name (location biased) -> user selects doctor from drop down menu
-4. User browses time slots -> user selects time slots
-5. User selects whether the appointment is for him/her or someone else
-6. User gets appointment confirmation by text message
-7. User gets reminder for doctor appointment
+2. Backend will send auth code to user
+3. User will enter auth code to authenticate
+
+# When authenticated
+1. Let user search doctor by name (location biased) -> user selects doctor from drop down menu
+2. User browses time slots -> user selects time slots
+3. User selects whether the appointment is for him/her or someone else
+4. User gets appointment confirmation by text message
+5. User gets reminder for doctor appointment
 
 ## Wireframes
 
