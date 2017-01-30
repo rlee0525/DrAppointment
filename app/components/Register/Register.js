@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   TouchableHighlight
 } from 'react-native';
+import Authentication from '../Authentication';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,13 +69,50 @@ const styles = StyleSheet.create({
   }
 });
 
-class Authentication extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      auth_token: ""
+      first_name: "",
+      last_name: "",
+      phone_number: ""
     };
+  }
+
+  // async onRegisterPressed() {
+  //   try {
+  //     let response = await fetch('https://www.drappointment.io/api/users', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         user: {
+  //           first_name: this.state.first_name,
+  //           last_name: this.state.last_name,
+  //           phone_number: this.state.phone_number
+  //         }
+  //       })
+  //     });
+  //
+  //     let res = await response.text();
+  //
+  //     if (response.status >= 200 && response.state < 300) {
+  //       console.log("success");
+  //     } else {
+  //       let errors = res;
+  //       throw errors;
+  //     }
+  //
+  //   } catch(errors) {
+  //       console.log("errors");
+  //   }
+  // }
+
+  onClick() {
+    
   }
 
   render() {
@@ -83,17 +121,28 @@ class Authentication extends React.Component {
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
 
         <Text style={styles.welcome}>
-          Enter your verification code
+          WELCOME
         </Text>
 
         <TextInput
-          onChangeText={(auth_token) => this.setState({ auth_token })}
-          style={styles.input} placeholder="Verification Code"
+          onChangeText={(first_name) => this.setState({ first_name })}
+          style={styles.input} placeholder="First Name"
           />
 
-        <TouchableHighlight style={styles.button}>
+        <TextInput
+          onChangeText={(last_name) => this.setState({ last_name })}
+          style={styles.input} placeholder="Last Name"
+          />
+
+        <TextInput
+          onChangeText={(phone_number) => this.setState({ phone_number })}
+          style={styles.input} placeholder="Phone Number"
+          />
+
+        <TouchableHighlight style={styles.button}
+                            onPress={this.onClick.bind(this)}>
           <Text style={styles.buttonText}>
-            Authenticate
+            SUBMIT
           </Text>
         </TouchableHighlight>
       </Image>
@@ -101,7 +150,7 @@ class Authentication extends React.Component {
   }
 }
 
-export default Authentication;
+export default Register;
 
 // <Text style={styles.instructions}>
 //   Enter your phone number
