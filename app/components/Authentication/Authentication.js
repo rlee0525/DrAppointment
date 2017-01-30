@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TouchableHighlight
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -30,7 +31,22 @@ const styles = StyleSheet.create({
 });
 
 class Authentication extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pressCount: 0
+    };
+  }
+
+  incrementPressCount() {
+    this.setState({
+      pressCount: this.state.pressCount + 1
+    });
+  }
+
   render() {
+    // console.log("Hello, World!");
     return (
       <View style={styles.container}>
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
@@ -42,7 +58,12 @@ class Authentication extends React.Component {
         </Text>
         <Text style={styles.instructions}>
           1 (123) 456 - 7890
+          Press Count: {this.state.pressCount}
         </Text>
+
+        <TouchableHighlight onPress={() => { this.incrementPressCount(); }}>
+          <Text>Hello</Text>
+        </TouchableHighlight>
       </View>
     );
   }

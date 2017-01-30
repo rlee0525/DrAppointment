@@ -7,15 +7,11 @@ import Authentication from './components/Authentication';
 // const RouterWithRedux = connect()(Router);
 const store = configureStore();
 
-class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Authentication />
-      </Provider>
-    );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <Authentication />
+  </Provider>
+);
 
 export default App;
 
