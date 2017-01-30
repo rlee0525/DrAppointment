@@ -9,6 +9,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import Authentication from '../Authentication';
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -111,10 +112,6 @@ class Register extends React.Component {
   //   }
   // }
 
-  onClick() {
-    
-  }
-
   render() {
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
@@ -140,7 +137,7 @@ class Register extends React.Component {
           />
 
         <TouchableHighlight style={styles.button}
-                            onPress={this.onClick.bind(this)}>
+                            onPress={Actions.authentication}>
           <Text style={styles.buttonText}>
             SUBMIT
           </Text>

@@ -83,7 +83,7 @@ class Authentication extends React.Component {
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
 
         <Text style={styles.welcome}>
-          Enter your verification code
+          Enter your code
         </Text>
 
         <TextInput
