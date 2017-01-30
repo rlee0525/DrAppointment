@@ -78,6 +78,8 @@ class Authentication extends React.Component {
   }
 
   render() {
+    console.log(this.props.text);
+
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
@@ -85,6 +87,7 @@ class Authentication extends React.Component {
         <Text style={styles.welcome}>
           Enter your code
         </Text>
+
 
         <TextInput
           onChangeText={(auth_token) => this.setState({ auth_token })}

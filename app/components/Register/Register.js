@@ -81,7 +81,17 @@ class Register extends React.Component {
     };
   }
 
-  // async onRegisterPressed() {
+  onRegisterPressed() {
+    return fetch('https://www.drappointment.io/api/users')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson.user;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
   //   try {
   //     let response = await fetch('https://www.drappointment.io/api/users', {
   //       method: 'POST',
@@ -112,37 +122,41 @@ class Register extends React.Component {
   //   }
   // }
 
-  render() {
-    return (
-      <Image source={require('../../images/temp.jpg')} style={styles.container}>
-        <Image source={require('../../images/logo.png')} style={styles.logo}/>
+    render() {
+      const goToAuthentication = () => Actions.authentication({
+        text: "Hello, World!"
+      });
 
-        <Text style={styles.welcome}>
-          WELCOME
-        </Text>
+      return (
+        <Image source={require('../../images/temp.jpg')} style={styles.container}>
+          <Image source={require('../../images/logo.png')} style={styles.logo}/>
 
-        <TextInput
-          onChangeText={(first_name) => this.setState({ first_name })}
-          style={styles.input} placeholder="First Name"
-          />
-
-        <TextInput
-          onChangeText={(last_name) => this.setState({ last_name })}
-          style={styles.input} placeholder="Last Name"
-          />
-
-        <TextInput
-          onChangeText={(phone_number) => this.setState({ phone_number })}
-          style={styles.input} placeholder="Phone Number"
-          />
-
-        <TouchableHighlight style={styles.button}
-                            onPress={Actions.authentication}>
-          <Text style={styles.buttonText}>
-            SUBMIT
+          <Text style={styles.welcome}>
+            WELCOME
           </Text>
-        </TouchableHighlight>
-      </Image>
+
+          <TextInput
+            onChangeText={(first_name) => this.setState({ first_name })}
+            style={styles.input} placeholder="First Name"
+            />
+
+          <TextInput
+            onChangeText={(last_name) => this.setState({ last_name })}
+            style={styles.input} placeholder="Last Name"
+            />
+
+          <TextInput
+            onChangeText={(phone_number) => this.setState({ phone_number })}
+            style={styles.input} placeholder="Phone Number"
+            />
+
+          <TouchableHighlight style={styles.button}
+                              onPress={goToAuthentication}>
+            <Text style={styles.buttonText}>
+              SUBMIT
+            </Text>
+          </TouchableHighlight>
+        </Image>
     );
   }
 }
