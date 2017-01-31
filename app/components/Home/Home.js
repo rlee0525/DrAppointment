@@ -35,6 +35,7 @@ class Home extends React.Component {
     })
       .then((response) => response.json())
       .then((responseData) => {
+        console.log(responseData);
         this.setState({
           favDoctors: responseData
         });
@@ -61,6 +62,7 @@ class Home extends React.Component {
         <Text style={styles.welcome}>
           {this.state.favDoctors.name}
         </Text>
+        <Image source={{uri: this.state.favDoctors.image_url}} style={styles.doctorImage}/>
         <TouchableHighlight style={styles.button} onPress={() => Actions.doctor()}>
           <Text style={styles.buttonText}>
             Doctor
@@ -119,6 +121,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFF',
     alignSelf: 'center'
+  },
+  doctorImage: {
+    height: 100,
+    width: 100,
+    backgroundColor: 'white'
   }
 });
 
