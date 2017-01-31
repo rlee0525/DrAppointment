@@ -40,10 +40,11 @@ class Authentication extends React.Component {
           "Response Body -> " + JSON.stringify(responseData)
         );
       })
+      .then(() => Actions.home({ text: "Hi!" }))
       .catch((error) => {
         console.log(error);
-      })
-      .then(() => Actions.home({ text: "Hi!" }));
+        return () => Actions.authentication();
+      });
   }
 
   render() {
