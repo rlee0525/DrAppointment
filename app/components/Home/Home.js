@@ -16,7 +16,8 @@ class Home extends React.Component {
 
     this.state = {
       isLoading: true,
-      name: ""
+      name: "",
+      favDoctors: {}
     };
   }
 
@@ -33,29 +34,32 @@ class Home extends React.Component {
         },
     })
       .then((response) => response.json())
-
       .then((responseData) => {
-        console.log(
-          "POST Response",
-          "Response Body -> " + JSON.stringify(responseData)
-        );
-      })
-      .catch((error) => {
-        console.log(error);
+        this.setState({
+          favDoctors: responseData
+        });
       });
+
+      // .then((responseData) => {
+      //   console.log(
+      //     "POST Response",
+      //     "Response Body -> " + JSON.stringify(responseData)
+      //   );
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      // });
   }
 
 
   render() {
-    console.log(this.props.text);
-
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <Text style={styles.welcome}>
           Hello! This is Home Page!
         </Text>
         <Text style={styles.welcome}>
-
+          {this.state.favDoctors.name}
         </Text>
         <TouchableHighlight style={styles.button} onPress={() => Actions.doctor()}>
           <Text style={styles.buttonText}>

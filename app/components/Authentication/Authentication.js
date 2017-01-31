@@ -41,7 +41,7 @@ class Authentication extends React.Component {
         );
         console.log(responseData);
         if (responseData.session_token) {
-          return Actions.home({ text: "Hi!" });
+          return Actions.home();
         } else {
           return Actions.authentication();
         }
@@ -49,8 +49,6 @@ class Authentication extends React.Component {
   }
 
   render() {
-    console.log(this.props.text);
-
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <Image source={require('../../images/logo.png')} style={styles.logo}/>

@@ -48,7 +48,7 @@ class Register extends React.Component {
       .catch((error) => {
         console.log(error);
       })
-      .then(() => Actions.authentication({ text: "Hi!" }));
+      .then(() => Actions.authentication());
   }
 
   render() {
