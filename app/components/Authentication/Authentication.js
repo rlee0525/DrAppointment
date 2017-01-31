@@ -5,9 +5,73 @@ import {
   View,
   Image,
   TextInput,
-  AsyncStorage,
   TouchableHighlight
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import Home from '../Home';
+
+class Authentication extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authyId: ""
+    };
+  }
+
+  onAuthPressed() {
+    fetch('https://www.drappointment.io/api/session', {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+        user: {
+          phone_number: "2067795143",
+          authy_id: this.state.authyId
+        }
+      })
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(
+          "POST Response",
+          "Response Body -> " + JSON.stringify(responseData)
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => Actions.home({ text: "Hi!" }));
+  }
+
+  render() {
+    console.log(this.props.text);
+
+    return (
+      <Image source={require('../../images/temp.jpg')} style={styles.container}>
+        <Image source={require('../../images/logo.png')} style={styles.logo}/>
+
+        <Text style={styles.welcome}>
+          Enter your code
+        </Text>
+
+
+        <TextInput
+          onChangeText={(authyId) => this.setState({ authyId })}
+          style={styles.input} placeholder="Verification Code"
+          />
+
+        <TouchableHighlight style={styles.button}>
+          <Text style={styles.buttonText} onPress={this.onAuthPressed.bind(this)}>
+            Authenticate
+          </Text>
+        </TouchableHighlight>
+      </Image>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -31,14 +95,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: 'rgba(0,0,0,0)',
   },
-  // instructions: {
-  //   fontSize: 20,
-  //   textAlign: 'center',
-  //   marginTop: 80,
-  //   fontWeight: "bold",
-  //   color: "white",
-  //   backgroundColor: 'rgba(0,0,0,0)',
-  // },
   input: {
     margin: 5,
     width: 320,
@@ -67,42 +123,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   }
 });
-
-class Authentication extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      auth_token: ""
-    };
-  }
-
-  render() {
-    console.log(this.props.text);
-
-    return (
-      <Image source={require('../../images/temp.jpg')} style={styles.container}>
-        <Image source={require('../../images/logo.png')} style={styles.logo}/>
-
-        <Text style={styles.welcome}>
-          Enter your code
-        </Text>
-
-
-        <TextInput
-          onChangeText={(auth_token) => this.setState({ auth_token })}
-          style={styles.input} placeholder="Verification Code"
-          />
-
-        <TouchableHighlight style={styles.button}>
-          <Text style={styles.buttonText}>
-            Authenticate
-          </Text>
-        </TouchableHighlight>
-      </Image>
-    );
-  }
-}
 
 export default Authentication;
 

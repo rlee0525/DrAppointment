@@ -7,24 +7,22 @@ import {
   TextInput,
   TouchableHighlight
 } from 'react-native';
-import Authentication from '../Authentication';
+import Doctor from '../Doctor';
 import { Actions } from 'react-native-router-flux';
 
-class Register extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      first_name: "",
-      last_name: "",
-      country_code: "1",
-      phone_number: "",
+      isLoading: true,
+      name: ""
     };
   }
-  //
-  // componentDidMount() {
-  //   this.fetchFavDoctors();
-  // }
+
+  componentDidMount() {
+    this.fetchFavDoctors();
+  }
 
   fetchFavDoctors() {
     fetch('https://www.drappointment.io/api/doctor/1', {
@@ -41,9 +39,10 @@ class Register extends React.Component {
       // })
     })
       .then((response) => response.json())
+
       .then((responseData) => {
         console.log(
-          "GET Response",
+          "POST Response",
           "Response Body -> " + JSON.stringify(responseData)
         );
       })
@@ -53,70 +52,22 @@ class Register extends React.Component {
   }
 
 
-  onRegisterPressed() {
-    fetch('https://www.drappointment.io/api/users', {
-      method: 'POST',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-      body: JSON.stringify({
-        user: {
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          country_code: this.state.country_code,
-          phone_number: this.state.phone_number
-        }
-      })
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(
-          "POST Response",
-          "Response Body -> " + JSON.stringify(responseData)
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .then(() => Actions.authentication({ text: "Hi!" }));
-  }
-
   render() {
+    console.log(this.props.text);
+
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
-        <Image source={require('../../images/logo.png')} style={styles.logo}/>
-
         <Text style={styles.welcome}>
-          WELCOME
+          Hello! This is Home Page!
         </Text>
+        <Text style={styles.welcome}>
 
-        <TextInput
-          onChangeText={(first_name) => this.setState({ first_name })}
-          style={styles.input} placeholder="First Name"
-          />
-
-        <TextInput
-          onChangeText={(last_name) => this.setState({ last_name })}
-          style={styles.input} placeholder="Last Name"
-          />
-
-        <TextInput
-          onChangeText={(phone_number) => this.setState({ phone_number })}
-          style={styles.input} placeholder="Phone Number"
-          />
-
-        <TouchableHighlight style={styles.button}
-                            onPress={this.onRegisterPressed.bind(this)}
-                            phoneNumber={this.state.phone_number}>
+        </Text>
+        <TouchableHighlight style={styles.button} onPress={() => Actions.doctor()}>
           <Text style={styles.buttonText}>
-            SUBMIT
+            Doctor
           </Text>
         </TouchableHighlight>
-
-        <Text>
-          {this.state.first_name}
-        </Text>
       </Image>
     );
   }
@@ -173,7 +124,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Register;
+export default Home;
 
 // <Text style={styles.instructions}>
 //   Enter your phone number
@@ -182,5 +133,3 @@ export default Register;
 // <Text style={styles.welcome}>
 //   Welcome to Dr. Appointment!
 // </Text>
-
-// this.onRegisterPressed.bind(this)
