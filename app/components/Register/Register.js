@@ -21,37 +21,6 @@ class Register extends React.Component {
       phone_number: "",
     };
   }
-  //
-  // componentDidMount() {
-  //   this.fetchFavDoctors();
-  // }
-
-  fetchFavDoctors() {
-    fetch('https://www.drappointment.io/api/doctor/1', {
-      method: 'GET',
-      headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-      // body: JSON.stringify({
-      //   first_name: this.state.first_name,
-      //   last_name: this.state.last_name,
-      //   country_code: this.state.country_code,
-      //   phone_number: this.state.phone_number
-      // })
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(
-          "GET Response",
-          "Response Body -> " + JSON.stringify(responseData)
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
 
   onRegisterPressed() {
     fetch('https://www.drappointment.io/api/users', {
@@ -174,13 +143,3 @@ const styles = StyleSheet.create({
 });
 
 export default Register;
-
-// <Text style={styles.instructions}>
-//   Enter your phone number
-// </Text>
-
-// <Text style={styles.welcome}>
-//   Welcome to Dr. Appointment!
-// </Text>
-
-// this.onRegisterPressed.bind(this)

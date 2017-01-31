@@ -39,11 +39,12 @@ class Authentication extends React.Component {
           "POST Response",
           "Response Body -> " + JSON.stringify(responseData)
         );
-      })
-      .then(() => Actions.home({ text: "Hi!" }))
-      .catch((error) => {
-        console.log(error);
-        return () => Actions.authentication();
+        console.log(responseData);
+        if (responseData.session_token) {
+          return Actions.home({ text: "Hi!" });
+        } else {
+          return Actions.authentication();
+        }
       });
   }
 
@@ -126,11 +127,3 @@ const styles = StyleSheet.create({
 });
 
 export default Authentication;
-
-// <Text style={styles.instructions}>
-//   Enter your phone number
-// </Text>
-
-// <Text style={styles.welcome}>
-//   Welcome to Dr. Appointment!
-// </Text>

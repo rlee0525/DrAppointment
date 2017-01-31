@@ -30,12 +30,6 @@ class Doctor extends React.Component {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-      // body: JSON.stringify({
-      //   first_name: this.state.first_name,
-      //   last_name: this.state.last_name,
-      //   country_code: this.state.country_code,
-      //   phone_number: this.state.phone_number
-      // })
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -120,11 +114,3 @@ const styles = StyleSheet.create({
 });
 
 export default Doctor;
-
-// <Text style={styles.instructions}>
-//   Enter your phone number
-// </Text>
-
-// <Text style={styles.welcome}>
-//   Welcome to Dr. Appointment!
-// </Text>
