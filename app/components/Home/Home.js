@@ -26,7 +26,7 @@ class Home extends React.Component {
   }
 
   fetchFavDoctors() {
-    fetch('https://www.drappointment.io/api/doctor/1', {
+    fetch('https://www.drappointment.io/api/favorite_doctors', {
       method: 'GET',
       headers: {
             'Accept': 'application/json',

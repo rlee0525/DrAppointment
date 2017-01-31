@@ -5,7 +5,8 @@ import {
   View,
   Image,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Home from '../Home';
@@ -15,8 +16,20 @@ class Authentication extends React.Component {
     super(props);
 
     this.state = {
-      authyId: ""
+      authyId: "",
+      session_token: null,
+      phone_number: null,
+      badLogin: false
     };
+  }
+
+  submitCredentials(user) {
+    if (user.session_token !== undefined && user.phone_number !== undefined) {
+      this.login({
+        session_token: user.session_token,
+        phone_number: user.phone_number
+      })
+    }
   }
 
   onAuthPressed() {
@@ -40,7 +53,13 @@ class Authentication extends React.Component {
           "Response Body -> " + JSON.stringify(responseData)
         );
         console.log(responseData);
-        if (responseData.session_token) {
+        if (responseData.session_token && responseData.phone_number) {
+          AsyncStorage.multiSet([
+            ['session_token', responseData.session_token],
+            ['phone_number', responseData.phone_number]
+          ]);
+          console.log(responseData);
+          console.log(AsyncStorage);
           return Actions.home();
         } else {
           return Actions.authentication();

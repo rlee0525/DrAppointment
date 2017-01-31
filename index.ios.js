@@ -1,4 +1,9 @@
 import { AppRegistry } from 'react-native';
 import App from './app/App';
 
-AppRegistry.registerComponent('DrAppointment', () => App);
+import store from './app/store/store';
+
+AppRegistry.registerComponent('DrAppointment', () => {
+  window.store = store;
+  return App;
+});

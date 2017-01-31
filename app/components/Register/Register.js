@@ -19,10 +19,17 @@ class Register extends React.Component {
       last_name: "",
       country_code: "1",
       phone_number: "",
+      errors: []
     };
   }
 
   onRegisterPressed() {
+    let user = {
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      phone_number: this.state.phone_number
+    };
+
     fetch('https://www.drappointment.io/api/users', {
       method: 'POST',
       headers: {
@@ -30,12 +37,7 @@ class Register extends React.Component {
           'Content-Type': 'application/json'
         },
       body: JSON.stringify({
-        user: {
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          country_code: this.state.country_code,
-          phone_number: this.state.phone_number
-        }
+        user
       })
     })
       .then((response) => response.json())
@@ -44,11 +46,13 @@ class Register extends React.Component {
           "POST Response",
           "Response Body -> " + JSON.stringify(responseData)
         );
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .then(() => Actions.authentication());
+      // if (responseData.session_token) {
+        return Actions.authentication();
+      // } else {
+      //   this.setState({ errors: responseData });
+      //   return Actions.register();
+      // }
+    });
   }
 
   render() {
@@ -77,14 +81,14 @@ class Register extends React.Component {
 
         <TouchableHighlight style={styles.button}
                             onPress={this.onRegisterPressed.bind(this)}
-                            phoneNumber={this.state.phone_number}>
+                            phoneNumber={this.state.phone_number}
+                            currentUser={this.state.currentUser}>
           <Text style={styles.buttonText}>
             SUBMIT
           </Text>
         </TouchableHighlight>
-
-        <Text>
-          {this.state.first_name}
+        <Text style={styles.errors}>
+          {this.state.errors.join("\n")}
         </Text>
       </Image>
     );
@@ -139,6 +143,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFF',
     alignSelf: 'center'
+  },
+  errors: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#FFF',
+    alignSelf: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
   }
 });
 
