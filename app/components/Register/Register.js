@@ -5,7 +5,8 @@ import {
   View,
   Image,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage
 } from 'react-native';
 import Authentication from '../Authentication';
 import { Actions } from 'react-native-router-flux';
@@ -21,6 +22,33 @@ class Register extends React.Component {
       phone_number: "",
       errors: []
     };
+  }
+
+  componentWillMount() {
+    AsyncStorage.getItem('user', (err, result) => {
+      console.log(result);
+      if (result) {
+        fetch('https://www.drappointment.io/api/session', {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+          body: JSON.stringify({
+            user: result
+          })
+        })
+          .then((response) => response.json())
+          .then(() => Actions.home());
+      }
+    });
+    // })
+    // const sessionToken = AsyncStorage.getItem('session_token', (err, result) =>);
+    // if (sessionToken) {
+    //   console.log(sessionToken);
+      // AsyncStorage.removeItem('user');
+    //   return Actions.home();
+    // }
   }
 
   onRegisterPressed() {
@@ -46,12 +74,13 @@ class Register extends React.Component {
           "POST Response",
           "Response Body -> " + JSON.stringify(responseData)
         );
-      // if (responseData.session_token) {
+      if (responseData.session_token) {
         return Actions.authentication();
-      // } else {
-      //   this.setState({ errors: responseData });
-      //   return Actions.register();
-      // }
+      } else {
+        this.setState({ errors: responseData });
+        // return Actions.register();
+        return Actions.authentication();
+      }
     });
   }
 

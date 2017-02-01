@@ -16,20 +16,8 @@ class Authentication extends React.Component {
     super(props);
 
     this.state = {
-      authyId: "",
-      session_token: null,
-      phone_number: null,
-      badLogin: false
+      authyId: ""
     };
-  }
-
-  submitCredentials(user) {
-    if (user.session_token !== undefined && user.phone_number !== undefined) {
-      this.login({
-        session_token: user.session_token,
-        phone_number: user.phone_number
-      })
-    }
   }
 
   onAuthPressed() {
@@ -53,14 +41,14 @@ class Authentication extends React.Component {
           "Response Body -> " + JSON.stringify(responseData)
         );
         console.log(responseData);
-        if (responseData.session_token && responseData.phone_number) {
-          AsyncStorage.multiSet([
-            ['session_token', responseData.session_token],
-            ['phone_number', responseData.phone_number]
-          ]);
-          console.log(responseData);
-          console.log(AsyncStorage);
-          return Actions.home();
+        let user = {
+          phone_number: responseData.phone_number,
+          authy_id: responseData.authy_id
+        };
+
+        if (responseData.session_token) {
+          return AsyncStorage.setItem('user', JSON.stringify(user))
+          .then(() => Actions.home());
         } else {
           return Actions.authentication();
         }
