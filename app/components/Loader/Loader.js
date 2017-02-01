@@ -4,13 +4,11 @@ import {
   Text,
   View,
   Image,
-  TextInput,
-  TouchableHighlight,
   AsyncStorage
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-class Register extends React.Component {
+class Loader extends React.Component {
   constructor(props) {
     super(props);
 
@@ -92,33 +90,6 @@ class Register extends React.Component {
         <Text style={styles.welcome}>
           WELCOME
         </Text>
-
-        <TextInput
-          onChangeText={(first_name) => this.setState({ first_name })}
-          style={styles.input} placeholder="First Name"
-          />
-
-        <TextInput
-          onChangeText={(last_name) => this.setState({ last_name })}
-          style={styles.input} placeholder="Last Name"
-          />
-
-        <TextInput
-          onChangeText={(phone_number) => this.setState({ phone_number })}
-          style={styles.input} placeholder="Phone Number"
-          />
-
-        <TouchableHighlight style={styles.button}
-                            onPress={this.onRegisterPressed.bind(this)}
-                            phoneNumber={this.state.phone_number}
-                            currentUser={this.state.currentUser}>
-          <Text style={styles.buttonText}>
-            SUBMIT
-          </Text>
-        </TouchableHighlight>
-        <Text style={styles.errors}>
-          {this.state.errors.join("\n")}
-        </Text>
       </Image>
     );
   }
@@ -137,42 +108,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 50
   },
-  welcome: {
-    marginTop: 80,
-    fontSize: 36,
-    marginBottom: 40,
-    textAlign: 'center',
-    color: 'white',
-    fontWeight: 'bold',
-    backgroundColor: 'rgba(0,0,0,0)',
-  },
-  input: {
-    margin: 5,
-    width: 320,
-    height: 50,
-    padding: 5,
-    fontSize: 18,
-    borderColor: 'white',
-    borderRadius: 5,
-    backgroundColor: 'white',
-    textAlign: 'center',
-    alignSelf: 'center'
-  },
-  button: {
-    marginTop: 15,
-    height: 50,
-    backgroundColor: '#00C853',
-    paddingLeft: 40,
-    paddingRight: 40,
-    justifyContent: 'center',
-    borderRadius: 10
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FFF',
-    alignSelf: 'center'
-  },
   errors: {
     fontSize: 12,
     fontWeight: 'bold',
@@ -182,4 +117,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Register;
+export default Loader;

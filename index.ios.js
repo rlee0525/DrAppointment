@@ -3,7 +3,4 @@ import App from './app/App';
 
 import store from './app/store/store';
 
-AppRegistry.registerComponent('DrAppointment', () => {
-  window.store = store;
-  return App;
-});
+AppRegistry.registerComponent('DrAppointment', () => App);

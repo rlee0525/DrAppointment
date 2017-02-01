@@ -54,15 +54,38 @@ class Home extends React.Component {
 
 
   render() {
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      var crd = pos.coords;
+
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <Text style={styles.welcome}>
           Hello! This is Home Page!
         </Text>
+
         <Text style={styles.welcome}>
           {this.state.favDoctors.name}
         </Text>
-        <Image source={{uri: this.state.favDoctors.image_url}} style={styles.doctorImage}/>
+
+        <Image source={{uri: "https://pngimg.com/upload/doctor_PNG15959.png"}} style={styles.doctorImage}/>
         <TouchableHighlight style={styles.button} onPress={() => Actions.doctor()}>
           <Text style={styles.buttonText}>
             Doctor
@@ -125,7 +148,7 @@ const styles = StyleSheet.create({
   doctorImage: {
     height: 100,
     width: 100,
-    backgroundColor: 'white'
+    // backgroundColor: 'white'
   }
 });
 
