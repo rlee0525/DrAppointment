@@ -30,31 +30,17 @@ class Register extends React.Component {
       phone_number: this.state.phone_number
     };
 
-    fetch('https://www.drappointment.io/api/users', {
-      method: 'POST',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-      body: JSON.stringify({
-        user
-      })
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        // console.log(
-        //   "POST Response",
-        //   "Response Body -> " + JSON.stringify(responseData)
-        // );
-      if (responseData.session_token) {
-        let phone_number = this.state.phone_number;
-        return Actions.authentication({phone_number});
-      } else {
-        this.setState({ errors: responseData });
-        return Actions.register();
-        // return Actions.authentication();
-      }
-    });
+    this.props.registerUser(user)
+      .then(response => {
+        if (response.currentUser.ok) {
+          let phone_number = this.state.phone_number;
+          return Actions.authentication({phone_number});
+        } else {
+          this.setState({
+            errors: ["Please enter valid name and phone number."]
+          });
+        }
+      });
   }
 
   render() {
@@ -88,7 +74,7 @@ class Register extends React.Component {
           </Text>
         </TouchableHighlight>
         <Text style={styles.errors}>
-          {this.state.errors.join("\n")}
+          {this.state.errors}
         </Text>
       </Image>
     );
@@ -150,6 +136,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     alignSelf: 'center',
     backgroundColor: 'rgba(0,0,0,0)',
+    marginTop: 20
   }
 });
 

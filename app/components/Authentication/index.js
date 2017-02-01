@@ -1,18 +1,12 @@
 import Authentication from './Authentication';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/authentication_actions';
-// import {} from '../../reducers/rootReducer';
+import { authenticateUser } from '../../actions/authentication_actions';
 
-const mapStateToProps = ({ phone_number }) => ({
-  // phone_number
-});
-
-const mapDispatchToProps = () => ({
-
+const mapDispatchToProps = dispatch => ({
+  authenticateUser: user => dispatch(authenticateUser(user))
 });
 
 export default connect(
-  // mapStateToProps,
   null,
-  null
+  mapDispatchToProps
 )(Authentication);

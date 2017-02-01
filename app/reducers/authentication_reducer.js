@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER,
+import { RECEIVE_USER,
          RECEIVE_ERRORS } from '../actions/authentication_actions';
 import merge from 'lodash/merge';
 
@@ -11,9 +11,9 @@ const authenticationReducer = (state = _defaultState, action) => {
   Object.freeze(state);
 
   switch(action.type) {
-    case RECEIVE_CURRENT_USER:
+    case RECEIVE_USER:
       return merge({}, _defaultState, {
-        currentUser: action.currentUser.currentUser
+        currentUser: action.currentUser
       });
     case RECEIVE_ERRORS:
       return merge({}, _defaultState, {

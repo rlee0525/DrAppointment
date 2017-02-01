@@ -20,27 +20,21 @@ class Authentication extends React.Component {
   }
 
   onAuthPressed() {
-    fetch('https://www.drappointment.io/api/session', {
-      method: 'POST',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-      body: JSON.stringify({
-        user: {
-          phone_number: this.props.phone_number,
-          authy_id: this.state.authyId
-        }
-      })
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        if (responseData.session_token) {
-          return AsyncStorage.setItem('phone_number', (responseData.phone_number))
-          .then(() => AsyncStorage.setItem('authy_id', (responseData.authy_id)))
-          .then(() => Actions.home());
+    const user = {
+      phone_number: this.props.phone_number,
+      authy_id: this.state.authyId
+    };
+
+    this.props.authenticateUser(user)
+      .then(response => {
+        if (response.currentUser.ok) {
+          AsyncStorage.setItem('phone_number', (user.phone_number))
+            .then(() => AsyncStorage.setItem('authy_id', (user.authy_id)))
+            .then(() => Actions.home());
         } else {
-          return Actions.authentication();
+          this.setState({
+            errors: ["Please enter a valid code"]
+          });
         }
       });
   }
@@ -65,6 +59,9 @@ class Authentication extends React.Component {
             Authenticate
           </Text>
         </TouchableHighlight>
+        <Text style={styles.errors}>
+          {this.state.errors}
+        </Text>
       </Image>
     );
   }
@@ -118,6 +115,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFF',
     alignSelf: 'center'
+  },
+  errors: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#FFF',
+    alignSelf: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+    marginTop: 20
   }
 });
 

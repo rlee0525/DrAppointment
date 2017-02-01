@@ -1,10 +1,10 @@
 import * as APIUtil from '../util/api_util';
 
-export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 
-export const receiveCurrentUser = currentUser => ({
-  type: RECEIVE_CURRENT_USER,
+export const receiveUser = currentUser => ({
+  type: RECEIVE_USER,
   currentUser
 });
 
@@ -13,8 +13,14 @@ export const receiveErrors = errors => ({
   errors
 });
 
-export const register = user => dispatch => (
+export const registerUser = user => dispatch => (
   APIUtil.registerUser(user)
-    .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
-    .fail(err => dispatch(receiveErrors(err.responseJSON)))
+    .then(userInfo => dispatch(receiveUser(userInfo)))
+    .catch(err => dispatch(receiveErrors(err.responseJSON)))
+);
+
+export const authenticateUser = user => dispatch => (
+  APIUtil.authenticateUser(user)
+    .then(userInfo => dispatch(receiveUser(userInfo)))
+    .catch(err => dispatch(receiveErrors(err.responseJSON)))
 );
