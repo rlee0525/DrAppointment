@@ -75,7 +75,8 @@ class Register extends React.Component {
           "Response Body -> " + JSON.stringify(responseData)
         );
       if (responseData.session_token) {
-        return Actions.authentication();
+        let phone_number = this.state.phone_number;
+        return Actions.authentication({phone_number});
       } else {
         this.setState({ errors: responseData });
         return Actions.register();
@@ -109,9 +110,7 @@ class Register extends React.Component {
           />
 
         <TouchableHighlight style={styles.button}
-                            onPress={this.onRegisterPressed.bind(this)}
-                            phoneNumber={this.state.phone_number}
-                            currentUser={this.state.currentUser}>
+                            onPress={this.onRegisterPressed.bind(this)}>
           <Text style={styles.buttonText}>
             SUBMIT
           </Text>

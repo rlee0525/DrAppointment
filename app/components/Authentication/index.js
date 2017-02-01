@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/authentication_actions';
 // import {} from '../../reducers/rootReducer';
 
-const mapStateToProps = ({ currentUser }) => ({
-  // currentUser
+const mapStateToProps = ({ phone_number }) => ({
+  // phone_number
 });
 
 const mapDispatchToProps = () => ({

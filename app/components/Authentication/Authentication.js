@@ -18,6 +18,7 @@ class Authentication extends React.Component {
     this.state = {
       authyId: ""
     };
+    debugger;
   }
 
   onAuthPressed() {
@@ -29,7 +30,7 @@ class Authentication extends React.Component {
         },
       body: JSON.stringify({
         user: {
-          phone_number: "2067795143",
+          phone_number: this.props.phone_number,
           authy_id: this.state.authyId
         }
       })
