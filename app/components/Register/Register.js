@@ -25,30 +25,31 @@ class Register extends React.Component {
   }
 
   componentWillMount() {
-    AsyncStorage.getItem('user', (err, result) => {
+    // AsyncStorage.removeItem('phone_number');
+    // AsyncStorage.removeItem('authy_id');
+    AsyncStorage.getItem('phone_number', (err, result) => {
       console.log(result);
+      const phoneNumber = result;
       if (result) {
-        fetch('https://www.drappointment.io/api/session', {
-          method: 'POST',
-          headers: {
+        AsyncStorage.getItem('authy_id', (err2, result2) => {
+          console.log(result2);
+          fetch('https://www.drappointment.io/api/session', {
+            method: 'POST',
+            headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-          body: JSON.stringify({
-            user: result
+            body: JSON.stringify({
+              user: {
+                phone_number: phoneNumber,
+                authy_id: result2
+              }
+            })
           })
-        })
           .then((response) => response.json())
           .then(() => Actions.home());
-      }
-    });
-    // })
-    // const sessionToken = AsyncStorage.getItem('session_token', (err, result) =>);
-    // if (sessionToken) {
-    //   console.log(sessionToken);
-      // AsyncStorage.removeItem('user');
-    //   return Actions.home();
-    // }
+        });
+    }});
   }
 
   onRegisterPressed() {
@@ -78,8 +79,8 @@ class Register extends React.Component {
         return Actions.authentication();
       } else {
         this.setState({ errors: responseData });
-        // return Actions.register();
-        return Actions.authentication();
+        return Actions.register();
+        // return Actions.authentication();
       }
     });
   }

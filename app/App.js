@@ -8,7 +8,6 @@ import Home from './components/Home';
 import Doctor from './components/Doctor';
 import Appointment from './components/Appointment';
 
-// const RouterWithRedux = connect()(Router);
 const store = configureStore();
 
 const App = () => (
@@ -31,10 +30,3 @@ const App = () => (
 );
 
 export default App;
-
-//
-// <RouterWithRedux>
-//   <Scene key='Authphone'
-//          component={Authentication}
-//          title="Authenticate"/>
-// </RouterWithRedux>

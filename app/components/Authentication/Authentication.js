@@ -41,13 +41,16 @@ class Authentication extends React.Component {
           "Response Body -> " + JSON.stringify(responseData)
         );
         console.log(responseData);
-        let user = {
-          phone_number: responseData.phone_number,
-          authy_id: responseData.authy_id
-        };
+        console.log(responseData.phone_number);
+        console.log(responseData.authy_id);
+        // let user = {
+        //   phone_number: responseData.phone_number,
+        //   authy_id: responseData.authy_id
+        // };
 
         if (responseData.session_token) {
-          return AsyncStorage.setItem('user', JSON.stringify(user))
+          return AsyncStorage.setItem('phone_number', (responseData.phone_number))
+          .then(() => AsyncStorage.setItem('authy_id', (responseData.authy_id)))
           .then(() => Actions.home());
         } else {
           return Actions.authentication();
