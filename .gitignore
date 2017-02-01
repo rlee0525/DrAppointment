@@ -1,2 +1,2 @@
-node_modules
-ios/build
+node_modules/
+/ios/build/
