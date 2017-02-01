@@ -14,38 +14,11 @@ class Appointment extends React.Component {
     super(props);
 
     this.state = {
-      isLoading: true
+
     };
   }
 
-  componentDidMount() {
-    this.fetchFavDoctors();
-  }
-
-  fetchFavDoctors() {
-    fetch('https://www.drappointment.io/api/users', {
-      method: 'GET',
-      headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(
-          "POST Response",
-          "Response Body -> " + JSON.stringify(responseData)
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-
   render() {
-    console.log(this.props.text);
-
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <Text style={styles.welcome}>
@@ -98,7 +71,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 15,
     height: 50,
-    backgroundColor: '#00C853',
+    backgroundColor: '#E91E63',
     paddingLeft: 40,
     paddingRight: 40,
     justifyContent: 'center',

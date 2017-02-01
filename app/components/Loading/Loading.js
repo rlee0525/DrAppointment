@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
   Image,
   AsyncStorage
 } from 'react-native';
@@ -18,7 +16,6 @@ class Loading extends React.Component {
       const phoneNumber = result;
       if (result) {
         AsyncStorage.getItem('authy_id', (err2, result2) => {
-          console.log(result2);
           fetch('https://www.drappointment.io/api/session', {
             method: 'POST',
             headers: {

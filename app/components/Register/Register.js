@@ -23,34 +23,6 @@ class Register extends React.Component {
     };
   }
 
-  // componentWillMount() {
-  //   // AsyncStorage.removeItem('phone_number');
-  //   // AsyncStorage.removeItem('authy_id');
-  //   AsyncStorage.getItem('phone_number', (err, result) => {
-  //     console.log(result);
-  //     const phoneNumber = result;
-  //     if (result) {
-  //       AsyncStorage.getItem('authy_id', (err2, result2) => {
-  //         console.log(result2);
-  //         fetch('https://www.drappointment.io/api/session', {
-  //           method: 'POST',
-  //           headers: {
-  //             'Accept': 'application/json',
-  //             'Content-Type': 'application/json'
-  //           },
-  //           body: JSON.stringify({
-  //             user: {
-  //               phone_number: phoneNumber,
-  //               authy_id: result2
-  //             }
-  //           })
-  //         })
-  //         .then((response) => response.json())
-  //         .then(() => Actions.home());
-  //       });
-  //   }});
-  // }
-
   onRegisterPressed() {
     let user = {
       first_name: this.state.first_name,
@@ -70,10 +42,10 @@ class Register extends React.Component {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(
-          "POST Response",
-          "Response Body -> " + JSON.stringify(responseData)
-        );
+        // console.log(
+        //   "POST Response",
+        //   "Response Body -> " + JSON.stringify(responseData)
+        // );
       if (responseData.session_token) {
         let phone_number = this.state.phone_number;
         return Actions.authentication({phone_number});

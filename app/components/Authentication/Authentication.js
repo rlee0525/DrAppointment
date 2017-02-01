@@ -9,7 +9,6 @@ import {
   AsyncStorage
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Home from '../Home';
 
 class Authentication extends React.Component {
   constructor(props) {
@@ -18,7 +17,6 @@ class Authentication extends React.Component {
     this.state = {
       authyId: ""
     };
-    debugger;
   }
 
   onAuthPressed() {
@@ -37,18 +35,6 @@ class Authentication extends React.Component {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(
-          "POST Response",
-          "Response Body -> " + JSON.stringify(responseData)
-        );
-        console.log(responseData);
-        console.log(responseData.phone_number);
-        console.log(responseData.authy_id);
-        // let user = {
-        //   phone_number: responseData.phone_number,
-        //   authy_id: responseData.authy_id
-        // };
-
         if (responseData.session_token) {
           return AsyncStorage.setItem('phone_number', (responseData.phone_number))
           .then(() => AsyncStorage.setItem('authy_id', (responseData.authy_id)))

@@ -7,7 +7,6 @@ import {
   TextInput,
   TouchableHighlight
 } from 'react-native';
-import Doctor from '../Doctor';
 import { Actions } from 'react-native-router-flux';
 
 class Home extends React.Component {
@@ -15,7 +14,6 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      isLoading: true,
       name: "",
       favDoctors: {}
     };
@@ -40,16 +38,6 @@ class Home extends React.Component {
           favDoctors: responseData
         });
       });
-
-      // .then((responseData) => {
-      //   console.log(
-      //     "POST Response",
-      //     "Response Body -> " + JSON.stringify(responseData)
-      //   );
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
   }
 
 
@@ -85,8 +73,10 @@ class Home extends React.Component {
           {this.state.favDoctors.name}
         </Text>
 
-        <Image source={{uri: "https://pngimg.com/upload/doctor_PNG15959.png"}} style={styles.doctorImage}/>
-        <TouchableHighlight style={styles.button} onPress={() => Actions.doctor()}>
+        <Image source={{uri: "https://pngimg.com/upload/doctor_PNG15959.png"}}
+               style={styles.doctorImage}/>
+        <TouchableHighlight style={styles.button}
+                            onPress={() => Actions.doctor()}>
           <Text style={styles.buttonText}>
             Doctor
           </Text>
@@ -133,7 +123,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 15,
     height: 50,
-    backgroundColor: '#00C853',
+    backgroundColor: '#E91E63',
     paddingLeft: 40,
     paddingRight: 40,
     justifyContent: 'center',
@@ -148,7 +138,6 @@ const styles = StyleSheet.create({
   doctorImage: {
     height: 100,
     width: 100,
-    // backgroundColor: 'white'
   }
 });
 
