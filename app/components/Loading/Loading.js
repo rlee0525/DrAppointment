@@ -8,18 +8,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-class Loader extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      first_name: "",
-      last_name: "",
-      country_code: "1",
-      phone_number: "",
-      errors: []
-    };
-  }
+class Loading extends React.Component {
 
   componentWillMount() {
     // AsyncStorage.removeItem('phone_number');
@@ -46,38 +35,8 @@ class Loader extends React.Component {
           .then((response) => response.json())
           .then(() => Actions.home());
         });
-    }});
-  }
-
-  onRegisterPressed() {
-    let user = {
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
-      phone_number: this.state.phone_number
-    };
-
-    fetch('https://www.drappointment.io/api/users', {
-      method: 'POST',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-      body: JSON.stringify({
-        user
-      })
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(
-          "POST Response",
-          "Response Body -> " + JSON.stringify(responseData)
-        );
-      if (responseData.session_token) {
-        return Actions.authentication();
       } else {
-        this.setState({ errors: responseData });
         return Actions.register();
-        // return Actions.authentication();
       }
     });
   }
@@ -86,10 +45,6 @@ class Loader extends React.Component {
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
-
-        <Text style={styles.welcome}>
-          WELCOME
-        </Text>
       </Image>
     );
   }
@@ -106,15 +61,8 @@ const styles = StyleSheet.create({
   logo: {
     left: 12,
     borderRadius: 5,
-    marginTop: 50
-  },
-  errors: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#FFF',
-    alignSelf: 'center',
-    backgroundColor: 'rgba(0,0,0,0)',
+    marginTop: 300
   }
 });
 
-export default Loader;
+export default Loading;

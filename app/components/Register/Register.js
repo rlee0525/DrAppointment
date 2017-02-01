@@ -23,33 +23,33 @@ class Register extends React.Component {
     };
   }
 
-  componentWillMount() {
-    // AsyncStorage.removeItem('phone_number');
-    // AsyncStorage.removeItem('authy_id');
-    AsyncStorage.getItem('phone_number', (err, result) => {
-      console.log(result);
-      const phoneNumber = result;
-      if (result) {
-        AsyncStorage.getItem('authy_id', (err2, result2) => {
-          console.log(result2);
-          fetch('https://www.drappointment.io/api/session', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              user: {
-                phone_number: phoneNumber,
-                authy_id: result2
-              }
-            })
-          })
-          .then((response) => response.json())
-          .then(() => Actions.home());
-        });
-    }});
-  }
+  // componentWillMount() {
+  //   // AsyncStorage.removeItem('phone_number');
+  //   // AsyncStorage.removeItem('authy_id');
+  //   AsyncStorage.getItem('phone_number', (err, result) => {
+  //     console.log(result);
+  //     const phoneNumber = result;
+  //     if (result) {
+  //       AsyncStorage.getItem('authy_id', (err2, result2) => {
+  //         console.log(result2);
+  //         fetch('https://www.drappointment.io/api/session', {
+  //           method: 'POST',
+  //           headers: {
+  //             'Accept': 'application/json',
+  //             'Content-Type': 'application/json'
+  //           },
+  //           body: JSON.stringify({
+  //             user: {
+  //               phone_number: phoneNumber,
+  //               authy_id: result2
+  //             }
+  //           })
+  //         })
+  //         .then((response) => response.json())
+  //         .then(() => Actions.home());
+  //       });
+  //   }});
+  // }
 
   onRegisterPressed() {
     let user = {
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 15,
     height: 50,
-    backgroundColor: '#00C853',
+    backgroundColor: '#E91E63',
     paddingLeft: 40,
     paddingRight: 40,
     justifyContent: 'center',
