@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   Image,
+  View,
   AsyncStorage
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -41,7 +42,9 @@ class Loading extends React.Component {
   render() {
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
+        <View style={styles.container}>
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
+        </View>
       </Image>
     );
   }
@@ -50,15 +53,14 @@ class Loading extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
     width: null,
-    height: null
+    height: null,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   logo: {
-    left: 12,
-    borderRadius: 5,
-    marginTop: 300
+    alignSelf: 'center',
   }
 });
 

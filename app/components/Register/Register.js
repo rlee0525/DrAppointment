@@ -47,6 +47,7 @@ class Register extends React.Component {
   render() {
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
+        <View style={styles.container}>
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
 
         <Text style={styles.welcome}>
@@ -71,12 +72,13 @@ class Register extends React.Component {
         <TouchableHighlight style={styles.button}
                             onPress={this.onRegisterPressed.bind(this)}>
           <Text style={styles.buttonText}>
-            SUBMIT
+            Submit
           </Text>
         </TouchableHighlight>
         <Text style={styles.errors}>
           {this.state.errors ? this.state.errors.join("\n") : ""}
         </Text>
+        </View>
       </Image>
     );
   }
@@ -86,12 +88,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center',
     width: null,
-    height: null
+    height: null,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   logo: {
     left: 12,
+    alignSelf: 'center',
     borderRadius: 5,
     marginTop: 50
   },
@@ -101,35 +104,32 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     textAlign: 'center',
     color: 'white',
-    fontWeight: 'bold',
     backgroundColor: 'rgba(0,0,0,0)',
+    fontFamily: 'Arial'
   },
   input: {
-    margin: 5,
-    width: 320,
+    marginTop: 10,
+    alignSelf: 'stretch',
     height: 50,
-    padding: 5,
-    fontSize: 18,
+    fontSize: 14,
     borderColor: 'white',
-    borderRadius: 5,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
     textAlign: 'center',
-    alignSelf: 'center'
+    fontFamily: 'Arial',
   },
   button: {
-    marginTop: 15,
+    marginTop: 100,
     height: 50,
-    backgroundColor: '#E91E63',
+    backgroundColor: '#FF3366',
     paddingLeft: 40,
     paddingRight: 40,
     justifyContent: 'center',
-    borderRadius: 10
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold',
     color: '#FFF',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontFamily: 'Arial'
   },
   errors: {
     fontSize: 12,

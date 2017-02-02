@@ -30,5 +30,5 @@ export const fetchDoctorSearchResults = input => dispatch => (
   APIUtil.fetchDoctorSearchResults(input)
     .then(response => response.json())
     .then(results => dispatch(receiveResults(results)))
-    // .catch(err => dispatch(doctorError(err.responseJSON)))
+    .catch(err => dispatch(doctorError(err.responseJSON)))
 );
