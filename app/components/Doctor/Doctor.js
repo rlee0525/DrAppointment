@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.55)'
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   bar: {
     flex: 0.05
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial',
   },
   backButton: {
-    backgroundColor: '#FF3366',
+    backgroundColor: '#0091EA',
     marginTop: 10,
     width: 120,
     padding: 5

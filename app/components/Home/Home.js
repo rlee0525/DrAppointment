@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.55)'
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   searchBarContainer: {
     padding: 20,

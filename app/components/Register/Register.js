@@ -50,23 +50,29 @@ class Register extends React.Component {
         <View style={styles.container}>
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
 
-        <TextInput
-          onChangeText={(first_name) => this.setState({ first_name })}
-          style={styles.input} placeholder="First name"
-          placeholderTextColor="gray"
-          />
+        <View style={styles.textBox}>
+          <TextInput
+            onChangeText={(first_name) => this.setState({ first_name })}
+            style={styles.input} placeholder="First name"
+            placeholderTextColor="rgba(255, 255, 255, 0.7)" autoFocus={true}
+            />
+        </View>
 
-        <TextInput
-          onChangeText={(last_name) => this.setState({ last_name })}
-          style={styles.input} placeholder="Last name"
-          placeholderTextColor="gray"
-          />
+        <View style={styles.textBox}>
+          <TextInput
+            onChangeText={(last_name) => this.setState({ last_name })}
+            style={styles.input} placeholder="Last name"
+            placeholderTextColor="rgba(255, 255, 255, 0.7)"
+            />
+        </View>
 
-        <TextInput
-          onChangeText={(phone_number) => this.setState({ phone_number })}
-          style={styles.input} placeholder="Phone number"
-          placeholderTextColor="gray"
+        <View style={styles.textBox}>
+          <TextInput
+            onChangeText={(phone_number) => this.setState({ phone_number })}
+            style={styles.input} placeholder="Phone number"
+            placeholderTextColor="rgba(255, 255, 255, 0.7)"
           />
+        </View>
 
         <TouchableHighlight style={styles.button}
                             onPress={this.onRegisterPressed.bind(this)}>
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.55)'
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   logo: {
     left: 12,
@@ -98,20 +104,23 @@ const styles = StyleSheet.create({
     marginTop: 120,
     marginBottom: 100
   },
+  textBox: {
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.7)',
+  },
   input: {
     marginTop: 10,
     alignSelf: 'stretch',
     height: 50,
-    fontSize: 14,
-    borderColor: 'white',
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-    textAlign: 'center',
+    fontSize: 15,
     fontFamily: 'Arial',
+    paddingLeft: 20,
+    color: 'white'
   },
   button: {
     marginTop: 100,
     height: 50,
-    backgroundColor: '#FF3366',
+    backgroundColor: '#0091EA',
     paddingLeft: 40,
     paddingRight: 40,
     justifyContent: 'center',

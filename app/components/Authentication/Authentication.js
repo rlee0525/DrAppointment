@@ -46,21 +46,25 @@ class Authentication extends React.Component {
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
-        <Image source={require('../../images/logo.png')} style={styles.logo}/>
+          <Image source={require('../../images/logo.png')} style={styles.logo}/>
 
-        <TextInput
-          onChangeText={(authyId) => this.setState({ authyId })}
-          style={styles.input} placeholder="Verification Code"
-          />
+          <View style={styles.textBox}>
+            <TextInput
+              onChangeText={(authyId) => this.setState({ authyId })}
+              style={styles.input} placeholder="Verification Code"
+              placeholderTextColor="rgba(255, 255, 255, 0.7)"
+              autoFocus={true}
+              />
+          </View>
 
-        <TouchableHighlight style={styles.button}>
-          <Text style={styles.buttonText} onPress={this.onAuthPressed.bind(this)}>
-            Authenticate
+          <TouchableHighlight style={styles.button}>
+            <Text style={styles.buttonText} onPress={this.onAuthPressed.bind(this)}>
+              Authenticate
+            </Text>
+          </TouchableHighlight>
+          <Text style={styles.errors}>
+            {this.state.errors ? this.state.errors.join("\n") : ""}
           </Text>
-        </TouchableHighlight>
-        <Text style={styles.errors}>
-          {this.state.errors ? this.state.errors.join("\n") : ""}
-        </Text>
         </View>
       </Image>
     );
@@ -71,33 +75,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center',
-    alignSelf: 'stretch',
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.55)'
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   logo: {
     left: 12,
     alignSelf: 'center',
     borderRadius: 5,
     marginTop: 120,
-    marginBottom: 100
+    marginBottom: 140
+  },
+  textBox: {
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.7)',
   },
   input: {
-    marginTop: 50,
+    marginTop: 10,
     alignSelf: 'stretch',
     height: 50,
-    fontSize: 14,
-    borderColor: 'white',
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-    textAlign: 'center',
+    fontSize: 15,
     fontFamily: 'Arial',
+    paddingLeft: 20,
+    color: 'white',
+    textAlign: 'center',
   },
   button: {
-    marginTop: 50,
+    marginTop: 45,
     height: 50,
-    backgroundColor: '#FF3366',
+    // width: 200,
+    // alignSelf: 'center',
+    backgroundColor: '#0091EA',
     paddingLeft: 40,
     paddingRight: 40,
     justifyContent: 'center',

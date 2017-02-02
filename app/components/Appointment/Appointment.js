@@ -12,20 +12,20 @@ import { Actions } from 'react-native-router-flux';
 
 class Doctor extends React.Component {
 
-  onAppointmentClick(timeslot) {
-    if (timeslot.status === "Open") {
-      const data = {
-        doctor: this.props.doctor,
-        user: this.props.currentUser,
-        time_slot: timeslot
-      };
-
-      this.props.createAppointment(data)
-      .then(() => Actions.appointment({
-        appointment: this.props.appointment
-      }));
-    }
-  }
+  // onAppointmentClick(timeslot) {
+  //   if (timeslot.status === "Open") {
+  //     const data = {
+  //       doctor: this.props.doctor,
+  //       user: this.props.currentUser,
+  //       time_slot: timeslot
+  //     };
+  //
+  //     this.props.createAppointment(data)
+  //     .then(() => Actions.appointment({
+  //       appointment: this.props.appointment
+  //     }));
+  //   }
+  // }
 
   render() {
     console.log(this.props);
@@ -47,7 +47,9 @@ class Doctor extends React.Component {
 
 
 
-          
+            <View style={styles.picture}>
+
+            </View>
             <View style={styles.detail}>
               <Text style={styles.detailText}>
                 {doctor && doctor.name}
@@ -75,7 +77,7 @@ class Doctor extends React.Component {
                 {doctor && doctor.first_day[0].date}
               </Text>
               <ScrollView>
-                {firstDay}
+
               </ScrollView>
             </View>
             <View style={styles.secondDay}>
@@ -83,7 +85,7 @@ class Doctor extends React.Component {
                 {doctor && doctor.second_day[0].date}
               </Text>
               <ScrollView>
-                {secondDay}
+
               </ScrollView>
             </View>
             <View style={styles.thirdDay}>
@@ -91,7 +93,7 @@ class Doctor extends React.Component {
                 {doctor && doctor.third_day[0].date}
               </Text>
               <ScrollView>
-                {thirdDay}
+
               </ScrollView>
             </View>
           </View>
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.55)'
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   bar: {
     flex: 0.05
