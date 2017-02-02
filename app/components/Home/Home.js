@@ -6,7 +6,8 @@ import {
   Image,
   TextInput,
   TouchableHighlight,
-  Linking
+  Linking,
+  ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Icon } from 'react-native-elements';
@@ -113,7 +114,9 @@ class Home extends React.Component {
           />
         </View>
         <View style={styles.listingsContainer}>
-          {favDocs}
+          <ScrollView>
+            {favDocs}
+          </ScrollView>
         </View>
         </View>
       </Image>

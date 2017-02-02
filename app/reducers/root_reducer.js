@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   currentUser: authenticationReducer,
   search: homeReducer,
   doctor: doctorReducer,
-  favDoctors3: appointmentReducer
+  appointment: appointmentReducer
 });
 
 export default rootReducer;

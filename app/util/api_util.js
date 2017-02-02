@@ -46,3 +46,16 @@ export const fetchDoctorSearchResults = input => (
       })
   })
 );
+
+export const createAppointment = data => (
+  fetch('https://www.drappointment.io/api/session', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    body: JSON.stringify({
+      data
+    })
+  })
+);

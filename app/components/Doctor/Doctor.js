@@ -5,16 +5,98 @@ import {
   View,
   Image,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 class Doctor extends React.Component {
+
+  onAppointmentClick(timeslot) {
+    if (timeslot.status === "Open") {
+      const data = {
+        doctor: this.props.doctor,
+        user: this.props.currentUser,
+        time_slot: timeslot
+      };
+
+      this.props.createAppointment(data)
+      .then(() => Actions.appointment({
+        appointment: this.props.appointment
+      }));
+    }
+  }
+
   render() {
     let doctor = this.props.doctor;
     let uri = doctor.image_url;
-    console.log(doctor);
-    console.log(uri);
+    let firstDay;
+    let secondDay;
+    let thirdDay;
+
+    if (doctor) {
+      firstDay = (doctor.first_day.map(timeslot => {
+        let timeStyle;
+
+        if (timeslot.status === "N/A") {
+          timeStyle = styles.blocked;
+        } else if (timeslot.status === "Full") {
+          timeStyle = styles.full;
+        } else {
+          timeStyle = styles.open;
+        }
+
+        return (
+          <TouchableHighlight key={timeslot.id} style={timeStyle}
+                              onPress={() => this.onAppointmentClick(timeslot)}>
+            <Text>
+              {timeslot.time}
+            </Text>
+          </TouchableHighlight>
+        );
+      }));
+      secondDay = (doctor.second_day.map(timeslot => {
+        let timeStyle;
+
+        if (timeslot.status === "N/A") {
+          timeStyle = styles.blocked;
+        } else if (timeslot.status === "Full") {
+          timeStyle = styles.full;
+        } else {
+          timeStyle = styles.open;
+        }
+
+        return (
+          <TouchableHighlight key={timeslot.id} style={timeStyle}
+                              onPress={() => this.onAppointmentClick(timeslot)}>
+            <Text>
+              {timeslot.time}
+            </Text>
+          </TouchableHighlight>
+        );
+      }));
+      thirdDay = (doctor.third_day.map(timeslot => {
+        let timeStyle;
+
+        if (timeslot.status === "N/A") {
+          timeStyle = styles.blocked;
+        } else if (timeslot.status === "Full") {
+          timeStyle = styles.full;
+        } else {
+          timeStyle = styles.open;
+        }
+
+        return (
+          <TouchableHighlight key={timeslot.id} style={timeStyle}
+                              onPress={() => this.onAppointmentClick(timeslot)}>
+            <Text>
+              {timeslot.time}
+            </Text>
+          </TouchableHighlight>
+        );
+      }));
+    }
+
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
@@ -50,16 +132,25 @@ class Doctor extends React.Component {
               <Text style={styles.date}>
                 {doctor && doctor.first_day[0].date}
               </Text>
+              <ScrollView>
+                {firstDay}
+              </ScrollView>
             </View>
             <View style={styles.secondDay}>
               <Text style={styles.date}>
                 {doctor && doctor.second_day[0].date}
               </Text>
+              <ScrollView>
+                {secondDay}
+              </ScrollView>
             </View>
             <View style={styles.thirdDay}>
               <Text style={styles.date}>
                 {doctor && doctor.third_day[0].date}
               </Text>
+              <ScrollView>
+                {thirdDay}
+              </ScrollView>
             </View>
           </View>
         </View>
@@ -138,7 +229,16 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     paddingTop: 10,
-  }
+  },
+  blocked: {
+    backgroundColor: 'white',
+  },
+  full: {
+    backgroundColor: 'pink',
+  },
+  open: {
+    backgroundColor: 'teal',
+  },
 });
 
 export default Doctor;
