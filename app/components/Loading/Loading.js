@@ -30,7 +30,7 @@ class Loading extends React.Component {
             })
           })
           .then((response) => response.json())
-          .then(() => Actions.home());
+          .then((response) => Actions.home({ currentUser: response }));
         });
       } else {
         return Actions.register();

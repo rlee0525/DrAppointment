@@ -16,15 +16,14 @@ class Doctor extends React.Component {
     this.state = {
       doctor: {}
     };
-    debugger;
   }
 
   componentWillMount() {
-    this.props.requestDoctor(this.props.doctorId);
+    this.props.requestDoctor(this.props.doctorId)
+      .then(response => console.log(response));
   }
 
   render() {
-    debugger;
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <Text style={styles.welcome}>
