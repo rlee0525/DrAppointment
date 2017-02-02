@@ -5,30 +5,97 @@ import {
   View,
   Image,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-class Appointment extends React.Component {
-  constructor(props) {
-    super(props);
+class Doctor extends React.Component {
 
-    this.state = {
+  onAppointmentClick(timeslot) {
+    if (timeslot.status === "Open") {
+      const data = {
+        doctor: this.props.doctor,
+        user: this.props.currentUser,
+        time_slot: timeslot
+      };
 
-    };
+      this.props.createAppointment(data)
+      .then(() => Actions.appointment({
+        appointment: this.props.appointment
+      }));
+    }
   }
 
   render() {
+    console.log(this.props);
+    let appointment = this.props.appointent;
+    let doctor = appointment.doctor;
+    let currentUser = appointment.currentUser;
+
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
-        <Text style={styles.welcome}>
-          and appointment page....!
-        </Text>
-        <TouchableHighlight style={styles.button}>
-          <Text style={styles.buttonText}>
-            Book
-          </Text>
-        </TouchableHighlight>
+        <View style={styles.container}>
+          <View style={styles.bar}/>
+            <View style={styles.header}>
+              <Text style={styles.headerTitle}>
+                Appointment Detail
+              </Text>
+              <Text style={styles.headerDetail}>
+                You are making an appointment with {`${doctor.name}`} on
+              </Text>
+
+
+
+          
+            <View style={styles.detail}>
+              <Text style={styles.detailText}>
+                {doctor && doctor.name}
+              </Text>
+              <Text style={styles.detailText}>
+                {doctor && doctor.address}
+              </Text>
+              <Text style={styles.detailText}>
+                {doctor && doctor.address2}
+              </Text>
+              <Text style={styles.detailText}>
+                {doctor && doctor.distance}
+              </Text>
+              <TouchableHighlight style={styles.backButton}
+                                  onPress={() => Actions.home()}>
+                <Text style={styles.backButtonText}>
+                  Search again
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <View style={styles.body}>
+            <View style={styles.firstDay}>
+              <Text style={styles.date}>
+                {doctor && doctor.first_day[0].date}
+              </Text>
+              <ScrollView>
+                {firstDay}
+              </ScrollView>
+            </View>
+            <View style={styles.secondDay}>
+              <Text style={styles.date}>
+                {doctor && doctor.second_day[0].date}
+              </Text>
+              <ScrollView>
+                {secondDay}
+              </ScrollView>
+            </View>
+            <View style={styles.thirdDay}>
+              <Text style={styles.date}>
+                {doctor && doctor.third_day[0].date}
+              </Text>
+              <ScrollView>
+                {thirdDay}
+              </ScrollView>
+            </View>
+          </View>
+        </View>
       </Image>
     );
   }
@@ -37,52 +104,57 @@ class Appointment extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    alignSelf: 'stretch',
     width: null,
-    height: null
+    height: null,
+    backgroundColor: 'rgba(0, 0, 0, 0.55)'
   },
-  logo: {
-    left: 12,
-    borderRadius: 5,
-    marginTop: 50
+  bar: {
+    flex: 0.05
   },
-  welcome: {
-    marginTop: 80,
-    fontSize: 36,
-    marginBottom: 40,
-    textAlign: 'center',
+  header: {
+    flex: 0.2,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+  },
+  picture: {
+    flex: 0.35,
+    alignSelf: 'center',
+    paddingLeft: 20
+  },
+  doctorImg: {
+    width: 100,
+    height: 100,
+  },
+  detail: {
+    flex: 0.65,
+    padding: 15
+  },
+  detailText: {
     color: 'white',
-    fontWeight: 'bold',
-    backgroundColor: 'rgba(0,0,0,0)',
+    fontFamily: 'Arial',
   },
-  input: {
-    margin: 5,
-    width: 320,
-    height: 50,
-    padding: 5,
-    fontSize: 18,
-    borderColor: 'white',
-    borderRadius: 5,
-    backgroundColor: 'white',
+  backButton: {
+    backgroundColor: '#FF3366',
+    marginTop: 10,
+    width: 120,
+    padding: 5
+  },
+  backButtonText: {
+    fontSize: 12,
+    fontFamily: 'Arial',
+    color: 'white',
     textAlign: 'center',
-    alignSelf: 'center'
   },
-  button: {
-    marginTop: 15,
-    height: 50,
-    backgroundColor: '#E91E63',
-    paddingLeft: 40,
-    paddingRight: 40,
-    justifyContent: 'center',
-    borderRadius: 10
+  body: {
+    flex: 0.75,
+    alignSelf: 'stretch',
+    flexDirection: 'row',
   },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FFF',
-    alignSelf: 'center'
-  }
 });
 
-export default Appointment;
+export default Doctor;

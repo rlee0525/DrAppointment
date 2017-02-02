@@ -28,6 +28,7 @@ class Doctor extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     let doctor = this.props.doctor;
     let uri = doctor.image_url;
     let firstDay;
