@@ -64,15 +64,10 @@ class Home extends React.Component {
 
     this.state = {
       name: "",
-<<<<<<< HEAD
-      favDoctors: {},
-      doctorId: 1
-=======
       favDoctors: [],
       searchResults: [],
       lat: null,
       lng: null
->>>>>>> search
     };
     this.getLocation = this.getLocation.bind(this);
     this.fetchFavDoctors = this.fetchFavDoctors.bind(this);
@@ -84,42 +79,8 @@ class Home extends React.Component {
     this.getLocation();
   }
 
-<<<<<<< HEAD
-  onDoctorPressed() {
-    // let user = {
-    //   first_name: this.state.first_name,
-    //   last_name: this.state.last_name,
-    //   phone_number: this.state.phone_number
-    // };
-    //
-    // this.props.registerUser(user)
-    //   .then(response => {
-    //     if (response.currentUser.ok) {
-    //       let phone_number = this.state.phone_number;
-    //       return Actions.authentication({phone_number});
-    //     } else {
-    //       this.setState({
-    //         errors: ["Please enter valid name and phone number."]
-    //       });
-    //     }
-    //   });
-
-    this.props.requestDoctor(this.state.doctorId);
-    console.log(this.props.doctor);
-    console.log(this.props);
-  }
-
-  render() {
-    var options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-
-=======
   getLocation() {
     let that = this;
->>>>>>> search
     function success(pos) {
       var crd = pos.coords;
 
@@ -227,24 +188,6 @@ class Home extends React.Component {
 
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
-<<<<<<< HEAD
-        <Text style={styles.welcome}>
-          Hello! This is Home Page!
-        </Text>
-
-        <Text style={styles.welcome}>
-          {this.state.favDoctors.name}
-        </Text>
-
-        <Image source={{uri: "https://pngimg.com/upload/doctor_PNG15959.png"}}
-               style={styles.doctorImage}/>
-        <TouchableHighlight style={styles.button}
-                            onPress={this.onDoctorPressed.bind(this)}>
-          <Text style={styles.buttonText}>
-            Doctor
-          </Text>
-        </TouchableHighlight>
-=======
         <View style={styles.searchBarContainer}>
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
@@ -256,7 +199,6 @@ class Home extends React.Component {
         <View style={styles.listingsContainer}>
           {favDocs}
         </View>
->>>>>>> search
       </Image>
     );
   }
