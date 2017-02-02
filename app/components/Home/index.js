@@ -5,7 +5,7 @@ import { fetchDoctorSearchResults,
 
 const mapStateToProps = (state) => ({
   search: state.search,
-  doctor: state.doctor
+  doctor: state.doctor,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -10,16 +10,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 
 class Doctor extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      doctor: {}
-    };
-  }
-
   render() {
-    debugger;
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>

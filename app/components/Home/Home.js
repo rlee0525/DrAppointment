@@ -61,8 +61,13 @@ class Home extends React.Component {
   }
 
   onDoctorClick(doctorId) {
+    let currentUser = this.props.currentUser;
+
     this.props.requestDoctor(doctorId)
-      .then(() => Actions.doctor({ doctor: this.props.doctor }));
+      .then(() => Actions.doctor({
+        doctor: this.props.doctor,
+        currentUser
+      }));
   }
 
   render() {
