@@ -11,20 +11,57 @@ import { Actions } from 'react-native-router-flux';
 
 class Doctor extends React.Component {
   render() {
+    let doctor = this.props.doctor;
+    let uri = doctor.image_url;
+    console.log(doctor);
+    console.log(uri);
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
-        <View style={styles.header}>
-          <Text>
-            {this.props.doctor && this.props.doctor.name}
-          </Text>
-        </View>
-        <TouchableHighlight style={styles.button}
-                            onPress={() => Actions.appointment()}>
-          <Text style={styles.buttonText} >
-            make an appointment!
-          </Text>
-        </TouchableHighlight>
+          <View style={styles.bar}/>
+          <View style={styles.header}>
+            <View style={styles.picture}>
+              <Image source={{uri}}
+                     style={styles.doctorImg}/>
+            </View>
+            <View style={styles.detail}>
+              <Text style={styles.detailText}>
+                {doctor && doctor.name}
+              </Text>
+              <Text style={styles.detailText}>
+                {doctor && doctor.address}
+              </Text>
+              <Text style={styles.detailText}>
+                {doctor && doctor.address2}
+              </Text>
+              <Text style={styles.detailText}>
+                {doctor && doctor.distance}
+              </Text>
+              <TouchableHighlight style={styles.backButton}
+                                  onPress={() => Actions.home()}>
+                <Text style={styles.backButtonText}>
+                  Search again
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <View style={styles.body}>
+            <View style={styles.firstDay}>
+              <Text style={styles.date}>
+                {doctor && doctor.first_day[0].date}
+              </Text>
+            </View>
+            <View style={styles.secondDay}>
+              <Text style={styles.date}>
+                {doctor && doctor.second_day[0].date}
+              </Text>
+            </View>
+            <View style={styles.thirdDay}>
+              <Text style={styles.date}>
+                {doctor && doctor.third_day[0].date}
+              </Text>
+            </View>
+          </View>
         </View>
       </Image>
     );
@@ -34,6 +71,7 @@ class Doctor extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
     alignSelf: 'stretch',
@@ -41,9 +79,65 @@ const styles = StyleSheet.create({
     height: null,
     backgroundColor: 'rgba(0, 0, 0, 0.55)'
   },
+  bar: {
+    flex: 0.05
+  },
   header: {
-    flex: 0.3,
-    backgroundColor: 'white',
+    flex: 0.2,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+  },
+  picture: {
+    flex: 0.35,
+    alignSelf: 'center',
+    paddingLeft: 20
+  },
+  doctorImg: {
+    width: 100,
+    height: 100,
+  },
+  detail: {
+    flex: 0.65,
+    padding: 15
+  },
+  detailText: {
+    color: 'white',
+    fontFamily: 'Arial',
+  },
+  backButton: {
+    backgroundColor: '#FF3366',
+    marginTop: 10,
+    width: 120,
+    padding: 5
+  },
+  backButtonText: {
+    fontSize: 12,
+    fontFamily: 'Arial',
+    color: 'white',
+    textAlign: 'center',
+  },
+  body: {
+    flex: 0.75,
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+  },
+  firstDay: {
+    flex: 0.33,
+    backgroundColor: 'blue',
+  },
+  secondDay: {
+    flex: 0.33,
+    backgroundColor: 'purple',
+  },
+  thirdDay: {
+    flex: 0.33,
+    backgroundColor: 'green',
+  },
+  date: {
+    color: 'white',
+    textAlign: 'center',
+    paddingTop: 10,
   }
 });
 
