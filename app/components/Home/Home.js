@@ -63,19 +63,15 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      name: "",
-      favDoctors: [],
-      searchResults: [],
       lat: null,
       lng: null
     };
     this.getLocation = this.getLocation.bind(this);
-    this.fetchFavDoctors = this.fetchFavDoctors.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    this.fetchDoctorSearchResults();
+    this.props.fetchDoctorSearchResults();
     this.getLocation();
   }
 
@@ -83,11 +79,6 @@ class Home extends React.Component {
     let that = this;
     function success(pos) {
       var crd = pos.coords;
-
-      console.log('Your current position is:');
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
       that.setState({
         lat: crd.latitude,
         lng: crd.longitude
@@ -95,7 +86,6 @@ class Home extends React.Component {
     }
 
     function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 
     var options = {
@@ -107,60 +97,23 @@ class Home extends React.Component {
     navigator.geolocation.getCurrentPosition(success, error, options);
   }
 
-  fetchFavDoctors() {
-    fetch('http://localhost:3000/api/favorite_doctors', {
-      method: 'GET',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-      })
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({
-        favDoctors: responseData
-      });
-    });
-  }
-
-  fetchDoctorSearchResults() {
-    fetch('http://localhost:3000/api/doctor_search', {
-      method: 'POST',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-      body: JSON.stringify({
-        input: {
-          name: this.state.name,
-          lat: this.state.lat,
-          lng: this.state.lng
-        }
-      })
-    })
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({
-        searchResults: responseData
-      });
-    });
-  }
-
   handleChange(input) {
-    console.log(input);
-    console.log(this);
-    this.setState({ name: input });
-    this.fetchDoctorSearchResults();
+    this.props.fetchDoctorSearchResults(
+      {
+        name: input,
+        lat: this.state.lat,
+        lng: this.state.lng
+      }
+    );
   }
 
 // <Image source={{ uri: doctor.image_url}} style={styles.photo} />
   render() {
     let favDocs;
-    console.log(this.state);
-    if (this.state.searchResults.length === 0) {
+    if (this.props.search.searchResults.length === 0) {
       favDocs = null;
     } else {
-      favDocs = this.state.searchResults.map(doctor => {
+      favDocs = this.props.search.searchResults.map(doctor => {
         return (
           <View key={doctor.id} style={styles.doctorListing}>
             <View style={styles.left}>
@@ -170,7 +123,7 @@ class Home extends React.Component {
               <TouchableHighlight style={styles.button}
                                   onPress={() => console.log(this.state)}>
                 <Text style={styles.text}>
-                  {doctor.name}
+                  {doctor.name} {doctor.favorited ? " Favorited!" : ""}
                 </Text>
               </TouchableHighlight>
 
@@ -193,7 +146,6 @@ class Home extends React.Component {
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             placeholder="Search by doctor's first or last name..."
             onChangeText={(input) => this.handleChange(input)}
-            value={this.state.name}
           />
         </View>
         <View style={styles.listingsContainer}>

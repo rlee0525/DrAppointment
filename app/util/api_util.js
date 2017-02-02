@@ -1,5 +1,5 @@
 export const registerUser = user => (
-  fetch('https://www.drappointment.io/api/users', {
+  fetch('http://localhost:3000api/users', {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
@@ -12,7 +12,7 @@ export const registerUser = user => (
 );
 
 export const authenticateUser = user => (
-  fetch('https://www.drappointment.io/api/session', {
+  fetch('http://localhost:3000/api/session', {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
@@ -25,11 +25,24 @@ export const authenticateUser = user => (
 );
 
 export const fetchDoctor = id => (
-  fetch(`https://www.drappointment.io/api/doctor/${id}`, {
+  fetch(`http://localhost:3000/api/doctor/${id}`, {
     method: 'GET',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
+  })
+);
+
+export const fetchDoctorSearchResults = input => (
+  fetch('http://localhost:3000/api/doctor_search', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        input
+      })
   })
 );

@@ -6,7 +6,7 @@ import appointmentReducer from './appointment_reducer';
 
 const rootReducer = combineReducers({
   currentUser: authenticationReducer,
-  doctor: homeReducer,
+  search: homeReducer,
   favDoctors2: doctorReducer,
   favDoctors3: appointmentReducer
 });

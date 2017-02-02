@@ -1,16 +1,16 @@
 import Home from './Home';
 import { connect } from 'react-redux';
-import { requestDoctor } from '../../actions/doctor_actions';
+import { fetchDoctorSearchResults } from '../../actions/doctor_actions';
 
 const mapStateToProps = (state) => ({
-
+  search: state.search
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestDoctor: id => dispatch(requestDoctor(id))
+  fetchDoctorSearchResults: doctors => dispatch(fetchDoctorSearchResults(doctors)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Home);
