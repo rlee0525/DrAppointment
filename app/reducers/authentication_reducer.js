@@ -12,9 +12,7 @@ const authenticationReducer = (state = _defaultState, action) => {
 
   switch(action.type) {
     case RECEIVE_USER:
-      return merge({}, _defaultState, {
-        currentUser: action.currentUser
-      });
+      return action.responseData;
     case RECEIVE_ERRORS:
       return merge({}, _defaultState, {
         errors: action.errors

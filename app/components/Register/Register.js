@@ -32,12 +32,13 @@ class Register extends React.Component {
 
     this.props.registerUser(user)
       .then(response => {
-        if (response.currentUser.ok) {
-          let phone_number = this.state.phone_number;
-          return Actions.authentication({phone_number});
+        if (response.responseData.session_token) {
+          let phone_number = response.responseData.phone_number;
+          let currentUser = response.responseData;
+          return Actions.authentication({ currentUser, phone_number });
         } else {
           this.setState({
-            errors: ["Please enter valid name and phone number."]
+            errors: response.responseData
           });
         }
       });
@@ -74,7 +75,7 @@ class Register extends React.Component {
           </Text>
         </TouchableHighlight>
         <Text style={styles.errors}>
-          {this.state.errors}
+          {this.state.errors ? this.state.errors.join("\n") : ""}
         </Text>
       </Image>
     );

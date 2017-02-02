@@ -1,16 +1,16 @@
 import Home from './Home';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/home_actions';
+import { requestDoctor } from '../../actions/doctor_actions';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  requestDoctor: id => dispatch(requestDoctor(id))
 });
 
 export default connect(
   null,
-  null
+  mapDispatchToProps
 )(Home);

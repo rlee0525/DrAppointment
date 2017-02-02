@@ -1,17 +1,16 @@
 import Doctor from './Doctor';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/doctor_actions';
-// import {} from '../../reducers/rootReducer';
+import { requestDoctor } from '../../actions/doctor_actions';
 
 const mapStateToProps = (state) => ({
 
 });
 
-const mapDispatchToProps = () => ({
-
+const mapDispatchToProps = dispatch => ({
+  requestDoctor: id => dispatch(requestDoctor(id))
 });
 
 export default connect(
   null,
-  null
+  mapDispatchToProps
 )(Doctor);

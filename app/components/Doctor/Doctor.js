@@ -14,15 +14,22 @@ class Doctor extends React.Component {
     super(props);
 
     this.state = {
-      
+      doctor: {}
     };
+    debugger;
+  }
+
+  componentWillMount() {
+    this.props.requestDoctor(this.props.doctorId);
   }
 
   render() {
+    debugger;
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <Text style={styles.welcome}>
           doctorrrrrr pageeee
+          {this.props.doctor}
         </Text>
         <TouchableHighlight style={styles.button}
                             onPress={() => Actions.appointment()}>

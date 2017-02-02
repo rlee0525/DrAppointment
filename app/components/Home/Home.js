@@ -15,7 +15,8 @@ class Home extends React.Component {
 
     this.state = {
       name: "",
-      favDoctors: {}
+      favDoctors: {},
+      doctorId: 1
     };
   }
 
@@ -40,6 +41,29 @@ class Home extends React.Component {
       });
   }
 
+  onDoctorPressed() {
+    // let user = {
+    //   first_name: this.state.first_name,
+    //   last_name: this.state.last_name,
+    //   phone_number: this.state.phone_number
+    // };
+    //
+    // this.props.registerUser(user)
+    //   .then(response => {
+    //     if (response.currentUser.ok) {
+    //       let phone_number = this.state.phone_number;
+    //       return Actions.authentication({phone_number});
+    //     } else {
+    //       this.setState({
+    //         errors: ["Please enter valid name and phone number."]
+    //       });
+    //     }
+    //   });
+
+    this.props.requestDoctor(this.state.doctorId);
+    console.log(this.props.doctor);
+    console.log(this.props);
+  }
 
   render() {
     var options = {
@@ -76,7 +100,7 @@ class Home extends React.Component {
         <Image source={{uri: "https://pngimg.com/upload/doctor_PNG15959.png"}}
                style={styles.doctorImage}/>
         <TouchableHighlight style={styles.button}
-                            onPress={() => Actions.doctor()}>
+                            onPress={this.onDoctorPressed.bind(this)}>
           <Text style={styles.buttonText}>
             Doctor
           </Text>

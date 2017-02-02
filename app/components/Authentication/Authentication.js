@@ -27,13 +27,16 @@ class Authentication extends React.Component {
 
     this.props.authenticateUser(user)
       .then(response => {
-        if (response.currentUser.ok) {
-          AsyncStorage.setItem('phone_number', (user.phone_number))
-            .then(() => AsyncStorage.setItem('authy_id', (user.authy_id)))
-            .then(() => Actions.home());
+        console.log(response);
+        if (response.responseData.session_token) {
+          let phone_number = response.responseData.phone_number;
+          let authy_id = response.responseData.authy_id;
+          AsyncStorage.setItem('phone_number', (phone_number))
+            .then(() => AsyncStorage.setItem('authy_id', (authy_id)))
+            .then(() => Actions.home({ currentUser: response.responseData }));
         } else {
           this.setState({
-            errors: ["Please enter a valid code"]
+            errors: response.responseData
           });
         }
       });
@@ -60,7 +63,7 @@ class Authentication extends React.Component {
           </Text>
         </TouchableHighlight>
         <Text style={styles.errors}>
-          {this.state.errors}
+          {this.state.errors ? this.state.errors.join("\n") : ""}
         </Text>
       </Image>
     );

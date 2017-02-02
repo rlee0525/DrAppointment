@@ -3,9 +3,9 @@ import * as APIUtil from '../util/api_util';
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 
-export const receiveUser = currentUser => ({
+export const receiveUser = responseData => ({
   type: RECEIVE_USER,
-  currentUser
+  responseData
 });
 
 export const receiveErrors = errors => ({
@@ -15,12 +15,14 @@ export const receiveErrors = errors => ({
 
 export const registerUser = user => dispatch => (
   APIUtil.registerUser(user)
-    .then(userInfo => dispatch(receiveUser(userInfo)))
+    .then((response) => response.json())
+    .then(responseData => dispatch(receiveUser(responseData)))
     .catch(err => dispatch(receiveErrors(err.responseJSON)))
 );
 
 export const authenticateUser = user => dispatch => (
   APIUtil.authenticateUser(user)
-    .then(userInfo => dispatch(receiveUser(userInfo)))
+    .then((response) => response.json())
+    .then(responseData => dispatch(receiveUser(responseData)))
     .catch(err => dispatch(receiveErrors(err.responseJSON)))
 );

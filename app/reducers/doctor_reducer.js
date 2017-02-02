@@ -1,12 +1,12 @@
-import { RECEIVE_FAV_DOCTORS } from '../actions/doctor_actions';
-// import merge from 'lodash/merge';
+import { RECEIVE_DOCTOR } from '../actions/doctor_actions';
+import merge from 'lodash/merge';
 
 const doctorReducer = (state = {}, action) => {
   Object.freeze(state);
 
   switch(action.type) {
-    case RECEIVE_FAV_DOCTORS:
-      return action.favDoctors;
+    case RECEIVE_DOCTOR:
+      return action.doctor;
     default:
       return state;
   }

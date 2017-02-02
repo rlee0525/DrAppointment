@@ -23,3 +23,13 @@ export const authenticateUser = user => (
     })
   })
 );
+
+export const fetchDoctor = id => (
+  fetch(`https://www.drappointment.io/api/doctors/${id}`, {
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+  })
+);

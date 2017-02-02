@@ -1,6 +1,15 @@
-export const RECEIVE_FAV_DOCTORS = "RECEIVE_FAV_DOCTORS";
+import { RECEIVE_DOCTOR } from '../actions/doctor_actions';
+import merge from 'lodash/merge';
 
-export const receiveFavDoctors = user => ({
-  type: RECEIVE_FAV_DOCTORS,
-  favDoctors: user.favorites
-});
+const doctorReducer = (state = {}, action) => {
+  Object.freeze(state);
+
+  switch(action.type) {
+    case RECEIVE_DOCTOR:
+      return action.doctor;
+    default:
+      return state;
+  }
+};
+
+export default doctorReducer;
