@@ -16,7 +16,7 @@ const App = () => (
     <Router>
       <Scene key="root">
         <Scene key="loader" component={Loading} title="Loading"
-               hideNavBar={true} initial={true} />
+               hideNavBar={true} />
         <Scene key="register" component={Register} title="Register"
                hideNavBar={true} />
         <Scene key="authentication" component={Authentication}
@@ -26,7 +26,7 @@ const App = () => (
         <Scene key="doctor" component={Doctor} title="Doctor"
                hideNavBar={true} />
         <Scene key="appointment" component={Appointment} title="Appointment"
-               hideNavBar={true} />
+               hideNavBar={true} initial={true} />
       </Scene>
     </Router>
   </Provider>

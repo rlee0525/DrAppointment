@@ -102,6 +102,7 @@ class Doctor extends React.Component {
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
           <View style={styles.bar}/>
+
           <View style={styles.header}>
             <View style={styles.picture}>
               <Image source={{uri}}
@@ -128,6 +129,7 @@ class Doctor extends React.Component {
               </TouchableHighlight>
             </View>
           </View>
+          
           <View style={styles.body}>
             <View style={styles.firstDay}>
               <Text style={styles.date}>
