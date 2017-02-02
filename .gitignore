@@ -1,3 +1,8 @@
 node_modules/
+<<<<<<< HEAD
 /ios/build/
+=======
+/__tests__
+/android
+>>>>>>> 76dadcea77e492ed4e9f548e5a3753a47d681d0b
 /ios
