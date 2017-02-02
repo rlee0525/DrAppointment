@@ -60,11 +60,12 @@ class Home extends React.Component {
     );
   }
 
-// <Image source={{ uri: doctor.image_url}} style={styles.photo} />
+  onDoctorClick(doctorId) {
+    this.props.requestDoctor(doctorId)
+      .then(() => Actions.doctor({ doctor: this.props.doctor }));
+  }
+
   render() {
-    console.log(this.props.search.searchResults);
-    console.log(this.props.search);
-    console.log(this.props);
     let favDocs;
     if (this.props.search.searchResults.length === 0) {
       favDocs = null;
@@ -77,7 +78,7 @@ class Home extends React.Component {
             </View>
             <View style={styles.right}>
               <TouchableHighlight style={styles.button}
-                                  onPress={() => console.log(this.state)}>
+                                  onPress={() => this.onDoctorClick(doctor.id)}>
                 <Text style={styles.text}>
                   {doctor.name} {doctor.favorited ? " Favorited!" : ""}
                 </Text>
@@ -97,15 +98,18 @@ class Home extends React.Component {
 
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
+        <View style={styles.container}>
         <View style={styles.searchBarContainer}>
           <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            style={styles.searchBox}
             placeholder="Search by doctor's first or last name..."
+            placeholderTextColor='gray'
             onChangeText={(input) => this.handleChange(input)}
           />
         </View>
         <View style={styles.listingsContainer}>
           {favDocs}
+        </View>
         </View>
       </Image>
     );
@@ -115,13 +119,27 @@ class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column"
+    flexDirection: "column",
+    width: null,
+    height: null,
+    backgroundColor: 'rgba(0, 0, 0, 0.55)'
   },
   searchBarContainer: {
     padding: 20,
     paddingTop: 40,
     height: 40,
-    width: 375
+    width: 375,
+    marginBottom: 10
+  },
+  searchBox: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    textAlign: 'center',
+    fontFamily: 'Arial',
+    color: 'white',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
   },
   input: {
     margin: 5,
@@ -138,13 +156,13 @@ const styles = StyleSheet.create({
   doctorListing: {
     flexDirection: "row",
     padding: 10,
-    paddingLeft: 30
+    paddingLeft: 30,
+    borderColor: 'white',
+    borderWidth: 0.5,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   left: {
     paddingRight: 15
-  },
-  right: {
-
   },
   photo: {
     height: 40,
@@ -155,7 +173,8 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   text: {
-    color: "white"
+    color: "white",
+    fontFamily: 'Arial'
   }
 });
 
