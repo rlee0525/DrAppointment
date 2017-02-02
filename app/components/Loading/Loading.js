@@ -10,8 +10,8 @@ import { Actions } from 'react-native-router-flux';
 class Loading extends React.Component {
 
   componentWillMount() {
-    AsyncStorage.removeItem('phone_number');
-    AsyncStorage.removeItem('authy_id');
+    // AsyncStorage.removeItem('phone_number');
+    // AsyncStorage.removeItem('authy_id');
     AsyncStorage.getItem('phone_number', (err, result) => {
       console.log(result);
       const phoneNumber = result;
@@ -57,9 +57,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: 'rgba(0, 0, 0, 0.55)'
   },
   logo: {
+    left: 12,
     alignSelf: 'center',
   }
 });

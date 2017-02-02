@@ -50,23 +50,22 @@ class Register extends React.Component {
         <View style={styles.container}>
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
 
-        <Text style={styles.welcome}>
-          WELCOME
-        </Text>
-
         <TextInput
           onChangeText={(first_name) => this.setState({ first_name })}
-          style={styles.input} placeholder="First Name"
+          style={styles.input} placeholder="First name"
+          placeholderTextColor="gray"
           />
 
         <TextInput
           onChangeText={(last_name) => this.setState({ last_name })}
-          style={styles.input} placeholder="Last Name"
+          style={styles.input} placeholder="Last name"
+          placeholderTextColor="gray"
           />
 
         <TextInput
           onChangeText={(phone_number) => this.setState({ phone_number })}
-          style={styles.input} placeholder="Phone Number"
+          style={styles.input} placeholder="Phone number"
+          placeholderTextColor="gray"
           />
 
         <TouchableHighlight style={styles.button}
@@ -90,22 +89,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: 'rgba(0, 0, 0, 0.55)'
   },
   logo: {
     left: 12,
     alignSelf: 'center',
     borderRadius: 5,
-    marginTop: 50
-  },
-  welcome: {
-    marginTop: 80,
-    fontSize: 36,
-    marginBottom: 40,
-    textAlign: 'center',
-    color: 'white',
-    backgroundColor: 'rgba(0,0,0,0)',
-    fontFamily: 'Arial'
+    marginTop: 120,
+    marginBottom: 100
   },
   input: {
     marginTop: 10,
@@ -132,12 +123,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial'
   },
   errors: {
-    fontSize: 12,
-    fontWeight: 'bold',
+    fontSize: 10,
     color: '#FFF',
     alignSelf: 'center',
+    textAlign: 'center',
     backgroundColor: 'rgba(0,0,0,0)',
-    marginTop: 20
+    marginTop: 15,
+    fontFamily: 'Arial'
   }
 });
 
