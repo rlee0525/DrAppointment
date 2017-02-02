@@ -1,6 +1,5 @@
 import Loading from './Loading';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/home_actions';
 
 const mapStateToProps = state => ({
 

@@ -11,53 +11,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { Icon } from 'react-native-elements';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column"
-  },
-  searchBarContainer: {
-    padding: 20,
-    paddingTop: 40,
-    height: 40,
-    width: 375
-  },
-  input: {
-    margin: 5,
-    width: 320,
-    height: 50,
-    padding: 5,
-    fontSize: 18,
-    borderColor: 'white',
-    borderRadius: 5,
-    backgroundColor: 'white',
-    textAlign: 'center',
-    alignSelf: 'center'
-  },
-  doctorListing: {
-    flexDirection: "row",
-    padding: 10,
-    paddingLeft: 30
-  },
-  left: {
-    paddingRight: 15
-  },
-  right: {
-
-  },
-  photo: {
-    height: 40,
-    width: 40,
-    borderRadius: 20
-  },
-  listingsContainer: {
-    paddingTop: 30
-  },
-  text: {
-    color: "white"
-  }
-});
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -109,6 +62,9 @@ class Home extends React.Component {
 
 // <Image source={{ uri: doctor.image_url}} style={styles.photo} />
   render() {
+    console.log(this.props.search.searchResults);
+    console.log(this.props.search);
+    console.log(this.props);
     let favDocs;
     if (this.props.search.searchResults.length === 0) {
       favDocs = null;
@@ -155,5 +111,52 @@ class Home extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column"
+  },
+  searchBarContainer: {
+    padding: 20,
+    paddingTop: 40,
+    height: 40,
+    width: 375
+  },
+  input: {
+    margin: 5,
+    width: 320,
+    height: 50,
+    padding: 5,
+    fontSize: 18,
+    borderColor: 'white',
+    borderRadius: 5,
+    backgroundColor: 'white',
+    textAlign: 'center',
+    alignSelf: 'center'
+  },
+  doctorListing: {
+    flexDirection: "row",
+    padding: 10,
+    paddingLeft: 30
+  },
+  left: {
+    paddingRight: 15
+  },
+  right: {
+
+  },
+  photo: {
+    height: 40,
+    width: 40,
+    borderRadius: 20
+  },
+  listingsContainer: {
+    paddingTop: 30
+  },
+  text: {
+    color: "white"
+  }
+});
 
 export default Home;
