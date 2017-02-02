@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/DrAppointmentTests/DrAppointmentTests.m \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/DrAppointmentTests/DrAppointmentTests.m \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Modules/module.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCUIRemote.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCUIKeyboardKeys.h \
@@ -29,13 +29,13 @@ dependencies: \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestErrors.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestDefines.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTest.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h

@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTActivityIndicatorView.m \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTActivityIndicatorView.h
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTActivityIndicatorView.m \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTActivityIndicatorView.h

@@ -1,19 +1,19 @@
 dependencies: \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTView.m \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTView.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTBorderStyle.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTComponent.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTPointerEvents.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTAutoInsetsProtocol.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTBorderDrawing.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTConvert.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTAnimationType.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTLog.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTUtils.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Views/UIView+React.h
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTView.m \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTView.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTAutoInsetsProtocol.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTBorderDrawing.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Views/UIView+React.h

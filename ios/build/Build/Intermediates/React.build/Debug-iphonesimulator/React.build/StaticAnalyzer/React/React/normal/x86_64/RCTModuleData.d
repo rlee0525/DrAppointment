@@ -1,18 +1,18 @@
 dependencies: \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTModuleData.mm \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTModuleData.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTInvalidating.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTBridge.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTBridgeModule.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTFrameUpdate.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTBridge+Private.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTModuleMethod.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTBridgeMethod.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTNullability.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTLog.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Profiler/RCTProfile.h \
-  /Users/raymondlee/Desktop/Apps/DrAppointment/DrAppointment/node_modules/react-native/React/Base/RCTUtils.h
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTModuleData.mm \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTModuleData.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTModuleMethod.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTBridgeMethod.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTNullability.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/randyjap/Desktop/githubs/DrAppointment/node_modules/react-native/React/Base/RCTUtils.h
