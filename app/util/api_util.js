@@ -69,3 +69,16 @@ export const fetchPatients = () => (
     }
   })
 );
+
+export const createPatient = patient => (
+  fetch('http://localhost:3000/api/patients', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      patient
+    })
+  })
+);

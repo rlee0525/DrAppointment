@@ -13,10 +13,56 @@ import { Actions } from 'react-native-router-flux';
 class Appointment extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      patients: []
+    };
+    this.enterFirstName = this.enterFirstName.bind(this);
+    this.enterLastName = this.enterLastName.bind(this);
+    this.createPatient = this.createPatient.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchPatients();
+  }
+
+  addPatient(patient) {
+    let add = true;
+    if (this.state.patients.length >= 2) {
+      add = false;
+    }
+    for (var i = 0; i < this.state.patients.length; i++) {
+      if (this.state.patients[i].id === patient.id) {
+        add = false;
+      }
+    }
+    if (add) {
+      this.state.patients.push(patient);
+      let patients = this.state.patients;
+      this.setState({ patients });
+    }
+  }
+
+  removePatient(patient) {
+    let patients = this.state.patients.filter(el => {
+        return el.id !== patient.id;
+      });
+    this.setState({ patients });
+  }
+
+  enterFirstName(input) {
+    this.setState({ firstName: input });
+  }
+
+  enterLastName(input) {
+    this.setState({ lastName: input });
+  }
+
+  createPatient() {
+    this.props.createPatient({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
+    }).then(() => this.props.fetchPatients());
+    console.log(this);
   }
 
   render() {
@@ -24,19 +70,34 @@ class Appointment extends React.Component {
     patients = this.props.patients.map( patient => {
       return (
         <View key={patient.id} style={styles.patientsSelectedView}>
-          <Text style={styles.patientsSelected}>
-            -
-          </Text>
+          <TouchableHighlight onPress={() => this.removePatient(patient) }>
+            <Text style={styles.patientsSelected}>
+              -
+            </Text>
+          </TouchableHighlight>
           <Text style={styles.patientsSelected}>
             {patient.first_name} {patient.last_name}
           </Text>
-          <Text style={styles.patientsSelected}>
-            +
-          </Text>
+          <TouchableHighlight onPress={() => this.addPatient(patient)}>
+            <Text style={styles.patientsSelected}>
+              +
+            </Text>
+          </TouchableHighlight>
         </View>
       );
     });
-    console.log(this);
+
+    let appointmentPatients;
+     appointmentPatients = this.state.patients.map( patient => {
+       return (
+         <View key={patient.id} style={styles.patientsSelectedView}>
+           <Text style={styles.patientsSelected}>
+             Appointed Patient: {patient.first_name} {patient.last_name}
+           </Text>
+         </View>
+       );
+     });
+
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
@@ -47,9 +108,28 @@ class Appointment extends React.Component {
               Appointment Detail
             </Text>
             <Text style={styles.headerDetail}>
-              You are making an appointment
+              You are making an appointment for the following patients:
             </Text>
+            { appointmentPatients }
           </View>
+
+          <View style={styles.header}>
+            <TextInput style={styles.patientName}
+              placeholder="New patient first name"
+              placeholderTextColor="rgba(255, 255, 255, 0.7)"
+              onChangeText={(input) => this.enterFirstName(input)} />
+          </View>
+          <View style={styles.header}>
+            <TextInput style={styles.patientName}
+              placeholder="New patient last name"
+              placeholderTextColor="rgba(255, 255, 255, 0.7)"
+              onChangeText={(input) => this.enterLastName(input)} />
+          </View>
+          <TouchableHighlight style={styles.button}>
+            <Text style={styles.buttonText} onPress={() => this.createPatient()} >
+              Add new patient
+            </Text>
+          </TouchableHighlight>
 
           <View style={styles.body}>
             <ScrollView style={styles.patientData}>
@@ -75,6 +155,14 @@ class Appointment extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  patientName: {
+    flex: 0.2,
+    color: 'white',
+    fontSize: 12,
+    paddingTop: 5,
+    paddingLeft: 15,
+    fontFamily: 'Arial',
+  },
   container: {
     flex: 1,
     flexDirection: 'column',

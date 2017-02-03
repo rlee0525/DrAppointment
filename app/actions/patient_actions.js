@@ -12,3 +12,7 @@ export const fetchPatients = () => dispatch => (
     .then(response => response.json())
     .then(patients => dispatch(receivePatients(patients)))
 );
+
+export const createPatient = (patient) => dispatch => (
+  APIUtil.createPatient(patient)
+);
