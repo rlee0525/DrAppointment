@@ -19,3 +19,7 @@ export const createAppointment = data => dispatch => (
     .then(appointment => dispatch(receiveAppointment(appointment)))
     .catch(err => dispatch(appointmentError(err.responseJSON)))
 );
+
+export const makeAppointment = appointment => dispatch => (
+  APIUtil.makeAppointment(appointment)
+);

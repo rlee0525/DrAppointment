@@ -19,6 +19,8 @@ class Appointment extends React.Component {
     this.enterFirstName = this.enterFirstName.bind(this);
     this.enterLastName = this.enterLastName.bind(this);
     this.createPatient = this.createPatient.bind(this);
+    this.enterNotes = this.enterNotes.bind(this);
+    this.makeAppointment = this.makeAppointment.bind(this);
   }
 
   componentDidMount() {
@@ -57,11 +59,27 @@ class Appointment extends React.Component {
     this.setState({ lastName: input });
   }
 
+  enterNotes(input) {
+    this.setState({ notes: input });
+  }
+
   createPatient() {
     this.props.createPatient({
       firstName: this.state.firstName,
       lastName: this.state.lastName
-    }).then(() => this.props.fetchPatients());
+    })
+    .then(() => this.props.fetchPatients())
+    .then(() => this.setState({ firstName: "", lastName: "" }));
+  }
+
+  makeAppointment() {
+    this.props.makeAppointment({
+      patients: this.state.patients,
+      doctorId: this.props.doctor.id,
+      timeSlot: this.props.time_slot.id,
+      notes: this.state.notes
+    })
+    .then(() => Actions.home());
   }
 
   render() {
@@ -116,13 +134,15 @@ class Appointment extends React.Component {
             <TextInput style={styles.patientName}
               placeholder="New patient first name"
               placeholderTextColor="rgba(255, 255, 255, 0.7)"
-              onChangeText={(input) => this.enterFirstName(input)} />
+              onChangeText={(input) => this.enterFirstName(input)}
+              value={this.state.firstName}/>
           </View>
           <View style={styles.header}>
             <TextInput style={styles.patientName}
               placeholder="New patient last name"
               placeholderTextColor="rgba(255, 255, 255, 0.7)"
-              onChangeText={(input) => this.enterLastName(input)} />
+              onChangeText={(input) => this.enterLastName(input)}
+              value={this.state.lastName}/>
           </View>
           <TouchableHighlight style={styles.button}>
             <Text style={styles.buttonText} onPress={() => this.createPatient()} >
@@ -136,11 +156,13 @@ class Appointment extends React.Component {
               <View style={styles.notes}>
                 <TextInput style={styles.notesInput}
                            placeholder="Notes (Optional)"
-                           placeholderTextColor="rgba(255, 255, 255, 0.7)" />
+                           placeholderTextColor="rgba(255, 255, 255, 0.7)"
+                           onChangeText={(input) => this.enterNotes(input)}
+                           value={this.state.notes}/>
               </View>
             </ScrollView>
             <View style={styles.appointmentButton}>
-              <TouchableHighlight style={styles.button}>
+              <TouchableHighlight style={styles.button} onPress={() => this.makeAppointment()} >
                 <Text style={styles.buttonText}>
                   Make an appointment
                 </Text>
