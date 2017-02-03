@@ -62,7 +62,6 @@ class Appointment extends React.Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName
     }).then(() => this.props.fetchPatients());
-    console.log(this);
   }
 
   render() {

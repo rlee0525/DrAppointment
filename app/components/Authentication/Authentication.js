@@ -27,7 +27,6 @@ class Authentication extends React.Component {
 
     this.props.authenticateUser(user)
       .then(response => {
-        console.log(response);
         if (response.responseData.session_token) {
           let phone_number = response.responseData.phone_number;
           let authy_id = response.responseData.authy_id;
@@ -96,15 +95,12 @@ const styles = StyleSheet.create({
     height: 50,
     fontSize: 15,
     fontFamily: 'Arial',
-    paddingLeft: 20,
     color: 'white',
     textAlign: 'center',
   },
   button: {
     marginTop: 45,
     height: 50,
-    // width: 200,
-    // alignSelf: 'center',
     backgroundColor: '#0091EA',
     paddingLeft: 40,
     paddingRight: 40,
