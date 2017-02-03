@@ -14,16 +14,17 @@ class Doctor extends React.Component {
 
   onAppointmentClick(timeslot) {
     if (timeslot.status === "Open") {
-      const data = {
+
+      Actions.appointment({
         doctor: this.props.doctor,
         user: this.props.currentUser,
         time_slot: timeslot
-      };
+      });
 
-      this.props.createAppointment(data)
-      .then(() => Actions.appointment({
-        appointment: this.props.appointment
-      }));
+      // this.props.createAppointment(data)
+      // .then(() => Actions.appointment({
+      //   appointment: this.props.appointment
+      // }));
     }
   }
 
@@ -102,7 +103,6 @@ class Doctor extends React.Component {
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
           <View style={styles.bar}/>
-
           <View style={styles.header}>
             <View style={styles.picture}>
               <Image source={{uri}}
@@ -119,7 +119,7 @@ class Doctor extends React.Component {
                 {doctor && doctor.address2}
               </Text>
               <Text style={styles.detailText}>
-                {doctor && doctor.distance}
+                Distance: {doctor && this.props.distance} miles
               </Text>
               <TouchableHighlight style={styles.backButton}
                                   onPress={() => Actions.home()}>
@@ -129,7 +129,6 @@ class Doctor extends React.Component {
               </TouchableHighlight>
             </View>
           </View>
-          
           <View style={styles.body}>
             <View style={styles.firstDay}>
               <Text style={styles.date}>

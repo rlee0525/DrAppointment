@@ -22,11 +22,11 @@ const App = () => (
         <Scene key="authentication" component={Authentication}
                title="Authenticate" hideNavBar={true} />
         <Scene key="home" component={Home} title="Home"
-               hideNavBar={true} />
+               hideNavBar={true} initial={true} />
         <Scene key="doctor" component={Doctor} title="Doctor"
                hideNavBar={true} />
         <Scene key="appointment" component={Appointment} title="Appointment"
-               hideNavBar={true} initial={true} />
+               hideNavBar={true} />
       </Scene>
     </Router>
   </Provider>

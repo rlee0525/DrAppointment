@@ -6,7 +6,6 @@ import {
   Image,
   TextInput,
   TouchableHighlight,
-  Linking,
   ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -25,7 +24,6 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchDoctorSearchResults();
     this.getLocation();
   }
 
@@ -37,6 +35,12 @@ class Home extends React.Component {
         lat: crd.latitude,
         lng: crd.longitude
       });
+      that.props.fetchDoctorSearchResults(
+        {
+          lat: that.state.lat,
+          lng: that.state.lng
+        }
+      );
     }
 
     function error(err) {
@@ -61,13 +65,14 @@ class Home extends React.Component {
     );
   }
 
-  onDoctorClick(doctorId) {
+  onDoctorClick(doctor) {
     let currentUser = this.props.currentUser;
 
-    this.props.requestDoctor(doctorId)
+    this.props.requestDoctor(doctor.id)
       .then(() => Actions.doctor({
         doctor: this.props.doctor,
-        currentUser
+        currentUser,
+        distance: doctor.distance
       }));
   }
 
@@ -84,7 +89,7 @@ class Home extends React.Component {
             </View>
             <View style={styles.right}>
               <TouchableHighlight style={styles.button}
-                                  onPress={() => this.onDoctorClick(doctor.id)}>
+                                  onPress={() => this.onDoctorClick(doctor)}>
                 <Text style={styles.text}>
                   {doctor.name} {doctor.favorited ? " Favorited!" : ""}
                 </Text>
@@ -96,6 +101,9 @@ class Home extends React.Component {
                   Call: {doctor.phone}
                 </Text>
               </TouchableHighlight>
+              <Text style={styles.text}>
+                Distance: {doctor.distance} miles
+              </Text>
             </View>
           </View>
         );

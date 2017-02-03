@@ -1,10 +1,10 @@
 export const registerUser = user => (
-  fetch('https://www.drappointment.io/api/users', {
+  fetch('http://localhost:3000/api/users', {
     method: 'POST',
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       user
     })
@@ -12,12 +12,12 @@ export const registerUser = user => (
 );
 
 export const authenticateUser = user => (
-  fetch('https://www.drappointment.io/api/session', {
+  fetch('http://localhost:3000/api/session', {
     method: 'POST',
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       user
     })
@@ -25,37 +25,47 @@ export const authenticateUser = user => (
 );
 
 export const fetchDoctor = id => (
-  fetch(`https://www.drappointment.io/api/doctors/${id}`, {
+  fetch(`http://localhost:3000/api/doctors/${id}`, {
     method: 'GET',
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
   })
 );
 
 export const fetchDoctorSearchResults = input => (
-  fetch('https://www.drappointment.io/api/doctor_search', {
+  fetch('http://localhost:3000/api/doctor_search', {
     method: 'POST',
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        input
-      })
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      input
+    })
   })
 );
 
 export const createAppointment = data => (
-  fetch('https://www.drappointment.io/api/session', {
+  fetch('http://localhost:3000/api/session', {
     method: 'POST',
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       data
     })
+  })
+);
+
+export const fetchPatients = () => (
+  fetch('http://localhost:3000/api/patients', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
   })
 );

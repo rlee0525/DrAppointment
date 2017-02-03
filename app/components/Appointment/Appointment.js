@@ -11,28 +11,32 @@ import {
 import { Actions } from 'react-native-router-flux';
 
 class Appointment extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  // onAppointmentClick(timeslot) {
-  //   if (timeslot.status === "Open") {
-  //     const data = {
-  //       doctor: this.props.doctor,
-  //       user: this.props.currentUser,
-  //       time_slot: timeslot
-  //     };
-  //
-  //     this.props.createAppointment(data)
-  //     .then(() => Actions.appointment({
-  //       appointment: this.props.appointment
-  //     }));
-  //   }
-  // }
+  componentDidMount() {
+    this.props.fetchPatients();
+  }
 
   render() {
-    // console.log(this.props);
-    // let appointment = this.props.appointent;
-    // let doctor = appointment.doctor;
-    // let currentUser = appointment.currentUser;
-
+    let patients;
+    patients = this.props.patients.map( patient => {
+      return (
+        <View key={patient.id} style={styles.patientsSelectedView}>
+          <Text style={styles.patientsSelected}>
+            -
+          </Text>
+          <Text style={styles.patientsSelected}>
+            {patient.first_name} {patient.last_name}
+          </Text>
+          <Text style={styles.patientsSelected}>
+            +
+          </Text>
+        </View>
+      );
+    });
+    console.log(this);
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
@@ -49,39 +53,7 @@ class Appointment extends React.Component {
 
           <View style={styles.body}>
             <ScrollView style={styles.patientData}>
-              <View style={styles.patientsSelectedView}>
-                <Text style={styles.patientsSelected}>
-                  -
-                </Text>
-                <Text style={styles.patientsSelected}>
-                  Mary Williams
-                </Text>
-                <Text style={styles.patientsSelected}>
-                  +
-                </Text>
-              </View>
-              <View style={styles.patientsView}>
-                <Text style={styles.patients}>
-                  -
-                </Text>
-                <Text style={styles.patients}>
-                  Jane Doe
-                </Text>
-                <Text style={styles.patients}>
-                  +
-                </Text>
-              </View>
-              <View style={styles.patientsView}>
-                <Text style={styles.patients}>
-                  -
-                </Text>
-                <Text style={styles.patients}>
-                  John Doe
-                </Text>
-                <Text style={styles.patients}>
-                  +
-                </Text>
-              </View>
+              {patients}
               <View style={styles.notes}>
                 <TextInput style={styles.notesInput}
                            placeholder="Notes (Optional)"
@@ -161,6 +133,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   notesInput: {
+    color: 'white',
     alignSelf: 'stretch',
     height: 120,
     backgroundColor: 'red',
