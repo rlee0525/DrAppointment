@@ -1,5 +1,5 @@
 export const registerUser = user => (
-  fetch('https://www.drappointment.io/api/users', {
+  fetch('http://localhost:3000/api/users', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -12,7 +12,7 @@ export const registerUser = user => (
 );
 
 export const authenticateUser = user => (
-  fetch('https://www.drappointment.io/api/session', {
+  fetch('http://localhost:3000/api/session', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -25,7 +25,7 @@ export const authenticateUser = user => (
 );
 
 export const fetchDoctor = id => (
-  fetch(`https://www.drappointment.io/api/doctors/${id}`, {
+  fetch(`http://localhost:3000/api/doctors/${id}`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -35,7 +35,7 @@ export const fetchDoctor = id => (
 );
 
 export const fetchDoctorSearchResults = input => (
-  fetch('https://www.drappointment.io/api/doctor_search', {
+  fetch('http://localhost:3000/api/doctor_search', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -48,7 +48,7 @@ export const fetchDoctorSearchResults = input => (
 );
 
 export const createAppointment = data => (
-  fetch('https://www.drappointment.io/api/session', {
+  fetch('http://localhost:3000/api/session', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -61,7 +61,7 @@ export const createAppointment = data => (
 );
 
 export const fetchPatients = () => (
-  fetch('https://www.drappointment.io/api/patients', {
+  fetch('http://localhost:3000/api/patients', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -71,7 +71,7 @@ export const fetchPatients = () => (
 );
 
 export const createPatient = patient => (
-  fetch('https://www.drappointment.io/api/patients', {
+  fetch('http://localhost:3000/api/patients', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

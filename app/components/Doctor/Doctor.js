@@ -29,201 +29,46 @@ class Doctor extends React.Component {
     }
   }
 
+  findDay(i) {
+    let doctorSchedule = this.props.doctor.doctor_schedule;
+
+    return (
+      (doctorSchedule[i].map(timeslot => {
+      let timeStyle;
+
+      if (timeslot.status === "N/A") {
+        timeStyle = styles.blocked;
+      } else if (timeslot.status === "Full") {
+        timeStyle = styles.full;
+      } else {
+        timeStyle = styles.open;
+      }
+
+      return (
+        <TouchableHighlight key={timeslot.id} style={timeStyle}
+                            onPress={() => this.onAppointmentClick(timeslot)}>
+          <Text style={styles.timeslotText}>
+            {timeslot.time}
+          </Text>
+        </TouchableHighlight>
+      );
+      }))
+    );
+  }
+
   render() {
     let doctor = this.props.doctor;
+    let doctorSchedule = this.props.doctor.doctor_schedule;
     let uri = doctor.image_url;
-    let firstDay;
-    let secondDay;
-    let thirdDay;
-    let fourthDay;
-    let fifthDay;
-    let sixthDay;
-    let seventhDay;
-    let eighthDay;
-    let ninethDay;
-
-    if (doctor) {
-      firstDay = (doctor.first_day.map(timeslot => {
-        let timeStyle;
-
-        if (timeslot.status === "N/A") {
-          timeStyle = styles.blocked;
-        } else if (timeslot.status === "Full") {
-          timeStyle = styles.full;
-        } else {
-          timeStyle = styles.open;
-        }
-
-        return (
-          <TouchableHighlight key={timeslot.id} style={timeStyle}
-                              onPress={() => this.onAppointmentClick(timeslot)}>
-            <Text style={styles.timeslotText}>
-              {timeslot.time}
-            </Text>
-          </TouchableHighlight>
-        );
-      }));
-      secondDay = (doctor.second_day.map(timeslot => {
-        let timeStyle;
-
-        if (timeslot.status === "N/A") {
-          timeStyle = styles.blocked;
-        } else if (timeslot.status === "Full") {
-          timeStyle = styles.full;
-        } else {
-          timeStyle = styles.open;
-        }
-
-        return (
-          <TouchableHighlight key={timeslot.id} style={timeStyle}
-                              onPress={() => this.onAppointmentClick(timeslot)}>
-            <Text style={styles.timeslotText}>
-              {timeslot.time}
-            </Text>
-          </TouchableHighlight>
-        );
-      }));
-      thirdDay = (doctor.third_day.map(timeslot => {
-        let timeStyle;
-
-        if (timeslot.status === "N/A") {
-          timeStyle = styles.blocked;
-        } else if (timeslot.status === "Full") {
-          timeStyle = styles.full;
-        } else {
-          timeStyle = styles.open;
-        }
-
-        return (
-          <TouchableHighlight key={timeslot.id} style={timeStyle}
-                              onPress={() => this.onAppointmentClick(timeslot)}>
-            <Text style={styles.timeslotText}>
-              {timeslot.time}
-            </Text>
-          </TouchableHighlight>
-        );
-      }));
-      fourthDay = (doctor.fourth_day.map(timeslot => {
-        let timeStyle;
-
-        if (timeslot.status === "N/A") {
-          timeStyle = styles.blocked;
-        } else if (timeslot.status === "Full") {
-          timeStyle = styles.full;
-        } else {
-          timeStyle = styles.open;
-        }
-
-        return (
-          <TouchableHighlight key={timeslot.id} style={timeStyle}
-                              onPress={() => this.onAppointmentClick(timeslot)}>
-            <Text style={styles.timeslotText}>
-              {timeslot.time}
-            </Text>
-          </TouchableHighlight>
-        );
-      }));
-      fifthDay = (doctor.fifth_day.map(timeslot => {
-        let timeStyle;
-
-        if (timeslot.status === "N/A") {
-          timeStyle = styles.blocked;
-        } else if (timeslot.status === "Full") {
-          timeStyle = styles.full;
-        } else {
-          timeStyle = styles.open;
-        }
-
-        return (
-          <TouchableHighlight key={timeslot.id} style={timeStyle}
-                              onPress={() => this.onAppointmentClick(timeslot)}>
-            <Text style={styles.timeslotText}>
-              {timeslot.time}
-            </Text>
-          </TouchableHighlight>
-        );
-      }));
-      sixthDay = (doctor.sixth_day.map(timeslot => {
-        let timeStyle;
-
-        if (timeslot.status === "N/A") {
-          timeStyle = styles.blocked;
-        } else if (timeslot.status === "Full") {
-          timeStyle = styles.full;
-        } else {
-          timeStyle = styles.open;
-        }
-
-        return (
-          <TouchableHighlight key={timeslot.id} style={timeStyle}
-                              onPress={() => this.onAppointmentClick(timeslot)}>
-            <Text style={styles.timeslotText}>
-              {timeslot.time}
-            </Text>
-          </TouchableHighlight>
-        );
-      }));
-      seventhDay = (doctor.seventh_day.map(timeslot => {
-        let timeStyle;
-
-        if (timeslot.status === "N/A") {
-          timeStyle = styles.blocked;
-        } else if (timeslot.status === "Full") {
-          timeStyle = styles.full;
-        } else {
-          timeStyle = styles.open;
-        }
-
-        return (
-          <TouchableHighlight key={timeslot.id} style={timeStyle}
-                              onPress={() => this.onAppointmentClick(timeslot)}>
-            <Text style={styles.timeslotText}>
-              {timeslot.time}
-            </Text>
-          </TouchableHighlight>
-        );
-      }));
-      eighthDay = (doctor.eighth_day.map(timeslot => {
-        let timeStyle;
-
-        if (timeslot.status === "N/A") {
-          timeStyle = styles.blocked;
-        } else if (timeslot.status === "Full") {
-          timeStyle = styles.full;
-        } else {
-          timeStyle = styles.open;
-        }
-
-        return (
-          <TouchableHighlight key={timeslot.id} style={timeStyle}
-                              onPress={() => this.onAppointmentClick(timeslot)}>
-            <Text style={styles.timeslotText}>
-              {timeslot.time}
-            </Text>
-          </TouchableHighlight>
-        );
-      }));
-      ninethDay = (doctor.nineth_day.map(timeslot => {
-        let timeStyle;
-
-        if (timeslot.status === "N/A") {
-          timeStyle = styles.blocked;
-        } else if (timeslot.status === "Full") {
-          timeStyle = styles.full;
-        } else {
-          timeStyle = styles.open;
-        }
-
-        return (
-          <TouchableHighlight key={timeslot.id} style={timeStyle}
-                              onPress={() => this.onAppointmentClick(timeslot)}>
-            <Text style={styles.timeslotText}>
-              {timeslot.time}
-            </Text>
-          </TouchableHighlight>
-        );
-      }));
-    }
+    let firstDay = this.findDay(0);
+    let secondDay = this.findDay(1);
+    let thirdDay = this.findDay(2);
+    let fourthDay = this.findDay(3);
+    let fifthDay = this.findDay(4);
+    let sixthDay = this.findDay(5);
+    let seventhDay = this.findDay(6);
+    let eighthDay = this.findDay(7);
+    let ninethDay = this.findDay(8);
 
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
@@ -260,7 +105,7 @@ class Doctor extends React.Component {
               <View style={styles.slide1}>
                 <View style={styles.firstDay}>
                   <Text style={styles.date}>
-                    {doctor && doctor.first_day[0].date}
+                    {doctor && doctorSchedule[0][0].date}
                   </Text>
                   <ScrollView>
                     {firstDay}
@@ -268,7 +113,7 @@ class Doctor extends React.Component {
                 </View>
                 <View style={styles.secondDay}>
                   <Text style={styles.date}>
-                    {doctor && doctor.second_day[0].date}
+                    {doctor && doctorSchedule[1][0].date}
                   </Text>
                   <ScrollView>
                     {secondDay}
@@ -276,7 +121,7 @@ class Doctor extends React.Component {
                 </View>
                 <View style={styles.thirdDay}>
                   <Text style={styles.date}>
-                    {doctor && doctor.third_day[0].date}
+                    {doctor && doctorSchedule[2][0].date}
                   </Text>
                   <ScrollView>
                     {thirdDay}
@@ -286,7 +131,7 @@ class Doctor extends React.Component {
               <View style={styles.slide2}>
                 <View style={styles.firstDay}>
                   <Text style={styles.date}>
-                    {doctor && doctor.fourth_day[0].date}
+                    {doctor && doctorSchedule[3][0].date}
                   </Text>
                   <ScrollView>
                     {fourthDay}
@@ -294,7 +139,7 @@ class Doctor extends React.Component {
                 </View>
                 <View style={styles.secondDay}>
                   <Text style={styles.date}>
-                    {doctor && doctor.fifth_day[0].date}
+                    {doctor && doctorSchedule[4][0].date}
                   </Text>
                   <ScrollView>
                     {fifthDay}
@@ -302,7 +147,7 @@ class Doctor extends React.Component {
                 </View>
                 <View style={styles.thirdDay}>
                   <Text style={styles.date}>
-                    {doctor && doctor.sixth_day[0].date}
+                    {doctor && doctorSchedule[5][0].date}
                   </Text>
                   <ScrollView>
                     {sixthDay}
@@ -312,7 +157,7 @@ class Doctor extends React.Component {
               <View style={styles.slide3}>
                 <View style={styles.firstDay}>
                   <Text style={styles.date}>
-                    {doctor && doctor.seventh_day[0].date}
+                    {doctor && doctorSchedule[6][0].date}
                   </Text>
                   <ScrollView>
                     {seventhDay}
@@ -320,7 +165,7 @@ class Doctor extends React.Component {
                 </View>
                 <View style={styles.secondDay}>
                   <Text style={styles.date}>
-                    {doctor && doctor.eighth_day[0].date}
+                    {doctor && doctorSchedule[7][0].date}
                   </Text>
                   <ScrollView>
                     {eighthDay}
@@ -328,7 +173,7 @@ class Doctor extends React.Component {
                 </View>
                 <View style={styles.thirdDay}>
                   <Text style={styles.date}>
-                    {doctor && doctor.nineth_day[0].date}
+                    {doctor && doctorSchedule[8][0].date}
                   </Text>
                   <ScrollView>
                     {ninethDay}
