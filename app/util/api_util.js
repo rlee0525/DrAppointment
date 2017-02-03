@@ -71,7 +71,7 @@ export const fetchPatients = () => (
 );
 
 export const createPatient = patient => (
-  fetch('http://localhost:3000/api/patients', {
+  fetch('https://www.drappointment.io/api/patients', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

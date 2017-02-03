@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { TextInputMask } from 'react-native-masked-text';
 
 class Register extends React.Component {
   constructor(props) {
@@ -25,11 +26,11 @@ class Register extends React.Component {
 
   onRegisterPressed() {
     let name = this.state.name.split(" ");
-
+    let phoneNumber = this.refs['phoneNum'].getRawValue();
     let user = {
       first_name: name[0],
       last_name: name[1],
-      phone_number: this.state.phone_number
+      phone_number: phoneNumber
     };
 
     this.props.registerUser(user)
@@ -58,17 +59,19 @@ class Register extends React.Component {
           <TextInput
             onChangeText={(name) => this.setState({ name })}
             style={styles.input} placeholder="Full name"
-            placeholderTextColor="rgba(255, 255, 255, 0.8)" autoFocus={true}
-            />
+            placeholderTextColor="rgba(255, 255, 255, 0.8)"
+            autoFocus={true} autoCapitalize="words" />
         </View>
 
         <View style={styles.textBox}>
           <Icon style={styles.icon} name="phone" size={21}
                 color="rgba(255, 255, 255, 0.8)" />
-          <TextInput
+          <TextInputMask
             onChangeText={(phone_number) => this.setState({ phone_number })}
             style={styles.input} placeholder="Phone number"
             placeholderTextColor="rgba(255, 255, 255, 0.8)"
+            value={this.state.phone_number} type={'cel-phone'}
+            options={{dddMask: '(999) 999-9999'}} ref={'phoneNum'}
           />
         </View>
 
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
     height: 50,
     fontSize: 15,
     fontFamily: 'Arial',
-    color: 'white'
+    color: 'white',
   },
   button: {
     marginTop: 130,
