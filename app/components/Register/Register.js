@@ -9,14 +9,14 @@ import {
   AsyncStorage
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Register extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      first_name: "",
-      last_name: "",
+      name: "",
       country_code: "1",
       phone_number: "",
       errors: []
@@ -24,9 +24,11 @@ class Register extends React.Component {
   }
 
   onRegisterPressed() {
+    let name = this.state.name.split(" ");
+
     let user = {
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
+      first_name: name[0],
+      last_name: name[1],
       phone_number: this.state.phone_number
     };
 
@@ -51,26 +53,22 @@ class Register extends React.Component {
         <Image source={require('../../images/logo.png')} style={styles.logo}/>
 
         <View style={styles.textBox}>
+          <Icon style={styles.icon} name="user" size={21}
+                color="rgba(255, 255, 255, 0.8)" />
           <TextInput
-            onChangeText={(first_name) => this.setState({ first_name })}
-            style={styles.input} placeholder="First name"
-            placeholderTextColor="rgba(255, 255, 255, 0.7)" autoFocus={true}
+            onChangeText={(name) => this.setState({ name })}
+            style={styles.input} placeholder="Full name"
+            placeholderTextColor="rgba(255, 255, 255, 0.8)" autoFocus={true}
             />
         </View>
 
         <View style={styles.textBox}>
-          <TextInput
-            onChangeText={(last_name) => this.setState({ last_name })}
-            style={styles.input} placeholder="Last name"
-            placeholderTextColor="rgba(255, 255, 255, 0.7)"
-            />
-        </View>
-
-        <View style={styles.textBox}>
+          <Icon style={styles.icon} name="phone" size={21}
+                color="rgba(255, 255, 255, 0.8)" />
           <TextInput
             onChangeText={(phone_number) => this.setState({ phone_number })}
             style={styles.input} placeholder="Phone number"
-            placeholderTextColor="rgba(255, 255, 255, 0.7)"
+            placeholderTextColor="rgba(255, 255, 255, 0.8)"
           />
         </View>
 
@@ -102,23 +100,29 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 5,
     marginTop: 120,
-    marginBottom: 100
+    marginBottom: 120
   },
   textBox: {
     borderBottomWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.7)',
+    flexDirection: 'row',
+  },
+  icon: {
+    flex: 0.15,
+    marginTop: 23,
+    paddingLeft: 25,
   },
   input: {
+    flex: 0.85,
     marginTop: 10,
     alignSelf: 'stretch',
     height: 50,
     fontSize: 15,
     fontFamily: 'Arial',
-    paddingLeft: 20,
     color: 'white'
   },
   button: {
-    marginTop: 100,
+    marginTop: 130,
     height: 50,
     backgroundColor: '#0091EA',
     paddingLeft: 40,
