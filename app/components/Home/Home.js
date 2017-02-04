@@ -6,10 +6,11 @@ import {
   Image,
   TextInput,
   TouchableHighlight,
-  ScrollView
+  ScrollView,
+  Linking
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Icon } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Home extends React.Component {
   constructor(props) {
@@ -76,33 +77,37 @@ class Home extends React.Component {
   }
 
   render() {
-    let favDocs;
+    let docs;
     if (this.props.search.searchResults.length === 0) {
-      favDocs = null;
+      docs = null;
     } else {
-      favDocs = this.props.search.searchResults.map(doctor => {
+      docs = this.props.search.searchResults.map(doctor => {
+        let favorited, space;
+        if (doctor.favorited) {
+          favorited = <Icon style={styles.icon} name="star" size={13} color="rgba(255, 255, 255, 0.8)" />;
+          space = " ";
+        }
         return (
           <View key={doctor.id} style={styles.doctorListing}>
-            <View style={styles.left}>
-
-            </View>
-            <View style={styles.right}>
-              <TouchableHighlight style={styles.button}
-                                  onPress={() => this.onDoctorClick(doctor)}>
+            <TouchableHighlight onPress={() => this.onDoctorClick(doctor)}>
+              <View style={styles.left}>
                 <Text style={styles.text}>
-                  {doctor.name} {doctor.favorited ? " Favorited!" : ""}
+                  {favorited}{space}{doctor.name}
+                </Text>
+                <Text style={styles.text}>
+                  Phone: {doctor.phone}
+                </Text>
+                <Text style={styles.text}>
+                  Distance: {doctor.distance} miles
+                </Text>
+              </View>
+            </TouchableHighlight>
+            <View style={styles.callButtonView}>
+              <TouchableHighlight style={styles.touchCallButton} onPress={() => Linking.openURL(`tel: ${doctor.phone}`)}>
+                <Text style={styles.callButton}>
+                  <Icon style={styles.icon} name="phone" size={35} color="rgba(255, 255, 255, 0.8)" />
                 </Text>
               </TouchableHighlight>
-
-              <TouchableHighlight style={styles.button}
-                                  onPress={() => console.log(this.state)}>
-                <Text style={styles.text}>
-                  Call: {doctor.phone}
-                </Text>
-              </TouchableHighlight>
-              <Text style={styles.text}>
-                Distance: {doctor.distance} miles
-              </Text>
             </View>
           </View>
         );
@@ -120,11 +125,9 @@ class Home extends React.Component {
               onChangeText={(input) => this.handleChange(input)}
             />
           </View>
-          <View style={styles.listingsContainer}>
-            <ScrollView>
-              {favDocs}
-            </ScrollView>
-          </View>
+          <ScrollView style={styles.listingsContainer}>
+            {docs}
+          </ScrollView>
         </View>
         <View style={styles.viewProfileButton}>
           <TouchableHighlight style={styles.profileButton} onPress={() => Actions.profile() } >
@@ -175,14 +178,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'center'
   },
-  doctorListing: {
-    flexDirection: "row",
-    padding: 10,
-    paddingLeft: 30,
-    borderColor: 'white',
-    borderWidth: 0.5,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-  },
   left: {
     paddingRight: 15
   },
@@ -221,6 +216,43 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     justifyContent: 'center',
   },
+  doctorListing: {
+    flexDirection: "row",
+    padding: 10,
+    paddingLeft: 15,
+    borderColor: 'white',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderWidth: 0.5,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+  callButton: {
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#FFF',
+    fontFamily: 'Arial',
+    alignSelf: 'center',
+    padding: 5,
+  },
+  callButtonView: {
+    position: 'absolute',
+    right: 9,
+    bottom: 12,
+    height: 65,
+    width: 65,
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 145, 234, 0.6)',
+    borderRadius: 90,
+  },
+  touchCallButton: {
+  },
+  left: {
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 145, 234, 0.6)',
+    borderRadius: 10,
+    padding: 10,
+    width: 275,
+  }
 });
 
 export default Home;
