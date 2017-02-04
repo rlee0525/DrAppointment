@@ -21,11 +21,6 @@ class Doctor extends React.Component {
         user: this.props.currentUser,
         time_slot: timeslot
       });
-
-      // this.props.createAppointment(data)
-      // .then(() => Actions.appointment({
-      //   appointment: this.props.appointment
-      // }));
     }
   }
 
@@ -68,7 +63,7 @@ class Doctor extends React.Component {
     let sixthDay = this.findDay(5);
     let seventhDay = this.findDay(6);
     let eighthDay = this.findDay(7);
-    let ninethDay = this.findDay(8);
+    let ninthDay = this.findDay(8);
 
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
@@ -176,7 +171,7 @@ class Doctor extends React.Component {
                     {doctor && doctorSchedule[8][0].date}
                   </Text>
                   <ScrollView>
-                    {ninethDay}
+                    {ninthDay}
                   </ScrollView>
                 </View>
               </View>
