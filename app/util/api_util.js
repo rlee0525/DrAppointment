@@ -83,6 +83,19 @@ export const createPatient = patient => (
   })
 );
 
+export const deletePatient = id => (
+  fetch('http://localhost:3000/api/patients', {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id
+    })
+  })
+);
+
 export const makeAppointment = appointment => (
   fetch('http://localhost:3000/api/appointments', {
     method: 'POST',

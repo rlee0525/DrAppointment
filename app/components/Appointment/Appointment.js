@@ -23,6 +23,7 @@ class Appointment extends React.Component {
     this.createPatient = this.createPatient.bind(this);
     this.enterNotes = this.enterNotes.bind(this);
     this.makeAppointment = this.makeAppointment.bind(this);
+    this.deletePatient = this.deletePatient.bind(this);
   }
 
   componentDidMount() {
@@ -63,8 +64,15 @@ class Appointment extends React.Component {
   }
 
   // TODO:
-  deletePatient() {
-
+  deletePatient(id) {
+    this.props.deletePatient(id)
+      .then(() => {
+        this.props.patients.map(patient => {
+          this.state.patientsUnselected.push(patient);
+          let patientsUnselected = this.state.patientsUnselected;
+          this.setState({ patientsUnselected });
+        });
+      });
   }
 
   createPatient() {
@@ -125,7 +133,7 @@ class Appointment extends React.Component {
     patientsUnselected = this.state.patientsUnselected.map(patient => {
       return (
         <View key={patient.id} style={styles.patientsUnselectedView}>
-          <TouchableHighlight>
+          <TouchableHighlight onPress={() => this.deletePatient(patient.id)}>
             <Icon style={styles.icon} name="minus-circle" size={30}
                   color="rgba(255, 0, 0, 0.8)" />
           </TouchableHighlight>

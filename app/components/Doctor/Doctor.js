@@ -170,6 +170,7 @@ const styles = StyleSheet.create({
   doctorImg: {
     width: 100,
     height: 100,
+    borderRadius: 10,
   },
   detail: {
     flex: 0.65,

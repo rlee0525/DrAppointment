@@ -16,3 +16,7 @@ export const fetchPatients = () => dispatch => (
 export const createPatient = (patient) => dispatch => (
   APIUtil.createPatient(patient)
 );
+
+export const deletePatient = (id) => dispatch => (
+  APIUtil.deletePatient(id)
+);
