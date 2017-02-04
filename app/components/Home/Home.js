@@ -90,7 +90,8 @@ class Home extends React.Component {
               <TouchableHighlight style={styles.button}
                                   onPress={() => this.onDoctorClick(doctor)}>
                 <Text style={styles.text}>
-                  {doctor.name} {doctor.favorited ? " Favorited!" : ""}
+                  {doctor.name} {doctor.favorited ? " " + <Icon style={styles.icon} name="user" size={21}
+                        color="rgba(255, 255, 255, 0.8)" /> : ""}
                 </Text>
               </TouchableHighlight>
 

@@ -100,7 +100,7 @@ class Doctor extends React.Component {
     let doctor = this.props.doctor;
     let doctorSchedule = this.props.doctor.doctor_schedule;
     let uri = doctor.image_url;
-
+    console.log(this.props.doctor);
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
