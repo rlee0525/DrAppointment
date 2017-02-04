@@ -60,7 +60,7 @@ class Register extends React.Component {
             onChangeText={(name) => this.setState({ name })}
             style={styles.input} placeholder="Full name"
             placeholderTextColor="rgba(255, 255, 255, 0.8)"
-            autoFocus={true} autoCapitalize="words" />
+            autoFocus={false} autoCapitalize="words" />
         </View>
 
         <View style={styles.textBox}>

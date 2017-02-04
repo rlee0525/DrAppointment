@@ -52,7 +52,7 @@ class Authentication extends React.Component {
               onChangeText={(authyId) => this.setState({ authyId })}
               style={styles.input} placeholder="Verification Code"
               placeholderTextColor="rgba(255, 255, 255, 0.7)"
-              autoFocus={true}
+              autoFocus={false}
               />
           </View>
 
