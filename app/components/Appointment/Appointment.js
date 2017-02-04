@@ -79,7 +79,7 @@ class Appointment extends React.Component {
       timeSlot: this.props.time_slot.id,
       notes: this.state.notes
     })
-    .then(() => Actions.home());
+    .then(() => Actions.profile());
   }
 
   render() {

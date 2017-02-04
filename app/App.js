@@ -17,13 +17,13 @@ const App = () => (
     <Router>
       <Scene key="root">
         <Scene key="loader" component={Loading} title="Loading"
-               hideNavBar={true} />
+               hideNavBar={true} initial={true} />
         <Scene key="register" component={Register} title="Register"
                hideNavBar={true} />
         <Scene key="authentication" component={Authentication}
                title="Authenticate" hideNavBar={true} />
         <Scene key="home" component={Home} title="Home"
-               hideNavBar={true} initial={true} />
+               hideNavBar={true} />
         <Scene key="doctor" component={Doctor} title="Doctor"
                hideNavBar={true} />
         <Scene key="appointment" component={Appointment} title="Appointment"

@@ -112,19 +112,26 @@ class Home extends React.Component {
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
-        <View style={styles.searchBarContainer}>
-          <TextInput
-            style={styles.searchBox}
-            placeholder="Search by doctor's first or last name..."
-            placeholderTextColor='gray'
-            onChangeText={(input) => this.handleChange(input)}
-          />
+          <View style={styles.searchBarContainer}>
+            <TextInput
+              style={styles.searchBox}
+              placeholder="Search by doctor's first or last name..."
+              placeholderTextColor='gray'
+              onChangeText={(input) => this.handleChange(input)}
+            />
+          </View>
+          <View style={styles.listingsContainer}>
+            <ScrollView>
+              {favDocs}
+            </ScrollView>
+          </View>
         </View>
-        <View style={styles.listingsContainer}>
-          <ScrollView>
-            {favDocs}
-          </ScrollView>
-        </View>
+        <View style={styles.viewProfileButton}>
+          <TouchableHighlight style={styles.profileButton} onPress={() => Actions.profile() } >
+            <Text style={styles.textProfileButton}>
+              My Appointments
+            </Text>
+          </TouchableHighlight>
         </View>
       </Image>
     );
@@ -190,7 +197,30 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     fontFamily: 'Arial'
-  }
+  },
+  viewProfileButton: {
+    position: 'absolute',
+    bottom: 90,
+    width: 170,
+  },
+  textProfileButton: {
+    paddingRight: 0,
+    fontSize: 16,
+    alignSelf: 'center',
+    fontFamily: 'Arial',
+    color: 'white',
+  },
+  profileButton: {
+    height: 30,
+    borderRadius: 10,
+    position: 'absolute',
+    right: 25,
+    top: 22,
+    backgroundColor: 'red',
+    paddingRight: 15,
+    paddingLeft: 15,
+    justifyContent: 'center',
+  },
 });
 
 export default Home;
