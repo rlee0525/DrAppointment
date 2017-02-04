@@ -9,7 +9,6 @@ import {
   ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Icon } from 'react-native-elements';
 
 class Profile extends React.Component {
   constructor(props) {

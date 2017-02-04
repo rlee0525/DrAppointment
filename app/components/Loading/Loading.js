@@ -16,7 +16,7 @@ class Loading extends React.Component {
       const phoneNumber = result;
       if (result) {
         AsyncStorage.getItem('authy_id', (err2, result2) => {
-          fetch('https://www.drappointment.io/api/session', {
+          fetch('http://localhost:3000/api/session', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
