@@ -84,7 +84,7 @@ class Home extends React.Component {
       docs = this.props.search.searchResults.map(doctor => {
         let favorited, space;
         if (doctor.favorited) {
-          favorited = <Icon style={styles.icon} name="star" size={13} color="rgba(255, 255, 255, 0.8)" />;
+          favorited = <Icon style={styles.star} name="star" size={13} color="rgba(255, 255, 255, 0.8)" />;
           space = " ";
         }
         return (
@@ -178,9 +178,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'center'
   },
-  left: {
-    paddingRight: 15
-  },
   photo: {
     height: 40,
     width: 40,
@@ -252,6 +249,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     width: 275,
+  },
+  star: {
+    color: 'orange',
   }
 });
 

@@ -69,7 +69,7 @@ class Doctor extends React.Component {
             <Text style={styles.date}>
               {doctor && doctorSchedule[`${i * 3}`][0].date}
             </Text>
-            <ScrollView>
+            <ScrollView style={styles.scroll}>
               {days[`${i * 3}`]}
             </ScrollView>
           </View>
@@ -77,7 +77,7 @@ class Doctor extends React.Component {
             <Text style={styles.date}>
               {doctor && doctorSchedule[`${i * 3 + 1}`][0].date}
             </Text>
-            <ScrollView>
+            <ScrollView style={styles.scroll}>
               {days[`${i * 3 + 1}`]}
             </ScrollView>
           </View>
@@ -85,7 +85,7 @@ class Doctor extends React.Component {
             <Text style={styles.date}>
               {doctor && doctorSchedule[`${i * 3 + 2}`][0].date}
             </Text>
-            <ScrollView>
+            <ScrollView style={styles.scroll}>
               {days[`${i * 3 + 2}`]}
             </ScrollView>
           </View>
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   bar: {
-    flex: 0.05
+    marginTop: 20,
   },
   header: {
     flex: 0.2,
@@ -183,7 +183,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#0091EA',
     marginTop: 10,
     width: 120,
-    padding: 5
+    padding: 5,
+    borderRadius: 10,
   },
   backButtonText: {
     fontSize: 12,
@@ -199,10 +200,10 @@ const styles = StyleSheet.create({
   wrapper: {
   },
   slide: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    marginBottom: 160,
   },
   day1: {
     flex: 0.33,
@@ -253,6 +254,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontFamily: 'Arial',
     color: 'white',
+  },
+  scroll: {
   }
 });
 
