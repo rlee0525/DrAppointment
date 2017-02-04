@@ -6,7 +6,8 @@ import {
   Image,
   TextInput,
   TouchableHighlight,
-  ScrollView
+  ScrollView,
+  Linking
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -102,8 +103,8 @@ class Home extends React.Component {
               </View>
             </TouchableHighlight>
             <View style={styles.callButtonView}>
-              <TouchableHighlight style={styles.touchCallButton}>
-                <Text style={styles.callButton} onPress={() => console.log()}>
+              <TouchableHighlight style={styles.touchCallButton} onPress={() => Linking.openURL(`tel: ${doctor.phone}`)}>
+                <Text style={styles.callButton}>
                   <Icon style={styles.icon} name="phone" size={35} color="rgba(255, 255, 255, 0.8)" />
                 </Text>
               </TouchableHighlight>
