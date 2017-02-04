@@ -51,19 +51,55 @@ class Doctor extends React.Component {
     );
   }
 
+  swiperView() {
+    let doctor = this.props.doctor;
+    let doctorSchedule = this.props.doctor.doctor_schedule;
+    let days = [];
+
+    for (var j = 0; j < 30; j++) {
+      days.push(this.findDay(j));
+    }
+
+    let swiperView = [];
+
+    for (var i = 0; i < 10; i++) {
+      swiperView.push(
+        <View key={i} style={styles[`slide${i + 1}`], styles.slide}>
+          <View style={styles[`day1`]}>
+            <Text style={styles.date}>
+              {doctor && doctorSchedule[`${i * 3}`][0].date}
+            </Text>
+            <ScrollView>
+              {days[`${i * 3}`]}
+            </ScrollView>
+          </View>
+          <View style={styles.day2}>
+            <Text style={styles.date}>
+              {doctor && doctorSchedule[`${i * 3 + 1}`][0].date}
+            </Text>
+            <ScrollView>
+              {days[`${i * 3 + 1}`]}
+            </ScrollView>
+          </View>
+          <View style={styles.day3}>
+            <Text style={styles.date}>
+              {doctor && doctorSchedule[`${i * 3 + 2}`][0].date}
+            </Text>
+            <ScrollView>
+              {days[`${i * 3 + 2}`]}
+            </ScrollView>
+          </View>
+        </View>
+      );
+    }
+
+    return swiperView;
+  }
+
   render() {
     let doctor = this.props.doctor;
     let doctorSchedule = this.props.doctor.doctor_schedule;
     let uri = doctor.image_url;
-    let firstDay = this.findDay(0);
-    let secondDay = this.findDay(1);
-    let thirdDay = this.findDay(2);
-    let fourthDay = this.findDay(3);
-    let fifthDay = this.findDay(4);
-    let sixthDay = this.findDay(5);
-    let seventhDay = this.findDay(6);
-    let eighthDay = this.findDay(7);
-    let ninthDay = this.findDay(8);
 
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
@@ -97,84 +133,7 @@ class Doctor extends React.Component {
           </View>
           <View style={styles.body}>
             <Swiper style={styles.wrapper} showsButtons={false}>
-              <View style={styles.slide1}>
-                <View style={styles.firstDay}>
-                  <Text style={styles.date}>
-                    {doctor && doctorSchedule[0][0].date}
-                  </Text>
-                  <ScrollView>
-                    {firstDay}
-                  </ScrollView>
-                </View>
-                <View style={styles.secondDay}>
-                  <Text style={styles.date}>
-                    {doctor && doctorSchedule[1][0].date}
-                  </Text>
-                  <ScrollView>
-                    {secondDay}
-                  </ScrollView>
-                </View>
-                <View style={styles.thirdDay}>
-                  <Text style={styles.date}>
-                    {doctor && doctorSchedule[2][0].date}
-                  </Text>
-                  <ScrollView>
-                    {thirdDay}
-                  </ScrollView>
-                </View>
-              </View>
-              <View style={styles.slide2}>
-                <View style={styles.firstDay}>
-                  <Text style={styles.date}>
-                    {doctor && doctorSchedule[3][0].date}
-                  </Text>
-                  <ScrollView>
-                    {fourthDay}
-                  </ScrollView>
-                </View>
-                <View style={styles.secondDay}>
-                  <Text style={styles.date}>
-                    {doctor && doctorSchedule[4][0].date}
-                  </Text>
-                  <ScrollView>
-                    {fifthDay}
-                  </ScrollView>
-                </View>
-                <View style={styles.thirdDay}>
-                  <Text style={styles.date}>
-                    {doctor && doctorSchedule[5][0].date}
-                  </Text>
-                  <ScrollView>
-                    {sixthDay}
-                  </ScrollView>
-                </View>
-              </View>
-              <View style={styles.slide3}>
-                <View style={styles.firstDay}>
-                  <Text style={styles.date}>
-                    {doctor && doctorSchedule[6][0].date}
-                  </Text>
-                  <ScrollView>
-                    {seventhDay}
-                  </ScrollView>
-                </View>
-                <View style={styles.secondDay}>
-                  <Text style={styles.date}>
-                    {doctor && doctorSchedule[7][0].date}
-                  </Text>
-                  <ScrollView>
-                    {eighthDay}
-                  </ScrollView>
-                </View>
-                <View style={styles.thirdDay}>
-                  <Text style={styles.date}>
-                    {doctor && doctorSchedule[8][0].date}
-                  </Text>
-                  <ScrollView>
-                    {ninthDay}
-                  </ScrollView>
-                </View>
-              </View>
+              {this.swiperView()}
             </Swiper>
           </View>
         </View>
@@ -239,31 +198,19 @@ const styles = StyleSheet.create({
   },
   wrapper: {
   },
-  slide1: {
+  slide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  firstDay: {
+  day1: {
     flex: 0.33,
   },
-  secondDay: {
+  day2: {
     flex: 0.33,
   },
-  thirdDay: {
+  day3: {
     flex: 0.33,
   },
   date: {
