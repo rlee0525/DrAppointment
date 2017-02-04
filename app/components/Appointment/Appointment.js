@@ -9,72 +9,88 @@ import {
   ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Appointment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      patients: []
+      name: "",
+      patientsUnselected: [],
+      patientsSelected: []
     };
-    this.enterFirstName = this.enterFirstName.bind(this);
-    this.enterLastName = this.enterLastName.bind(this);
+
     this.createPatient = this.createPatient.bind(this);
     this.enterNotes = this.enterNotes.bind(this);
     this.makeAppointment = this.makeAppointment.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchPatients();
+    this.props.fetchPatients()
+      .then(() => {
+        this.props.patients.map(patient => {
+          this.state.patientsUnselected.push(patient);
+          let patientsUnselected = this.state.patientsUnselected;
+          this.setState({ patientsUnselected });
+        });
+      });
   }
 
   addPatient(patient) {
     let add = true;
-    if (this.state.patients.length >= 2) {
+
+    if (this.state.patientsSelected.length >= 2) {
       add = false;
     }
-    for (var i = 0; i < this.state.patients.length; i++) {
-      if (this.state.patients[i].id === patient.id) {
-        add = false;
-      }
-    }
+
     if (add) {
-      this.state.patients.push(patient);
-      let patients = this.state.patients;
-      this.setState({ patients });
+      let index = this.state.patientsUnselected.indexOf(patient);
+      this.state.patientsUnselected.splice(index, 1);
+      this.state.patientsSelected.push(patient);
+      let patientsUnselected = this.state.patientsUnselected;
+      let patientsSelected = this.state.patientsSelected;
+      this.setState({ patientsSelected, patientsUnselected });
     }
   }
 
   removePatient(patient) {
-    let patients = this.state.patients.filter(el => {
-        return el.id !== patient.id;
-      });
-    this.setState({ patients });
+    let index = this.state.patientsSelected.indexOf(patient);
+    this.state.patientsSelected.splice(index, 1);
+    this.state.patientsUnselected.push(patient);
+    let patientsSelected = this.state.patientsSelected;
+    let patientsUnselected = this.state.patientsUnselected;
+    this.setState({ patientsSelected, patientsUnselected });
   }
 
-  enterFirstName(input) {
-    this.setState({ firstName: input });
+  // TODO:
+  deletePatient() {
+
   }
 
-  enterLastName(input) {
-    this.setState({ lastName: input });
+  createPatient() {
+    let name = this.state.name.split(" ");
+
+    this.props.createPatient({
+      firstName: name[0],
+      lastName: name[1]
+    })
+    .then(() => this.props.fetchPatients())
+    .then(() => {
+      let patients = this.props.patients;
+      this.state.patientsUnselected.push(patients[patients.length - 1]);
+      let patientsUnselected = this.state.patientsUnselected;
+      this.setState({ patientsUnselected });
+    })
+    .then(() => this.setState({ name: "" }));
   }
 
   enterNotes(input) {
     this.setState({ notes: input });
   }
 
-  createPatient() {
-    this.props.createPatient({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName
-    })
-    .then(() => this.props.fetchPatients())
-    .then(() => this.setState({ firstName: "", lastName: "" }));
-  }
-
   makeAppointment() {
     this.props.makeAppointment({
-      patients: this.state.patients,
+      patients: this.state.patientsSelected,
       doctorId: this.props.doctor.id,
       timeSlot: this.props.time_slot.id,
       notes: this.state.notes
@@ -83,39 +99,50 @@ class Appointment extends React.Component {
   }
 
   render() {
-    let patients;
-    patients = this.props.patients.map( patient => {
+    let patientsSelected;
+    let patientsUnselected;
+
+    patientsSelected = this.state.patientsSelected.map(patient => {
       return (
         <View key={patient.id} style={styles.patientsSelectedView}>
-          <TouchableHighlight onPress={() => this.removePatient(patient) }>
-            <Text style={styles.patientsSelected}>
-              -
-            </Text>
+          <TouchableHighlight>
+            <Icon style={styles.icon} name="check-circle" size={30}
+                  color="rgba(255, 255, 255, 0.8)" />
           </TouchableHighlight>
+
           <Text style={styles.patientsSelected}>
             {patient.first_name} {patient.last_name}
           </Text>
-          <TouchableHighlight onPress={() => this.addPatient(patient)}>
-            <Text style={styles.patientsSelected}>
-              +
-            </Text>
+
+          <TouchableHighlight onPress={() => this.removePatient(patient)}>
+            <Icon style={styles.icon} name="minus-circle" size={30}
+                  color="rgba(255, 0, 0, 0.8)" />
           </TouchableHighlight>
         </View>
       );
     });
 
-    let appointmentPatients;
-     appointmentPatients = this.state.patients.map( patient => {
-       return (
-         <View key={patient.id} style={styles.patientsSelectedView}>
-           <Text style={styles.patientsSelected}>
-             Appointed Patient: {patient.first_name} {patient.last_name}
-           </Text>
-         </View>
-       );
-     });
+    patientsUnselected = this.state.patientsUnselected.map(patient => {
+      return (
+        <View key={patient.id} style={styles.patientsUnselectedView}>
+          <TouchableHighlight>
+            <Icon style={styles.icon} name="minus-circle" size={30}
+                  color="rgba(255, 0, 0, 0.8)" />
+          </TouchableHighlight>
 
-    return (
+          <Text style={styles.patientsUnselected}>
+            {patient.first_name} {patient.last_name}
+          </Text>
+
+          <TouchableHighlight onPress={() => this.addPatient(patient)}>
+            <Icon style={styles.icon} name="plus-circle" size={30}
+                  color="rgba(0, 255, 0, 0.8)" />
+          </TouchableHighlight>
+        </View>
+      );
+    });
+
+    return(
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
           <View style={styles.bar}/>
@@ -125,50 +152,58 @@ class Appointment extends React.Component {
               Appointment Detail
             </Text>
             <Text style={styles.headerDetail}>
-              You are making an appointment for the following patients:
+              You are making an appointment with {`${this.props.doctor.name} on ${this.props.time_slot.date} at ${this.props.time_slot.time}`} for the following patients:
             </Text>
-            { appointmentPatients }
           </View>
 
-          <View style={styles.header}>
-            <TextInput style={styles.patientName}
-              placeholder="New patient first name"
-              placeholderTextColor="rgba(255, 255, 255, 0.7)"
-              onChangeText={(input) => this.enterFirstName(input)}
-              value={this.state.firstName}/>
-          </View>
-          <View style={styles.header}>
-            <TextInput style={styles.patientName}
-              placeholder="New patient last name"
-              placeholderTextColor="rgba(255, 255, 255, 0.7)"
-              onChangeText={(input) => this.enterLastName(input)}
-              value={this.state.lastName}/>
-          </View>
-          <TouchableHighlight style={styles.button}>
-            <Text style={styles.buttonText} onPress={() => this.createPatient()} >
-              Add new patient
-            </Text>
-          </TouchableHighlight>
+          <ScrollView style={styles.body}>
+            <View style={styles.appointmentPatients}>
+              <View style={styles.selected}>
+                {patientsSelected}
+              </View>
 
-          <View style={styles.body}>
-            <ScrollView style={styles.patientData}>
-              {patients}
               <View style={styles.notes}>
                 <TextInput style={styles.notesInput}
-                           placeholder="Notes (Optional)"
-                           placeholderTextColor="rgba(255, 255, 255, 0.7)"
-                           onChangeText={(input) => this.enterNotes(input)}
-                           value={this.state.notes}/>
+                  placeholder="Notes (Optional)"
+                  placeholderTextColor="rgba(0, 0, 0, 0.7)"
+                  onChangeText={(input) => this.enterNotes(input)}
+                  value={this.state.notes}/>
               </View>
-            </ScrollView>
-            <View style={styles.appointmentButton}>
-              <TouchableHighlight style={styles.button} onPress={() => this.makeAppointment()} >
-                <Text style={styles.buttonText}>
-                  Make an appointment
+
+              <View style={styles.appointmentButton}>
+                <TouchableHighlight style={styles.button}
+                  onPress={() => this.makeAppointment()} >
+                  <Text style={styles.buttonText}>
+                    Make an appointment
+                  </Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+
+            <View style={styles.addPatients}>
+              <View style={styles.unselected}>
+                {patientsUnselected}
+              </View>
+
+              <View style={styles.textBox}>
+                <Icon style={styles.icon2} name="user" size={25}
+                      color="rgba(255, 255, 255, 0.8)" />
+                <TextInput
+                  onChangeText={(name) => this.setState({ name })}
+                  style={styles.input} placeholder="Enter a full name"
+                  placeholderTextColor="rgba(255, 255, 255, 0.8)"
+                  autoFocus={false} autoCapitalize="words" />
+
+              </View>
+
+              <TouchableHighlight style={styles.button}>
+                <Text style={styles.buttonText}
+                      onPress={() => this.createPatient()} >
+                  Create a new patient
                 </Text>
               </TouchableHighlight>
             </View>
-          </View>
+          </ScrollView>
         </View>
       </Image>
     );
@@ -176,14 +211,6 @@ class Appointment extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  patientName: {
-    flex: 0.2,
-    color: 'white',
-    fontSize: 12,
-    paddingTop: 5,
-    paddingLeft: 15,
-    fontFamily: 'Arial',
-  },
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -202,13 +229,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     alignSelf: 'stretch',
     flexDirection: 'column',
+    marginBottom: 15,
+  },
+  body: {
+    flex: 0.75,
+    alignSelf: 'stretch',
+    flexDirection: 'column',
   },
   headerTitle: {
-    flex: 0.2,
+    flex: 0.3,
     color: 'white',
-    fontSize: 14,
+    fontSize: 16,
     paddingLeft: 15,
-    paddingTop: 15,
+    paddingTop: 20,
     fontFamily: 'Arial',
     fontWeight: 'bold',
   },
@@ -218,44 +251,50 @@ const styles = StyleSheet.create({
     fontSize: 12,
     paddingTop: 5,
     paddingLeft: 15,
+    paddingRight: 15,
     fontFamily: 'Arial',
   },
-  body: {
-    flex: 0.75,
+  appointmentPatients: {
+    flex: 0.6,
     alignSelf: 'stretch',
-    flexDirection: 'column',
+  },
+  addPatients: {
+    flex: 0.4,
+    alignSelf: 'stretch',
+  },
+  selected: {
+
   },
   patientsSelectedView: {
     backgroundColor: 'green',
     justifyContent: 'space-between',
     flexDirection: 'row',
     padding: 15,
+    marginBottom: 15,
+  },
+  icon: {
+    flex: 0.15,
+    paddingLeft: 15,
   },
   patientsSelected: {
-    fontSize: 18,
+    fontSize: 16,
     color: 'white',
+    paddingTop: 5,
+    paddingLeft: 15,
+    fontFamily: 'Arial',
   },
-  patientsView: {
-    backgroundColor: 'black',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    padding: 15,
+  notes: {
+    marginBottom: 15,
   },
   notesInput: {
-    color: 'white',
     alignSelf: 'stretch',
-    height: 120,
-    backgroundColor: 'red',
-  },
-  patients: {
-    fontSize: 18,
-    color: 'white',
-  },
-  patientData: {
-    flex: 0.7,
+    height: 100,
+    fontSize: 14,
+    paddingLeft: 15,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
   },
   appointmentButton: {
-    flex: 0.3,
+    marginBottom: 50,
   },
   button: {
     height: 50,
@@ -269,6 +308,45 @@ const styles = StyleSheet.create({
     color: '#FFF',
     alignSelf: 'center',
     fontFamily: 'Arial'
+  },
+  unselected: {
+
+  },
+  patientsUnselectedView: {
+    backgroundColor: 'gray',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    padding: 15,
+    marginBottom: 15,
+  },
+  patientsUnselected: {
+    fontSize: 16,
+    color: 'white',
+    paddingTop: 5,
+    paddingLeft: 15,
+    fontFamily: 'Arial',
+  },
+  textBox: {
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.7)',
+    flexDirection: 'row',
+    marginBottom: 15,
+    marginTop: 50,
+  },
+
+  // TODO: center it
+  icon2: {
+    flex: 0.15,
+    marginTop: 5,
+    paddingLeft: 95,
+    textAlign: 'center',
+  },
+  input: {
+    flex: 0.85,
+    height: 40,
+    fontSize: 15,
+    fontFamily: 'Arial',
+    color: 'white',
   },
 });
 
