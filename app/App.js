@@ -8,6 +8,7 @@ import Authentication from './components/Authentication';
 import Home from './components/Home';
 import Doctor from './components/Doctor';
 import Appointment from './components/Appointment';
+import Profile from './components/Profile';
 
 const store = configureStore();
 
@@ -16,16 +17,18 @@ const App = () => (
     <Router>
       <Scene key="root">
         <Scene key="loader" component={Loading} title="Loading"
-               hideNavBar={true} initial={true} />
+               hideNavBar={true} />
         <Scene key="register" component={Register} title="Register"
                hideNavBar={true} />
         <Scene key="authentication" component={Authentication}
                title="Authenticate" hideNavBar={true} />
         <Scene key="home" component={Home} title="Home"
-               hideNavBar={true} />
+               hideNavBar={true} initial={true} />
         <Scene key="doctor" component={Doctor} title="Doctor"
                hideNavBar={true} />
         <Scene key="appointment" component={Appointment} title="Appointment"
+               hideNavBar={true} />
+        <Scene key="profile" component={Profile} title="Profile"
                hideNavBar={true} />
       </Scene>
     </Router>
