@@ -65,7 +65,7 @@ class Doctor extends React.Component {
     for (var i = 0; i < 10; i++) {
       swiperView.push(
         <View key={i} style={styles[`slide${i + 1}`], styles.slide}>
-          <View style={styles[`day1`]}>
+          <View style={styles.day1}>
             <Text style={styles.date}>
               {doctor && doctorSchedule[`${i * 3}`][0].date}
             </Text>
