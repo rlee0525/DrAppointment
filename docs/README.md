@@ -1,6 +1,8 @@
 # Dr. Appointment
 
+![alt text][demo]
 
+[demo]: app/images/Demo2.gif
 
 ## Background
 
