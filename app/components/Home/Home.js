@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Swipeout from 'react-native-swipeout';
 
 class Home extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class Home extends React.Component {
     };
     this.getLocation = this.getLocation.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.favoriteToggle = this.favoriteToggle.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +78,13 @@ class Home extends React.Component {
       }));
   }
 
+  favoriteToggle(doctorId) {
+    let that = this;
+    this.props.favoriteToggle(doctorId)
+      .then(() => { that.props.fetchDoctorSearchResults({ lat: that.state.lat, lng: that.state.lng }); }
+    );
+  }
+
   render() {
     let docs;
     if (this.props.search.searchResults.length === 0) {
@@ -83,39 +92,60 @@ class Home extends React.Component {
     } else {
       docs = this.props.search.searchResults.map(doctor => {
         let favorited, space;
+        let favToggle = "Favorite";
         if (doctor.favorited) {
           favorited = <Icon style={styles.star} name="star" size={13} color="rgba(255, 255, 255, 0.8)" />;
           space = " ";
+          favToggle = "Unfavorite";
         }
         return (
-          <View key={doctor.id} style={styles.doctorListing}>
-            <TouchableHighlight onPress={() => this.onDoctorClick(doctor)}>
-              <View style={styles.left}>
-                <Text style={styles.text}>
-                  {favorited}{space}{doctor.name}
-                </Text>
-                <Text style={styles.text}>
-                  Phone: {doctor.phone}
-                </Text>
-                <Text style={styles.text}>
-                  Distance: {doctor.distance} miles
-                </Text>
-              </View>
-            </TouchableHighlight>
-            <View style={styles.callButtonView}>
-              <TouchableHighlight style={styles.touchCallButton} onPress={() => Linking.openURL(`tel: ${doctor.phone}`)}>
-                <Text style={styles.callButton}>
-                  <Icon style={styles.icon} name="phone" size={35} color="rgba(255, 255, 255, 0.8)" />
-                </Text>
+          <View style={styles.doctorListing} key={doctor.id}>
+            <View style={styles.flex}>
+            <Swipeout autoClose={true} right={[{
+                text: favToggle,
+                backgroundColor: 'orange',
+                color: 'white',
+                onPress: () => this.favoriteToggle(doctor.id),
+              },
+              {
+                text: 'Call',
+                backgroundColor: 'green',
+                color: 'white',
+                onPress: () => Linking.openURL(`tel: ${doctor.phone}`),
+              }
+            ]} backgroundColor='rgba(255, 255, 255, 0)'>
+              <TouchableHighlight style={styles.touchHighlightRow} onPress={() => this.onDoctorClick(doctor)}>
+                <View style={styles.listingView}>
+                  <View style={styles.left}>
+                    <Text style={styles.textBold}>
+                      {favorited}{space}{doctor.name}
+                    </Text>
+                    <Text style={styles.text}>
+                      {doctor.address}
+                    </Text>
+                    <Text style={styles.text}>
+                      {doctor.address2}
+                    </Text>
+                    <Text style={styles.text}>
+                      Distance: {doctor.distance} miles
+                    </Text>
+                  </View>
+                  <View style={styles.right}>
+                    <Text>
+                      <Icon style={styles.angle} name="angle-double-left" size={60} color="rgba(255, 255, 255, 0.8)" />
+                    </Text>
+                  </View>
+                </View>
               </TouchableHighlight>
-            </View>
+            </Swipeout>
+          </View>
           </View>
         );
       });
     }
 
     return (
-      <View style={styles.container}>
+      <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
           <View style={styles.searchBarContainer}>
             <TextInput
@@ -136,7 +166,7 @@ class Home extends React.Component {
             </Text>
           </TouchableHighlight>
         </View>
-      </View>
+      </Image>
     );
   }
 }
@@ -147,14 +177,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   searchBarContainer: {
     padding: 20,
     paddingTop: 40,
     height: 40,
     width: 375,
-    marginBottom: 10
+    marginBottom: 40
   },
   searchBox: {
     height: 40,
@@ -184,11 +214,16 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   listingsContainer: {
-    paddingTop: 30
+
   },
   text: {
     color: "white",
     fontFamily: 'Arial'
+  },
+  textBold: {
+    color: "white",
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
   },
   viewProfileButton: {
     position: 'absolute',
@@ -214,13 +249,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   doctorListing: {
-    flexDirection: "row",
     padding: 10,
     paddingLeft: 15,
     borderColor:'rgba(255, 255, 255, 0.2)',
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   callButton: {
     fontSize: 13,
@@ -231,26 +267,37 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   callButtonView: {
-    position: 'absolute',
-    right: 9,
-    bottom: 12,
-    height: 65,
-    width: 65,
     justifyContent: 'center',
     backgroundColor: 'rgba(0, 145, 234, 0.6)',
-    borderRadius: 90,
+    borderRadius: 100,
+    flex: 0.2,
   },
   touchCallButton: {
   },
-  left: {
-    justifyContent: 'center',
+  listingView: {
     backgroundColor: 'rgba(0, 145, 234, 0.6)',
     borderRadius: 10,
     padding: 10,
-    width: 275,
+    flexDirection: 'row',
+  },
+  left: {
+    flex: 0.9,
+  },
+  right: {
+    flex: 0.1,
   },
   star: {
     color: 'orange',
+  },
+  angle: {
+    color: 'rgba(255, 255, 255, 0.2)',
+  },
+  touchHighlightRow: {
+    flex: 0.7,
+    marginRight: 10,
+  },
+  flex: {
+    flex: 1,
   }
 });
 

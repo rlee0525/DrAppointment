@@ -1,7 +1,8 @@
 import Home from './Home';
 import { connect } from 'react-redux';
 import { fetchDoctorSearchResults,
-         requestDoctor } from '../../actions/doctor_actions';
+         requestDoctor,
+         favoriteToggle } from '../../actions/doctor_actions';
 
 const mapStateToProps = (state) => ({
   search: state.search,
@@ -10,7 +11,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchDoctorSearchResults: doctors => dispatch(fetchDoctorSearchResults(doctors)),
-  requestDoctor: id => dispatch(requestDoctor(id))
+  requestDoctor: id => dispatch(requestDoctor(id)),
+  favoriteToggle: doctorId => dispatch(favoriteToggle(doctorId))
 });
 
 export default connect(

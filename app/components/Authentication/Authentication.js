@@ -6,7 +6,8 @@ import {
   Image,
   TextInput,
   TouchableHighlight,
-  AsyncStorage
+  AsyncStorage,
+  ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
