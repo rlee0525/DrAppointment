@@ -128,16 +128,19 @@ class Appointment extends React.Component {
             onPress: () => this.deletePatient(patient),
           }]} backgroundColor='rgba(255, 255, 255, 0)' key={patient.id}
           style={styles.test} >
-          <View style={styles.patientsSelectedView}>
-              <Text style={styles.patientsSelected}>
-                {patient.first_name} {patient.last_name}
-              </Text>
-
-            <TouchableHighlight onPress={() => this.removePatient(patient)}>
-              <Icon style={styles.icon} name="check-circle" size={30}
-                    color="rgba(255, 255, 255, 0.8)" />
-            </TouchableHighlight>
-          </View>
+          <TouchableHighlight onPress={() => this.removePatient(patient)}>
+            <View style={styles.patientsSelectedView}>
+              <View>
+                <Text style={styles.patientsSelected}>
+                  {patient.first_name} {patient.last_name}
+                </Text>
+              </View>
+              <View>
+                <Icon style={styles.icon} name="check-circle" size={26}
+                      color="rgba(255, 255, 255, 0.8)" />
+              </View>
+            </View>
+          </TouchableHighlight>
         </Swipeout>
       );
     });
@@ -159,16 +162,13 @@ class Appointment extends React.Component {
             onPress: () => this.deletePatient(patient),
           }]} backgroundColor='rgba(255, 255, 255, 0)' key={patient.id}
           style={styles.test} >
-          <View style={styles.patientsUnselectedView}>
-            <Text style={styles.patientsUnselected}>
-              {patient.first_name} {patient.last_name}
-            </Text>
-
-            <TouchableHighlight onPress={() => this.addPatient(patient)}>
-              <Icon style={styles.icon} name="plus-circle" size={30}
-                color="rgba(0, 255, 0, 0.8)" />
-            </TouchableHighlight>
-          </View>
+          <TouchableHighlight onPress={() => this.addPatient(patient)}>
+            <View style={styles.patientsUnselectedView}>
+              <Text style={styles.patientsUnselected}>
+                {patient.first_name} {patient.last_name}
+              </Text>
+            </View>
+          </TouchableHighlight>
         </Swipeout>
       );
     });
@@ -199,8 +199,6 @@ class Appointment extends React.Component {
                 <TouchableHighlight style={styles.newPatientTouch}>
                   <View style={styles.newPatientContainer}>
                     <View style={styles.newPatientTextbox}>
-                      <Icon style={styles.icon2} name="user" size={25}
-                        color="rgba(255, 255, 255, 0.8)" />
                       <TextInput
                         onChangeText={(name) => this.setState({ name })}
                         style={styles.input} placeholder="Create a new patient"
@@ -209,9 +207,12 @@ class Appointment extends React.Component {
                         value={this.state.name} />
                     </View>
                     <View style={styles.newPatientAdd}>
-                      <Icon style={styles.icon3} name="plus-circle" size={30}
-                        color="rgba(0, 255, 0, 0.8)"
-                        onPress={() => this.createPatient()} />
+                      <TouchableHighlight style={styles.addPatient}
+                        onPress={() => this.createPatient()}>
+                        <Text style={styles.addPatientText}>
+                          Create
+                        </Text>
+                      </TouchableHighlight>
                     </View>
                   </View>
                 </TouchableHighlight>
@@ -341,11 +342,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   newPatientTextbox: {
-    flex: 0.9,
+    flex: 0.8,
     flexDirection: 'row',
   },
   newPatientAdd: {
-    flex: 0.1
+    flex: 0.2
   },
   icon3: {
     flex: 0.15,
@@ -359,7 +360,7 @@ const styles = StyleSheet.create({
   patientsSelected: {
     fontSize: 20,
     color: 'white',
-    paddingTop: 5,
+    paddingTop: 2,
     paddingLeft: 15,
     fontFamily: 'Arial',
   },
@@ -408,9 +409,10 @@ const styles = StyleSheet.create({
   patientsUnselected: {
     fontSize: 20,
     color: 'white',
-    paddingTop: 5,
+    paddingTop: 2,
     paddingLeft: 15,
     fontFamily: 'Arial',
+    textAlign: 'center',
   },
   textBox: {
     borderBottomWidth: 1,
@@ -427,12 +429,24 @@ const styles = StyleSheet.create({
   input: {
     flex: 0.85,
     height: 40,
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: 'Arial',
     color: 'white',
+    paddingLeft: 20,
   },
   test: {
     marginBottom: 15,
+  },
+  addPatient: {
+    backgroundColor: "rgba(0, 255, 0, 0.8)",
+    padding: 10,
+    borderRadius: 10,
+  },
+  addPatientText: {
+    fontSize: 16,
+    color: '#FFF',
+    alignSelf: 'center',
+    fontFamily: 'Arial',
   }
 });
 

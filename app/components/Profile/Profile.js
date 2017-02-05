@@ -27,7 +27,6 @@ class Profile extends React.Component {
 
   render() {
     let appointments;
-    console.log(this.props);
     appointments = this.props.appointments.map(appointment => {
       return (
         <View key={appointment.id} style={styles.appointmentListing}>
