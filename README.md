@@ -16,6 +16,10 @@ Making appointments with one's primary care physician can be difficult and time-
 
 [readme]: docs/README.md
 
+Backend was built using Ruby on Rails and PostgreSQL: [DrAppointment-BE][backend]
+
+[backend]: https://github.com/randyjap/DrAppointment-BE
+
 ## Functionality & MVP
 
 ```ruby
