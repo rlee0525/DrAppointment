@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAppointments, deleteAppointment } from '../../actions/appointment_actions';
 
 const mapStateToProps = (state) => ({
-  appointments: state.profile
+  appointments: state.profile,
 });
 
 const mapDispatchToProps = dispatch => ({

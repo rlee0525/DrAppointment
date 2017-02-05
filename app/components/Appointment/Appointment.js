@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Swipeout from 'react-native-swipeout';
 
 class Appointment extends React.Component {
   constructor(props) {
@@ -26,13 +27,19 @@ class Appointment extends React.Component {
     this.deletePatient = this.deletePatient.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchPatients()
       .then(() => {
         this.props.patients.map(patient => {
-          this.state.patientsUnselected.push(patient);
-          let patientsUnselected = this.state.patientsUnselected;
-          this.setState({ patientsUnselected });
+          if (patient.id !== this.props.currentUser.id) {
+            this.state.patientsUnselected.push(patient);
+            let patientsUnselected = this.state.patientsUnselected;
+            this.setState({ patientsUnselected });
+          } else {
+            this.state.patientsSelected.push(patient);
+            let patientsSelected = this.state.patientsSelected;
+            this.setState({ patientsSelected });
+          }
         });
       });
   }
@@ -63,15 +70,16 @@ class Appointment extends React.Component {
     this.setState({ patientsSelected, patientsUnselected });
   }
 
-  // TODO:
-  deletePatient(id) {
-    this.props.deletePatient(id)
+  deletePatient(patient) {
+    this.props.deletePatient(patient.id)
       .then(() => {
-        this.props.patients.map(patient => {
-          this.state.patientsUnselected.push(patient);
-          let patientsUnselected = this.state.patientsUnselected;
-          this.setState({ patientsUnselected });
-        });
+        let patientsSelected = this.state.patientsSelected.filter(
+          res => res.id !== patient.id
+        );
+        let patientsUnselected = this.state.patientsUnselected.filter(
+          res => res.id !== patient.id
+        );
+        this.setState({ patientsSelected, patientsUnselected });
       });
   }
 
@@ -84,8 +92,9 @@ class Appointment extends React.Component {
     })
     .then(() => this.props.fetchPatients())
     .then(() => {
-      let patients = this.props.patients;
-      this.state.patientsUnselected.push(patients[patients.length - 1]);
+      let index = 0;
+      let newPatient = this.props.patients[index];
+      this.state.patientsUnselected.push(newPatient);
       let patientsUnselected = this.state.patientsUnselected;
       this.setState({ patientsUnselected });
     })
@@ -103,7 +112,7 @@ class Appointment extends React.Component {
       timeSlot: this.props.time_slot.id,
       notes: this.state.notes
     })
-    .then(() => Actions.profile());
+    .then(() => Actions.profile({ currentUser: this.props.currentUser }));
   }
 
   render() {
@@ -112,41 +121,45 @@ class Appointment extends React.Component {
 
     patientsSelected = this.state.patientsSelected.map(patient => {
       return (
-        <View key={patient.id} style={styles.patientsSelectedView}>
-          <TouchableHighlight>
-            <Icon style={styles.icon} name="check-circle" size={30}
-                  color="rgba(255, 255, 255, 0.8)" />
-          </TouchableHighlight>
+        <Swipeout right={[{
+            text: 'Delete',
+            backgroundColor: 'red',
+            color: 'white',
+            onPress: () => this.deletePatient(patient),
+          }]} backgroundColor='rgba(255, 255, 255, 0)' key={patient.id} >
+          <View style={styles.patientsSelectedView}>
+              <Text style={styles.patientsSelected}>
+                {patient.first_name} {patient.last_name}
+              </Text>
 
-          <Text style={styles.patientsSelected}>
-            {patient.first_name} {patient.last_name}
-          </Text>
-
-          <TouchableHighlight onPress={() => this.removePatient(patient)}>
-            <Icon style={styles.icon} name="minus-circle" size={30}
-                  color="rgba(255, 0, 0, 0.8)" />
-          </TouchableHighlight>
-        </View>
+            <TouchableHighlight onPress={() => this.removePatient(patient)}>
+              <Icon style={styles.icon} name="check-circle" size={30}
+                    color="rgba(255, 255, 255, 0.8)" />
+            </TouchableHighlight>
+          </View>
+        </Swipeout>
       );
     });
 
     patientsUnselected = this.state.patientsUnselected.map(patient => {
       return (
-        <View key={patient.id} style={styles.patientsUnselectedView}>
-          <TouchableHighlight onPress={() => this.deletePatient(patient.id)}>
-            <Icon style={styles.icon} name="minus-circle" size={30}
-                  color="rgba(255, 0, 0, 0.8)" />
-          </TouchableHighlight>
+        <Swipeout right={[{
+            text: 'Delete',
+            backgroundColor: 'red',
+            color: 'white',
+            onPress: () => this.deletePatient(patient),
+          }]} backgroundColor='rgba(255, 255, 255, 0)' key={patient.id} >
+          <View style={styles.patientsUnselectedView}>
+            <Text style={styles.patientsUnselected}>
+              {patient.first_name} {patient.last_name}
+            </Text>
 
-          <Text style={styles.patientsUnselected}>
-            {patient.first_name} {patient.last_name}
-          </Text>
-
-          <TouchableHighlight onPress={() => this.addPatient(patient)}>
-            <Icon style={styles.icon} name="plus-circle" size={30}
-                  color="rgba(0, 255, 0, 0.8)" />
-          </TouchableHighlight>
-        </View>
+            <TouchableHighlight onPress={() => this.addPatient(patient)}>
+              <Icon style={styles.icon} name="plus-circle" size={30}
+                    color="rgba(0, 255, 0, 0.8)" />
+            </TouchableHighlight>
+          </View>
+        </Swipeout>
       );
     });
 
@@ -168,6 +181,7 @@ class Appointment extends React.Component {
             <View style={styles.appointmentPatients}>
               <View style={styles.selected}>
                 {patientsSelected}
+                {patientsUnselected}
               </View>
 
               <View style={styles.notes}>
@@ -185,14 +199,18 @@ class Appointment extends React.Component {
                     Make an appointment
                   </Text>
                 </TouchableHighlight>
+                <TouchableHighlight style={styles.button2}
+                  onPress={() => Actions.home({
+                    currentUser: this.props.currentUser
+                  })} >
+                  <Text style={styles.buttonText}>
+                    Cancel
+                  </Text>
+                </TouchableHighlight>
               </View>
             </View>
 
             <View style={styles.addPatients}>
-              <View style={styles.unselected}>
-                {patientsUnselected}
-              </View>
-
               <View style={styles.textBox}>
                 <Icon style={styles.icon2} name="user" size={25}
                       color="rgba(255, 255, 255, 0.8)" />
@@ -200,7 +218,8 @@ class Appointment extends React.Component {
                   onChangeText={(name) => this.setState({ name })}
                   style={styles.input} placeholder="Enter a full name"
                   placeholderTextColor="rgba(255, 255, 255, 0.8)"
-                  autoFocus={false} autoCapitalize="words" />
+                  autoFocus={false} autoCapitalize="words"
+                  value={this.state.name} />
 
               </View>
 
@@ -263,11 +282,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial',
   },
   appointmentPatients: {
-    flex: 0.6,
+    flex: 0.5,
     alignSelf: 'stretch',
   },
   addPatients: {
-    flex: 0.4,
+    flex: 0.5,
     alignSelf: 'stretch',
   },
   selected: {
@@ -285,7 +304,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   patientsSelected: {
-    fontSize: 16,
+    fontSize: 20,
     color: 'white',
     paddingTop: 5,
     paddingLeft: 15,
@@ -310,6 +329,14 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
     justifyContent: 'center',
+    marginBottom: 12,
+  },
+  button2: {
+    height: 50,
+    backgroundColor: 'red',
+    paddingLeft: 40,
+    paddingRight: 40,
+    justifyContent: 'center',
   },
   buttonText: {
     fontSize: 16,
@@ -328,7 +355,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   patientsUnselected: {
-    fontSize: 16,
+    fontSize: 20,
     color: 'white',
     paddingTop: 5,
     paddingLeft: 15,
@@ -338,15 +365,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.7)',
     flexDirection: 'row',
-    marginBottom: 15,
+    marginBottom: 10,
     marginTop: 50,
   },
-
-  // TODO: center it
   icon2: {
     flex: 0.15,
     marginTop: 5,
-    paddingLeft: 95,
     textAlign: 'center',
   },
   input: {
