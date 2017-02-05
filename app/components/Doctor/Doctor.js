@@ -111,7 +111,7 @@ class Doctor extends React.Component {
                      style={styles.doctorImg}/>
             </View>
             <View style={styles.detail}>
-              <Text style={styles.detailText}>
+              <Text style={styles.doctorName}>
                 {doctor && doctor.name}
               </Text>
               <Text style={styles.detailText}>
@@ -123,18 +123,22 @@ class Doctor extends React.Component {
               <Text style={styles.detailText}>
                 Distance: {doctor && this.props.distance} miles
               </Text>
-              <TouchableHighlight style={styles.backButton}
-                                  onPress={() => Actions.home()}>
-                <Text style={styles.backButtonText}>
-                  Search again
-                </Text>
-              </TouchableHighlight>
             </View>
           </View>
           <View style={styles.body}>
             <Swiper style={styles.wrapper} showsButtons={false}>
               {this.swiperView()}
             </Swiper>
+          </View>
+          <View style={styles.footer}>
+            <TouchableHighlight style={styles.backButton}
+                                onPress={() => Actions.home({
+                                  currentUser: this.props.currentUser
+                                })}>
+              <Text style={styles.backButtonText}>
+                Search another doctor
+              </Text>
+            </TouchableHighlight>
           </View>
         </View>
       </Image>
@@ -154,7 +158,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   bar: {
-    marginTop: 20,
+    margin: 10,
   },
   header: {
     flex: 0.2,
@@ -174,28 +178,22 @@ const styles = StyleSheet.create({
   },
   detail: {
     flex: 0.65,
-    padding: 15
+    padding: 12,
+    paddingTop: 30,
+  },
+  doctorName: {
+    color: 'white',
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    marginBottom: 15,
+    fontSize: 15,
   },
   detailText: {
     color: 'white',
     fontFamily: 'Arial',
   },
-  backButton: {
-    backgroundColor: '#0091EA',
-    marginTop: 10,
-    width: 120,
-    padding: 5,
-    borderRadius: 10,
-  },
-  backButtonText: {
-    fontSize: 12,
-    fontFamily: 'Arial',
-    color: 'white',
-    textAlign: 'center',
-  },
   body: {
-    flex: 0.75,
-    alignSelf: 'stretch',
+    flex: 0.65,
     flexDirection: 'row',
   },
   wrapper: {
@@ -204,7 +202,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    marginBottom: 160,
+    marginBottom: 230,
   },
   day1: {
     flex: 0.33,
@@ -257,7 +255,24 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   scroll: {
-  }
+  },
+  footer: {
+    // flex: 0.1,
+    alignSelf: 'stretch',
+  },
+  backButton: {
+    height: 50,
+    backgroundColor: '#0091EA',
+    paddingLeft: 40,
+    paddingRight: 40,
+    justifyContent: 'center',
+  },
+  backButtonText: {
+    fontSize: 16,
+    color: '#FFF',
+    alignSelf: 'center',
+    fontFamily: 'Arial'
+  },
 });
 
 export default Doctor;
