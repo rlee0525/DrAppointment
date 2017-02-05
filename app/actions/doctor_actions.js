@@ -26,6 +26,12 @@ export const requestDoctor = id => dispatch => (
     .catch(err => dispatch(doctorError(err.responseJSON)))
 );
 
+export const favoriteToggle = doctorId => dispatch => (
+  APIUtil.favoriteToggle(doctorId)
+    .then(response => response.json())
+    .catch(err => dispatch(doctorError(err.responseJSON)))
+);
+
 export const fetchDoctorSearchResults = input => dispatch => (
   APIUtil.fetchDoctorSearchResults(input)
     .then(response => response.json())
