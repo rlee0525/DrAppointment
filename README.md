@@ -1,6 +1,7 @@
 # Dr. Appointment
 
-![alt text](https://github.com/randyjap/DrAppointment/blob/master/app/images/Demo2.gif)
+<img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Demo2.gif" width="200">
+
 
 ## Background
 
