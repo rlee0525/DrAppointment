@@ -4,7 +4,7 @@ Live Site
 
 ## Background
 
-Making appointments with one's primary care physician can be difficult and extremely time-consuming. Instead of trying to find time during work to place phone calls and make appointments with doctors, this mobile app will allow the users to quickly search for their doctors, view their availabilities, and make an appointment for users and their family members at the time of users' convenience.
+Making appointments with one's primary care physician can be difficult and time-consuming. Instead of patients trying to find time during their busy lives to place phone calls and make appointments with doctors, this mobile app allows the users to quickly find their doctor, view their availabilities, and make an appointment for them or their family members anytime, anywhere.
 
 ## Functionality & MVP
 
@@ -13,7 +13,7 @@ The project implementation should allow the user to:
 - allow users to search doctors by name (using location search bias, phone geolocation or ip geolocation)
 - authenticate users with text (auth codes) message
   - auto save doctors with whom appointments were made
-  - allow users to save favorite doctors (swipe to delete fav, order by recent appointment)
+  - allow users to save favorite doctors
 - show page of doctors (swipe for other doctors in same practice)
   - availability calendar (3 days swipe for +/- 3 days)
   - name
@@ -25,7 +25,7 @@ The project implementation should allow the user to:
   - optional note
   - text confirmation of booking
 - reminders
-  - text message day before appointment (twilio)
+  - text message one hour before appointment (twilio)
 
 ## UX Flow
 ### 2-way authentication
