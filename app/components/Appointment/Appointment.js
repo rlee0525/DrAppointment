@@ -118,7 +118,12 @@ class Appointment extends React.Component {
       timeSlot: this.props.time_slot.id,
       notes: this.state.notes
     })
-    .then(() => Actions.profile({ currentUser: this.props.currentUser }));
+    .then(response => {
+      if (response.status === 200)
+      {
+        Actions.profile({ currentUser: this.props.currentUser });
+      }
+    });
   }
 
   render() {
