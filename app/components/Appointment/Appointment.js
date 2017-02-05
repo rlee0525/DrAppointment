@@ -156,7 +156,7 @@ class Appointment extends React.Component {
 
             <TouchableHighlight onPress={() => this.addPatient(patient)}>
               <Icon style={styles.icon} name="plus-circle" size={30}
-                    color="rgba(0, 255, 0, 0.8)" />
+                color="rgba(0, 255, 0, 0.8)" />
             </TouchableHighlight>
           </View>
         </Swipeout>
@@ -181,6 +181,10 @@ class Appointment extends React.Component {
             <View style={styles.appointmentPatients}>
               <View style={styles.selected}>
                 {patientsSelected}
+
+              </View>
+              <View style={styles.unselected}>
+
                 {patientsUnselected}
               </View>
 
@@ -290,14 +294,13 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   selected: {
-
+    marginBottom: 15,
   },
   patientsSelectedView: {
     backgroundColor: 'green',
     justifyContent: 'space-between',
     flexDirection: 'row',
     padding: 15,
-    marginBottom: 15,
   },
   icon: {
     flex: 0.15,
@@ -345,14 +348,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial'
   },
   unselected: {
-
+    marginBottom: 15,
   },
   patientsUnselectedView: {
     backgroundColor: 'gray',
     justifyContent: 'space-between',
     flexDirection: 'row',
     padding: 15,
-    marginBottom: 15,
   },
   patientsUnselected: {
     fontSize: 20,

@@ -6,7 +6,8 @@ import {
   Image,
   TextInput,
   TouchableHighlight,
-  AsyncStorage
+  AsyncStorage,
+  ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -51,39 +52,42 @@ class Register extends React.Component {
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
-        <Image source={require('../../images/logo.png')} style={styles.logo}/>
+          <ScrollView keyboardShouldPersistTaps='never'>
+            <Image source={require('../../images/logo.png')}
+                   style={styles.logo}/>
 
-        <View style={styles.textBox}>
-          <Icon style={styles.icon} name="user" size={21}
-                color="rgba(255, 255, 255, 0.8)" />
-          <TextInput
-            onChangeText={(name) => this.setState({ name })}
-            style={styles.input} placeholder="Full name"
-            placeholderTextColor="rgba(255, 255, 255, 0.8)"
-            autoFocus={false} autoCapitalize="words" />
-        </View>
+            <View style={styles.textBox}>
+              <Icon style={styles.icon} name="user" size={21}
+                    color="rgba(255, 255, 255, 0.8)" />
+              <TextInput
+                onChangeText={(name) => this.setState({ name })}
+                style={styles.input} placeholder="Full name"
+                placeholderTextColor="rgba(255, 255, 255, 0.8)"
+                autoFocus={false} autoCapitalize="words" />
+            </View>
 
-        <View style={styles.textBox}>
-          <Icon style={styles.icon} name="phone" size={21}
-                color="rgba(255, 255, 255, 0.8)" />
-          <TextInputMask
-            onChangeText={(phone_number) => this.setState({ phone_number })}
-            style={styles.input} placeholder="Phone number"
-            placeholderTextColor="rgba(255, 255, 255, 0.8)"
-            value={this.state.phone_number} type={'cel-phone'}
-            options={{dddMask: '(999) 999-9999'}} ref={'phoneNum'}
-          />
-        </View>
+            <View style={styles.textBox}>
+              <Icon style={styles.icon} name="phone" size={21}
+                    color="rgba(255, 255, 255, 0.8)" />
+              <TextInputMask
+                onChangeText={(phone_number) => this.setState({ phone_number })}
+                style={styles.input} placeholder="Phone number"
+                placeholderTextColor="rgba(255, 255, 255, 0.8)"
+                value={this.state.phone_number} type={'cel-phone'}
+                options={{dddMask: '(999) 999-9999'}} ref={'phoneNum'}
+              />
+            </View>
 
-        <TouchableHighlight style={styles.button}
-                            onPress={this.onRegisterPressed.bind(this)}>
-          <Text style={styles.buttonText}>
-            Submit
-          </Text>
-        </TouchableHighlight>
-        <Text style={styles.errors}>
-          {this.state.errors ? this.state.errors.join("\n") : ""}
-        </Text>
+            <TouchableHighlight style={styles.button}
+                                onPress={this.onRegisterPressed.bind(this)}>
+              <Text style={styles.buttonText}>
+                Submit
+              </Text>
+            </TouchableHighlight>
+            <Text style={styles.errors}>
+              {this.state.errors ? this.state.errors.join("\n") : ""}
+            </Text>
+          </ScrollView>
         </View>
       </Image>
     );
