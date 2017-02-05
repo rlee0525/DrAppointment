@@ -130,7 +130,9 @@ class Home extends React.Component {
           </ScrollView>
         </View>
         <View style={styles.viewProfileButton}>
-          <TouchableHighlight style={styles.profileButton} onPress={() => Actions.profile() } >
+          <TouchableHighlight style={styles.profileButton} onPress={
+              () => Actions.profile({ currentUser: this.props.currentUser })
+            } >
             <Text style={styles.textProfileButton}>
               My Appointments
             </Text>
