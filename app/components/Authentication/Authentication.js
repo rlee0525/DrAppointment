@@ -45,25 +45,27 @@ class Authentication extends React.Component {
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
         <View style={styles.container}>
-          <Image source={require('../../images/logo.png')} style={styles.logo}/>
+          <ScrollView keyboardShouldPersistTaps='never'>
+            <Image source={require('../../images/logo.png')} style={styles.logo}/>
 
-          <View style={styles.textBox}>
-            <TextInput
-              onChangeText={(authyId) => this.setState({ authyId })}
-              style={styles.input} placeholder="Verification Code"
-              placeholderTextColor="rgba(255, 255, 255, 0.7)"
-              autoFocus={false}
-              />
-          </View>
+            <View style={styles.textBox}>
+              <TextInput
+                onChangeText={(authyId) => this.setState({ authyId })}
+                style={styles.input} placeholder="Verification Code"
+                placeholderTextColor="rgba(255, 255, 255, 0.7)"
+                autoFocus={false}
+                />
+            </View>
 
-          <TouchableHighlight style={styles.button}>
-            <Text style={styles.buttonText} onPress={this.onAuthPressed.bind(this)}>
-              Authenticate
+            <TouchableHighlight style={styles.button}>
+              <Text style={styles.buttonText} onPress={this.onAuthPressed.bind(this)}>
+                Authenticate
+              </Text>
+            </TouchableHighlight>
+            <Text style={styles.errors}>
+              {this.state.errors ? this.state.errors.join("\n") : ""}
             </Text>
-          </TouchableHighlight>
-          <Text style={styles.errors}>
-            {this.state.errors ? this.state.errors.join("\n") : ""}
-          </Text>
+          </ScrollView>
         </View>
       </Image>
     );
