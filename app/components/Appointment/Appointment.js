@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)'
+    backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
   bar: {
     flex: 0.05

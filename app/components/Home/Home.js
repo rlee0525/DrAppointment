@@ -109,7 +109,7 @@ class Home extends React.Component {
               },
               {
                 text: 'Call',
-                backgroundColor: 'green',
+                backgroundColor: '#0091EA',
                 color: 'white',
                 onPress: () => Linking.openURL(`tel: ${doctor.phone}`),
               }
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)'
+    backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
   searchBarContainer: {
     padding: 20,
@@ -228,8 +228,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   doctorListing: {
-    padding: 10,
-    paddingLeft: 15,
+    // padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 20,
     borderColor:'rgba(255, 255, 255, 0.2)',
     borderLeftWidth: 0,
     borderRightWidth: 0,
@@ -245,17 +247,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: 5,
   },
-  callButtonView: {
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0, 145, 234, 0.6)',
-    borderRadius: 100,
-    flex: 0.2,
-  },
   touchCallButton: {
   },
   listingView: {
-    backgroundColor: 'rgba(0, 145, 234, 0.6)',
-    borderRadius: 10,
+    backgroundColor: 'green',
+    borderRadius: 5,
     padding: 10,
     flexDirection: 'row',
   },
