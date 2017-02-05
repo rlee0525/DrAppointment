@@ -10,13 +10,13 @@ import { Actions } from 'react-native-router-flux';
 class Loading extends React.Component {
 
   componentWillMount() {
-    AsyncStorage.removeItem('phone_number');
-    AsyncStorage.removeItem('authy_id');
+    // AsyncStorage.removeItem('phone_number');
+    // AsyncStorage.removeItem('authy_id');
     AsyncStorage.getItem('phone_number', (err, result) => {
       const phoneNumber = result;
       if (result) {
         AsyncStorage.getItem('authy_id', (err2, result2) => {
-          fetch('http://localhost:3000/api/session', {
+          fetch('https://www.drappointment.io/api/session', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
