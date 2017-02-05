@@ -90,15 +90,21 @@ class Appointment extends React.Component {
       firstName: name[0],
       lastName: name[1]
     })
-      .then(() => this.props.fetchPatients())
-      .then(() => {
-        let index = 0;
-        let newPatient = this.props.patients[index];
-        this.state.patientsUnselected.push(newPatient);
-        let patientsUnselected = this.state.patientsUnselected;
-        this.setState({ patientsUnselected });
-      })
-      .then(() => this.setState({ name: "" }));
+      .then(response => {
+        if (response.status === 200) {
+          this.props.fetchPatients()
+            .then(() => {
+              let index = 0;
+              let newPatient = this.props.patients[index];
+              this.state.patientsUnselected.push(newPatient);
+              let patientsUnselected = this.state.patientsUnselected;
+              this.setState({ patientsUnselected });
+            });
+          this.setState({ name: "" });
+          return response;
+        }
+        console.log(response);
+      });
   }
 
   enterNotes(input) {
@@ -183,7 +189,7 @@ class Appointment extends React.Component {
               Appointment Detail
             </Text>
             <Text style={styles.headerDetail}>
-              You are making an appointment with {`${this.props.doctor.name} on ${this.props.time_slot.date} at ${this.props.time_slot.time}`} for the following patients:
+              You are making an appointment with {`${this.props.doctor.name} on ${this.props.time_slot.date} at ${this.props.time_slot.time}`} for the following patients (Max 2):
             </Text>
           </View>
 
