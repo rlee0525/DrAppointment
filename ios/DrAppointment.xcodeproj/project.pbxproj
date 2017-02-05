@@ -28,6 +28,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		886ECDF29E264876B8468ABB /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4933CF49D624427795C08557 /* Entypo.ttf */; };
+		91DD624A1E47D6C9004A5880 /* MyLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91DD62491E47D6C9004A5880 /* MyLaunchScreen.storyboard */; };
 		AE6E83DAD9A64AF2B52657D7 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5533E69DE4674E16A22A111E /* Ionicons.ttf */; };
 		C7182AAA36FC44C6BE1B59BA /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9F2876A4F7245A6987376DB /* Octicons.ttf */; };
 		CB8C76BDA9E442E49F49C07C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D626684A6EF4361BEBBB673 /* FontAwesome.ttf */; };
@@ -260,6 +261,7 @@
 		7CAC551451C348F4BA8A5792 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8AE0235085B54B1A97B9991F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		91DD62491E47D6C9004A5880 /* MyLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyLaunchScreen.storyboard; sourceTree = "<group>"; };
 		9489214A18604FCA889D4C10 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		A8D6A455DE814B4D88C6A863 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		B9F2876A4F7245A6987376DB /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				91DD62491E47D6C9004A5880 /* MyLaunchScreen.storyboard */,
 			);
 			name = DrAppointment;
 			sourceTree = "<group>";
@@ -546,9 +549,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = FY2955395Q;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = FY2955395Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -828,6 +833,7 @@
 				886ECDF29E264876B8468ABB /* Entypo.ttf in Resources */,
 				27DFC650155842D3B8AE80BF /* EvilIcons.ttf in Resources */,
 				CB8C76BDA9E442E49F49C07C /* FontAwesome.ttf in Resources */,
+				91DD624A1E47D6C9004A5880 /* MyLaunchScreen.storyboard in Resources */,
 				FB41F24C831C4CF7BBEAFCF8 /* Foundation.ttf in Resources */,
 				AE6E83DAD9A64AF2B52657D7 /* Ionicons.ttf in Resources */,
 				27A0A8B3084B4DB39BB2FCA4 /* MaterialCommunityIcons.ttf in Resources */,
@@ -902,6 +908,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = FY2955395Q;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -924,6 +931,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = FY2955395Q;
 				INFOPLIST_FILE = DrAppointmentTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -943,6 +951,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = FY2955395Q;
 				INFOPLIST_FILE = DrAppointment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -961,6 +970,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FY2955395Q;
 				INFOPLIST_FILE = DrAppointment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

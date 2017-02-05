@@ -110,7 +110,5 @@ Raymond's primary responsibilities will be:
   - Include section for receptionists
   - Include section for doctors
   - Survey/gauge interest in app at 5 doctor's practice
-  - Tabulate results and include in production README
 - Make user experience survey for user
   - Get 15 classmates to review
-  - Tabulate results and include in production README
