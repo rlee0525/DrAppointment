@@ -10,8 +10,8 @@ import { Actions } from 'react-native-router-flux';
 class Loading extends React.Component {
 
   componentWillMount() {
-    AsyncStorage.removeItem('phone_number');
-    AsyncStorage.removeItem('authy_id');
+    // AsyncStorage.removeItem('phone_number');
+    // AsyncStorage.removeItem('authy_id');
     AsyncStorage.getItem('phone_number', (err, result) => {
       const phoneNumber = result;
       if (result) {

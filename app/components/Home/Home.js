@@ -131,8 +131,8 @@ class Home extends React.Component {
                     </Text>
                   </View>
                   <View style={styles.right}>
-                    <Text>
-                      <Icon style={styles.angle} name="angle-double-left" size={60} color="rgba(255, 255, 255, 0.8)" />
+                    <Text style={styles.right}>
+                      <Icon style={styles.angle} name="angle-double-left" size={50} color="rgba(255, 255, 255, 0.8)" />
                     </Text>
                   </View>
                 </View>
@@ -286,7 +286,9 @@ const styles = StyleSheet.create({
     flex: 0.9,
   },
   right: {
+    flexDirection: 'row',
     flex: 0.1,
+    alignSelf: 'center',
   },
   star: {
     color: 'orange',
