@@ -1,4 +1,4 @@
 node_modules
 /__tests__
 /android
-/ios
+/ios/build
