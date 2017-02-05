@@ -159,11 +159,11 @@ class Home extends React.Component {
             {docs}
           </ScrollView>
         </View>
-        <View style={styles.viewProfileButton}>
+        <View style={styles.footer}>
           <TouchableHighlight style={styles.profileButton} onPress={
               () => Actions.profile({ currentUser: this.props.currentUser })
             } >
-            <Text style={styles.textProfileButton}>
+            <Text style={styles.profileButtonText}>
               My Appointments
             </Text>
           </TouchableHighlight>
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   listingsContainer: {
-
+    marginBottom: 15,
   },
   text: {
     color: "white",
@@ -226,29 +226,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: 'Arial',
     fontWeight: 'bold',
-  },
-  viewProfileButton: {
-    position: 'absolute',
-    bottom: 90,
-    width: 170,
-  },
-  textProfileButton: {
-    paddingRight: 0,
-    fontSize: 16,
-    alignSelf: 'center',
-    fontFamily: 'Arial',
-    color: 'white',
-  },
-  profileButton: {
-    height: 30,
-    borderRadius: 10,
-    position: 'absolute',
-    right: 25,
-    top: 22,
-    backgroundColor: 'red',
-    paddingRight: 15,
-    paddingLeft: 15,
-    justifyContent: 'center',
   },
   doctorListing: {
     padding: 10,
@@ -302,7 +279,24 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
-  }
+  },
+  footer: {
+    // flex: 0.1,
+    alignSelf: 'stretch',
+  },
+  profileButton: {
+    height: 50,
+    backgroundColor: '#0091EA',
+    paddingLeft: 40,
+    paddingRight: 40,
+    justifyContent: 'center',
+  },
+  profileButtonText: {
+    fontSize: 16,
+    color: '#FFF',
+    alignSelf: 'center',
+    fontFamily: 'Arial'
+  },
 });
 
 export default Home;
