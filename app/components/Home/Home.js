@@ -115,7 +115,7 @@ class Home extends React.Component {
     }
 
     return (
-      <Image source={require('../../images/temp.jpg')} style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.container}>
           <View style={styles.searchBarContainer}>
             <TextInput
@@ -136,7 +136,7 @@ class Home extends React.Component {
             </Text>
           </TouchableHighlight>
         </View>
-      </Image>
+      </View>
     );
   }
 }
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)'
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   searchBarContainer: {
     padding: 20,
@@ -217,11 +217,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
     paddingLeft: 15,
-    borderColor: 'white',
+    borderColor:'rgba(255, 255, 255, 0.2)',
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderWidth: 0.5,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    borderWidth: 1,
   },
   callButton: {
     fontSize: 13,

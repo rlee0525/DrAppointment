@@ -26,8 +26,6 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    console.log(this);
     let appointments;
     appointments = this.props.appointments.map(appointment => {
       return (
@@ -51,18 +49,32 @@ class Profile extends React.Component {
         </View>
       );
     });
+    if (appointments.length == 0) appointments = (
+      <View style={styles.appointmentListing}>
+        <View>
+          <Text style={styles.listingText}>
+            You have no appointments
+          </Text>
+        </View>
+      </View>
+    );
 
     return (
       <Image source={require('../../images/temp.jpg')} style={styles.container}>
-        <ScrollView style={styles.listingContainer}>
-          { appointments }
-        </ScrollView>
-        <View style={styles.backHomeButton}>
-          <TouchableHighlight style={styles.button} onPress={() => Actions.home() } >
-            <Text style={styles.homeButton}>
-              Back
+        <View style={styles.container}>
+          <ScrollView style={styles.listingContainer}>
+            <Text style={styles.headline}>
+              My Appointments
             </Text>
-          </TouchableHighlight>
+            { appointments }
+          </ScrollView>
+          <View style={styles.backHomeButton}>
+            <TouchableHighlight style={styles.button} onPress={() => Actions.home() } >
+              <Text style={styles.homeButton}>
+                Back
+              </Text>
+            </TouchableHighlight>
+          </View>
         </View>
       </Image>
     );
@@ -70,21 +82,29 @@ class Profile extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  headline: {
+    height: 80,
+    color: 'white',
+    fontSize: 30,
+    padding: 20,
+    paddingLeft: 30,
+    fontWeight: 'bold',
+  },
   container: {
     flex: 1,
     flexDirection: "column",
     width: null,
     height: null,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)'
+    backgroundColor: 'rgba(0, 0, 0, 0.8)'
   },
   appointmentListing: {
     flexDirection: "row",
     padding: 10,
     paddingLeft: 30,
-    borderColor: 'white',
+    borderColor: 'rgba(255, 255, 255, 0.4)',
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderWidth: 0.5,
+    borderWidth: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   listingContainer: {
