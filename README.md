@@ -1,12 +1,6 @@
 # Dr. Appointment
 
-<img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Twillio.gif" width="200">
-
-<img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Search.gif" width="200">
-
-<img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Appointment.gif" width="200">
-
-<img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Text.png" width="200">
+<img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Twillio.gif" width="200"> <img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Search.gif" width="200"> <img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Appointment.gif" width="200"> <img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Text.png" width="200">
 
 ## Background
 
