@@ -119,6 +119,77 @@ end.reverse!
   - Search bias based on users' favorite status, location (distance to geolocation of the phone), and doctors' names.
   - User can swipe to toggle favorite or call the doctor.
 
+
+```Ruby
+validate :blocked?, :overlap?, :in_the_future?
+
+private
+
+  def blocks
+    BlockedTime
+      .where(doctor: self.doctor)
+      .where(time_slot: self.time_slot)
+  end
+
+  def find_overlap
+    Appointment
+      .where.not(id: self.id)
+      .where(doctor: self.doctor)
+      .where(time_slot: self.time_slot)
+  end
+
+  def blocked?
+    errors.add(:appointment, "is blocked by doctor") unless blocks.empty?
+  end
+
+  def overlap?
+    errors.add(:appointment, "of another overlaps yours") unless find_overlap.empty?
+  end
+
+  def in_the_future?
+    errors.add(:appointment, "must be in the future") if time_slot.appointment_date.appointment_date < Date.today
+  end
+```
+
+- Backend Validation of appointments
+  - Validation methods on the model layer prevent bad data from entering the database.
+  - Errors messages are sent back to the front end for error handling
+
+
+```Ruby
+after_create :reminder
+
+@@REMINDER_TIME = 1.hours
+
+def reminder
+...
+Twilio::REST::Client.new(account_sid, auth_token)
+    sms = @client.account.messages.create({
+        :to => to,
+        :from => from,
+        :body => message
+    })
+    puts sms.to
+end
+
+def time
+    date = self.time_slot.appointment_date.appointment_date
+    time = self.time_slot.time
+    DateTime.new(date.year, date.month, date.day, time[0..1].to_i, time[-2..-1].to_i, 0, '-8')
+  end
+
+def when_to_run
+  self.time - @@REMINDER_TIME
+end
+
+handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run }
+```
+
+- Asynchronous background workers handle the Twilio SMS reminder using the Delayed Job Active Record Gem.
+  - The after_create lifecycle method on the model layer create a reminder event that is saved in the delayed job table and is executed when a background worker queries the table, removing it from the table when it is done
+  - Adding  additional 'time' and 'when_to_run' methods allow for determining the execution interval
+
+
 ## Architecture and Technologies
 
 This project will be implemented with the following technologies:
