@@ -2,6 +2,10 @@
 
 <img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Twillio.gif" width="200"> <img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Search.gif" width="200"> <img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Appointment.gif" width="200"> <img src="https://github.com/randyjap/DrAppointment/blob/master/app/images/Text.png" width="200">
 
+Get it on Google Play Store: [Dr. Appointment][playstore]
+
+[playstore]: https://play.google.com/store/apps/details?id=com.drappointment
+
 ## Background
 
 Making appointments with one's primary care physician can be difficult and time-consuming. Instead of patients trying to find time during their busy lives to place phone calls and make appointments with doctors, this mobile app allows the users to quickly find their doctor, view their availabilities, and make an appointment for them or their family members anytime, anywhere.
