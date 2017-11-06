@@ -6,10 +6,6 @@ Get it on Google Play Store: [Dr. Appointment][playstore]
 
 [playstore]: https://play.google.com/store/apps/details?id=com.drappointment
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/UffjBfukMi73H1HvTU24vZiv/rlee0525/DrAppointment'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/UffjBfukMi73H1HvTU24vZiv/rlee0525/DrAppointment.svg' />
-</a>
-
 ## Background
 
 Making appointments with one's primary care physician can be difficult and time-consuming. Instead of patients trying to find time during their busy lives to place phone calls and make appointments with doctors, this mobile app allows the users to quickly find their doctor, view their availabilities, and make an appointment for them or their family members anytime, anywhere.
